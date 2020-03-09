@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "target": "ES6",        
+        "moduleResolution": "node",
+        "removeComments": false,
+        "sourceMap": false,
+        "noLib": false,
+        "declaration": true,
+        "lib": ["es6", "scripthost", "es2017"],
+        "outDir": "dist",
+        "rootDir": "./",
+        "typeRoots": [ "./typings", "./node_modules/@types"]
+    },
+    "include": [
+        "src",
+        "tests"
+    ],
+    "exclude": [
+        "node_modules",
+        "exclude",
+        "typings"
+    ]    
+}

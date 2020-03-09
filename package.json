@@ -1,0 +1,90 @@
+{
+  "name": "@asposecloud/asposecadcloud",
+  "version": "19.9.0",
+  "description": "Aspose.CAD Cloud Node.js SDK",
+  "homepage": "https://products.aspose.cloud/cad",
+  "author": {
+    "name": "Denis Demenko",
+    "url": "https://github.com/aspose-cad-cloud"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.15"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aspose-cad-cloud/aspose-cad-cloud-nodejs.git"
+  },
+  "keywords": [
+    "Aspose",
+    "CAD",
+    "Cloud",
+    "REST",
+    "API",
+    "SDK",
+    "drawing",
+    "DWG",
+    "DXF",
+    "DWT",
+    "IGS",
+    "IGES",
+    "STL",
+    "DWF",
+    "CFF2",
+    "CF2",
+    "OBJ",
+    "DGN",
+    "export",
+    "image",
+    "bmp",
+    "emf",
+    "gif",
+    "jpg",
+    "jpeg",
+    "jpeg2000",
+    "jp2",
+    "j2k",
+    "png",
+    "psd",
+    "tiff",
+    "tif",
+    "wmf",
+    "pdf",
+    "svg"
+  ],
+  "readmeFilename": "README.md",
+  "main": "dist/lib/api.js",
+  "types": "dist/lib/api.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "compile": "tsc",
+    "lint": "tslint src/{,**/}*.ts tests/{,**/}*.ts -t verbose --project ./tsconfig.json",
+    "test": "cross-var node --max_old_space_size=4096 ./node_modules/jest/bin/jest.js --config=./jest.config.js --verbose --runInBand --no-cache --colors --ci --reporters=default --reporters=jest-junit",
+    "ci": "npm run-script lint && npm run-script compile && npm run-script test"
+  },
+  "jest-junit": {
+    "outputDirectory": "test-reports",
+    "outputName": "./junit.xml"
+  },
+  "dependencies": {
+    "@types/request": "^2.47.0",
+    "asposestoragecloud": "^1.0.5",
+    "request": "^2.87.0"
+  },
+  "devDependencies": {
+    "request-debug": "^0.2.0",
+    "@types/jest": "^25.1.0",
+    "@types/jest-each": "^0.3.2",
+    "@types/node": "^12.0.10",
+    "cross-var": "^1.1.0",
+    "jest": "^25.1.0",
+    "jest-each": "^25.1.0",
+    "jest-junit": "^5.2.0",
+    "ts-jest": "^23.10.4",
+    "ts-node": "^4.0.2",
+    "tslint": "^5.8.0",
+    "typescript": "^3.1.1"
+  }
+}
