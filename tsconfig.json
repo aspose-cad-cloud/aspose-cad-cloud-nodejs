@@ -8,21 +8,20 @@
         "target": "ES6",        
         "moduleResolution": "node",
         "removeComments": false,
-        "sourceMap": false,
+        "sourceMap": true,
         "noLib": false,
         "declaration": true,
         "lib": ["es6", "scripthost", "es2017"],
         "outDir": "dist",
         "rootDir": "./",
-        "typeRoots": [ "./typings", "./node_modules/@types"]
+        "allowJs": true
     },
     "include": [
-        "src",
-        "tests"
+        "lib",
+        "test"
     ],
     "exclude": [
         "node_modules",
-        "exclude",
-        "typings"
+        "exclude"
     ]    
 }
