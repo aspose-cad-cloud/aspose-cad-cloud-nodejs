@@ -31,7 +31,7 @@ import * as cad from "../../lib/api";
 const StorageApi = require("../../lib/internal/storage/StorageApi");
 
 export type GetRequestInvokerDelegate = () => Promise<Buffer>;
-export type PostRequestInvokerDelegate = (inputStream: Buffer, outPath: string) => Promise<Buffer>;
+export type PostRequestInvokerDelegate = (inputStream: Buffer) => Promise<Buffer>;
 
 /**
  * API tester base class.
@@ -41,7 +41,7 @@ export abstract class ApiTester {
     /**
      * The default timeout (ms)
      */
-    public static readonly DefaultTimeout: number = 600000;
+    public static readonly DefaultTimeout: number = 240000;
 
     /**
      * If any test failed
@@ -118,6 +118,10 @@ export abstract class ApiTester {
      * Aspose.CAD Cloud API
      */
     protected cadApi: cad.CadApi;
+
+    /**
+     * Aspose.Storage API client
+     */
     protected storageApi;
 
     /**
@@ -141,7 +145,7 @@ export abstract class ApiTester {
         await this.createApiInstances();
         if (!ApiTester.FailedAnyTest && this.RemoveResult && 
             (await this.getIsExistAsync(this.TempFolder, this.TestStorage))) {
-            await this.deleteFolderAsync(this.TestStorage, this.TempFolder);
+            await this.deleteFolderAsync(this.TempFolder, this.TestStorage);
             await this.putCreateFolderAsync(this.TempFolder, this.TestStorage);
         }
     }
@@ -219,6 +223,7 @@ export abstract class ApiTester {
         let appSid = onPremise ? undefined : process.env.AppSid;
         let baseUrl = process.env.ApiEndpoint;
         let apiVersion = process.env.ApiVersion;
+        let proxy: string = null;
 
         if ((!onPremise && (!appKey || !appSid)) || !baseUrl || !apiVersion) {
             console.log("Access data isn't set completely by environment variables. Filling unset data with default values.");
@@ -247,6 +252,8 @@ export abstract class ApiTester {
                 baseUrl = accessData.BaseURL;
                 console.log("Set default base URL");
             }
+
+            proxy = accessData.Proxy;
         } else if (!onPremise) {
             throw new Error("Please, specify valid access data (AppKey, AppSid, Base URL)");
         }
@@ -258,16 +265,22 @@ export abstract class ApiTester {
         console.log(`Base URL: ${baseUrl}`);
         console.log(`API version: ${apiVersion}`);
 
-        this.cadApi = new cad.CadApi(appKey, appSid, baseUrl, true, apiVersion);
+        this.cadApi = new cad.CadApi(appKey, appSid, baseUrl, true, apiVersion, proxy);
 
         let storageBaseUrl: string = baseUrl;
         if (!storageBaseUrl.startsWith("https")) {
             storageBaseUrl = storageBaseUrl.replace("http", "https");
         }
         
-        this.storageApi = new StorageApi({ appSid, apiKey: appKey, baseURI: storageBaseUrl, debug: true });
+        this.storageApi = new StorageApi({ appSid, apiKey: appKey, baseURI: storageBaseUrl, debug: false, proxy, version: "1.1" });
 
-        this.InputTestFiles = await this.fetchInputTestFilesInfo();
+        this.InputTestFiles = await this.fetchInputTestFilesInfo(false);
+
+        if (!this.InputTestFiles || this.InputTestFiles.length === 0) {
+            this.InputTestFiles = await this.fetchInputTestFilesInfo(true);
+        }
+
+        console.log("Input test files: " + this.InputTestFiles.length);
     }
 
     /**
@@ -276,7 +289,7 @@ export abstract class ApiTester {
      */
     protected checkInputFileExists(inputFileName: string): boolean {
         for (const storageFileInfo of this.InputTestFiles) {
-            if (storageFileInfo.name === inputFileName) {
+            if (storageFileInfo.Name === inputFileName) {
                 return true;
             }
         }
@@ -296,7 +309,7 @@ export abstract class ApiTester {
                 this.storageApi.GetListFiles(folder, storage, (responseMessage) => {
                     const files = responseMessage.body.Files;
                     for (const storageFileInfo of files) {
-                        if (storageFileInfo.Name === fileName) {
+                        if (folder + "/" + storageFileInfo.Name === fileName) {
                             resolve(storageFileInfo);
                         }
                     }
@@ -316,69 +329,37 @@ export abstract class ApiTester {
       * @param inputFileName Name of the input file.
       * @param requestInvoker The request invoker.
       * @param propertiesTester The properties tester.
-      * @param folder The input folder.
+      * @param folder folder with file.
+      * @param outPath The out path.
       * @param storage The storage.
       */
     protected async testGetRequest(testMethodName: string, parametersLine: string, inputFileName: string,
-                                   requestInvoker: GetRequestInvokerDelegate, folder: string, 
+                                   requestInvoker: GetRequestInvokerDelegate, folder: string, outPath: string, 
                                    storage: string = this.DefaultStorage) {
 
-            await this.testRequest(testMethodName, false, parametersLine, inputFileName, null, 
-                () => this.obtainGetResponse(requestInvoker), folder, storage);
+            await this.testRequest(testMethodName, parametersLine, inputFileName, outPath, 
+                () => this.obtainGetResponse(requestInvoker, outPath), folder, outPath, storage);
     }
 
      /**
       * Tests the typical POST request.
       * @param testMethodName Name of the test method.
-      * @param saveResultToStorage If set to true, save result to storage.
       * @param parametersLine The parameters line.
       * @param inputFileName Name of the input file.
-      * @param resultFileName Name of the result file.
       * @param requestInvoker The request invoker.
       * @param propertiesTester The properties tester.
-      * @param folder The input folder.
+      * @param folder The folder with file.
+      * @param outPath The out path.
       * @param storage The storage.
       */
-    protected async testPostRequest(testMethodName: string, saveResultToStorage: boolean, parametersLine: string, inputFileName: string, 
-                                    resultFileName: string, requestInvoker: PostRequestInvokerDelegate, folder: string, 
-                                    storage: string = this.DefaultStorage) {
-            let outPath: string = "";
-            if (saveResultToStorage) {
-                outPath = `${folder}/${resultFileName}`;
-            }
+    protected async testPostRequest(testMethodName: string, parametersLine: string, inputFileName: string, 
+                                    requestInvoker: PostRequestInvokerDelegate, folder: string,
+                                    outPath: string, storage: string = this.DefaultStorage) {
 
-            await this.testRequest(testMethodName, saveResultToStorage, parametersLine, inputFileName, resultFileName, 
-                () => this.obtainPostResponse(folder + "/" + inputFileName, outPath, storage, requestInvoker), folder, storage);
-    }
-
-    /**
-     * Obtains the typical GET request response.
-     * @param requestInvoker The output path to save the result.
-     */
-    private async obtainGetResponse(requestInvoker: GetRequestInvokerDelegate) {
-        const response: Buffer = await requestInvoker.call(null);
-        expect(response).toBeTruthy();
-        expect(response.length).toBeGreaterThan(0);
-        return response;
-    }
-
-    /**
-     * Obtains the typical POST request response.
-     * @param inputPath The input path.
-     * @param outPath The output path to save the result.
-     * @param storage The storage.
-     * @param requestInvoker The request invoker.
-     */
-    private async obtainPostResponse(inputPath: string, outPath: string, storage: string, requestInvoker: PostRequestInvokerDelegate) {
-        const responseBody = await this.getDownloadAsync(inputPath, storage);
-        const response: Buffer = await requestInvoker.call(null, responseBody, outPath);
-        if (!outPath) {
-            expect(response).toBeTruthy();
-            expect(response.length).toBeGreaterThan(0);
-            return response;
-        }
-
-        return null;
+            await this.testRequest(
+                testMethodName, parametersLine, inputFileName, outPath, 
+                () => this.obtainPostResponse(folder  + "/" + inputFileName, outPath, storage, requestInvoker), 
+                folder, outPath, storage);
     }
 
     /**
@@ -400,31 +381,21 @@ export abstract class ApiTester {
     }
 
     /**
-     * Fetches the input test files info.
-     */
-    private async fetchInputTestFilesInfo(): Promise<any[]> {
-        return new Promise((resolve, reject) => {
-            try {
-                this.storageApi.GetListFiles(this.OriginalDataFolder, this.TestStorage, (responseMessage) => {
-                    resolve(responseMessage.body.Files);
-                });
-            } catch (error) {
-                reject(error);
-            }
-        });
-    }
-
-    /**
      * Copies input file to temp folder using Promises to call Storage SDK.
      * @param fileName File to copy.
      * @param destFolder Destination folder.
      * @param storage Storage name.
      */
     protected async copyFileAsync(fileName: string, destFileName: string, destFolder: string, storage: string) {
+
+        const thisLink = this;
+
         return new Promise(async (resolve, reject) => {
             try {
-                if (!(await this.getIsExistAsync(destFolder + "/" + destFileName, storage))) {
-                    await this.copyFileAsync(this.OriginalDataFolder + "/" + fileName, destFileName, destFolder, storage);
+                if (!(await thisLink.getIsExistAsync(destFolder + "/" + destFileName, storage))) {
+                    await thisLink.storageApi.PutCopy(fileName, destFolder + "/" + destFileName, null, storage, storage, null, async (responseMessage) => {
+                        resolve(responseMessage.body);
+                    });
                 } else {
                     resolve();
                 }
@@ -433,7 +404,7 @@ export abstract class ApiTester {
             }
         });
     }
-
+    
     /**
      * Deletes file using Promise to call Storage SDK.
      * @param file Storage file path.
@@ -452,6 +423,75 @@ export abstract class ApiTester {
     }
 
     /**
+     * Obtains the typical GET request response.
+     * @param requestInvoker The output path to save the result.
+     */
+    private async obtainGetResponse(requestInvoker: GetRequestInvokerDelegate, outPath: string) {
+        const response: Buffer = await requestInvoker.call(null);
+        expect(response).toBeTruthy();
+
+        if (!outPath) {
+            expect(response.length).toBeGreaterThan(0);
+        }
+        
+        return response;
+    }
+
+    /**
+     * Obtains the typical POST request response.
+     * @param inputPath The input path.
+     * @param outPath The output path to save the result.
+     * @param storage The storage.
+     * @param requestInvoker The request invoker.
+     */
+    private async obtainPostResponse(inputPath: string, outPath: string, storage: string, requestInvoker: PostRequestInvokerDelegate) {
+        const responseBody = await this.getDownloadAsync(inputPath, storage);
+        const response: Buffer = await requestInvoker.call(null, responseBody, outPath);
+        if (!outPath) {
+            expect(response).toBeTruthy();
+
+            if (!outPath) {
+                expect(response.length).toBeGreaterThan(0);
+            }
+
+            return response;
+        }
+
+        return null;
+    }
+
+    /**
+     * Fetches the input test files info.
+     */
+    private async fetchInputTestFilesInfo(forcedUpload: boolean): Promise<any[]> {
+        const thisLink = this;
+
+        if (forcedUpload) {
+            fs.readdir(this.LocalTestFolder, function(_, items) {
+                for (const item of items) {
+                    const stats = fs.statSync(thisLink.LocalTestFolder + "/" + item);
+                    if (!item.endsWith(".json") && stats && stats.isFile() && stats.size > 0) {
+                        thisLink.storageApi.PutCreate(thisLink.OriginalDataFolder + "/" + item, null, thisLink.TestStorage, thisLink.LocalTestFolder + "/" + item);
+                    }
+                }
+            });
+        }
+
+        return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    try {
+                        this.storageApi.GetListFiles(this.OriginalDataFolder, this.TestStorage, (responseMessage) => {
+                            resolve(responseMessage.body.Files);
+                        });
+                    } catch (error) {
+                        reject(error);
+                    }
+                }, 
+                forcedUpload ? 15000 : 0);
+        });
+    }
+
+    /**
      * Tests the typical request.
      * @param testMethodName Name of the test method.
      * @param saveResultToStorage If set to true, save result to storage.
@@ -460,39 +500,42 @@ export abstract class ApiTester {
      * @param resultFileName Name of the result file.
      * @param invokeRequestAction The invoke request action.
      * @param propertiesTester The properties tester.
-     * @param folder The folder.
+     * @param outPath The output path.
      * @param storage The storage.
      */
     private async testRequest(
-        testMethodName: string, saveResultToStorage: boolean, parametersLine: string, 
-        inputFileName: string, resultFileName: string, invokeRequestAction: () => Promise<Buffer>, 
-        folder: string, storage: string = this.DefaultStorage) {
+        testMethodName: string, parametersLine: string, 
+        inputFileName: string, resultFileName: string, 
+        invokeRequestAction: () => Promise<Buffer>, 
+        folder: string, outPath: string, storage: string = this.DefaultStorage) {
+
         console.log(testMethodName);
         if (!this.checkInputFileExists(inputFileName)) {
             throw new Error(`Input file ${inputFileName} doesn't exist in the specified storage folder: ${folder}. Please, upload it first.`);
         }
+
         await this.copyFileAsync(`${this.OriginalDataFolder}/${inputFileName}`, inputFileName, folder, storage);
         let passed: boolean = false;
-        let outPath: string = null;
+
         try {
             console.log(parametersLine);
-            if (saveResultToStorage) {
-                outPath = folder + "/" + resultFileName;
+            if (outPath) {
                 if ((await this.getIsExistAsync(outPath, storage))) {
                     await this.deleteFileAsync(outPath, storage);
                 }
             }
+            
             //let resultProperties: cad.CadResponse = null;
             const response = await invokeRequestAction();
-            if (saveResultToStorage) {
+            if (outPath) {
                 const resultInfo = await this.getStorageFileInfo(folder, resultFileName, storage);
                 if (resultInfo == null) {
                     throw new Error(
                         `Result file ${resultFileName} doesn't exist in the specified storage folder: ${folder}. 
                         Result isn't present in the storage by an unknown reason.`);
                 }
-            }
-            else {
+            } else {
+                console.log("Response length: " + response.length);
                 expect(response).toBeTruthy();
                 expect(response.length).toBeGreaterThan(0);
             }
@@ -503,7 +546,7 @@ export abstract class ApiTester {
             console.log(e);
             throw e;
         } finally {
-            if (!ApiTester.FailedAnyTest && passed && saveResultToStorage && this.RemoveResult 
+            if (!ApiTester.FailedAnyTest && passed && outPath && this.RemoveResult 
                  && (await this.getIsExistAsync(outPath, storage))) {
                 await this.deleteFileAsync(outPath, storage);
             }

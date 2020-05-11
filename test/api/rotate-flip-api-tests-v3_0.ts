@@ -29,11 +29,16 @@ import * as cad from "../../lib/api";
 import { ApiTester } from "../base/api-tester";
 
 /**
- * Class for testing save as API calls
+ * Class for testing rotate flip as API calls
  */
-class SaveAsApiTests extends ApiTester {
+class RotateFlipApiTests extends ApiTester {
 
-    public async getSaveDrawingAsTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async getRotateFlipDrawingTest(
+        formatExtension: string, 
+        operation: 'RotateNoneFlipNone' | 'Rotate90FlipNone' | 'Rotate180FlipNone' | 'Rotate270FlipNone' | 'RotateNoneFlipX' | 'Rotate90FlipX' | 'Rotate180FlipX' | 'Rotate270FlipX' | 'RotateNoneFlipY' | 'Rotate90FlipY' | 'Rotate180FlipY' | 'Rotate270FlipY' | 'RotateNoneFlipXY' | 'Rotate90FlipXY' | 'Rotate180FlipXY' | 'Rotate270FlipXY', 
+        saveResultToStorage: boolean, 
+        ...additionalExportFormats: string[]) {
+
         let name: string = null;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
@@ -58,14 +63,14 @@ class SaveAsApiTests extends ApiTester {
                 }
 
                 await this.testGetRequest(
-                        "getSaveDrawingAsTest",
-                        `Input drawing: ${name}; Output format: ${outputFormat}`,
+                        "getRotateFlipDrawingTest",
+                        `Input drawing: ${name}; Output format: ${outputFormat}, operation: ${operation}`,
                         name,
                         async () => {
-                            const request: cad.GetDrawingSaveAsRequest = 
-                            new cad.GetDrawingSaveAsRequest({ name, outputFormat, folder, storage, outPath });
+                            const request: cad.GetDrawingRotateFlipRequest = 
+                            new cad.GetDrawingRotateFlipRequest({ name, outputFormat, folder, storage, outPath, rotateFlipType: operation });
 
-                            const response = await this.cadApi.getDrawingSaveAs(request);
+                            const response = await this.cadApi.getDrawingRotateFlip(request);
                             return response;
                         },
                         folder,
@@ -75,7 +80,11 @@ class SaveAsApiTests extends ApiTester {
         }
     }
 
-    public async postSaveDrawingAsTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async postRotateFlipDrawingTest(
+        formatExtension: string, 
+        operation: 'RotateNoneFlipNone' | 'Rotate90FlipNone' | 'Rotate180FlipNone' | 'Rotate270FlipNone' | 'RotateNoneFlipX' | 'Rotate90FlipX' | 'Rotate180FlipX' | 'Rotate270FlipX' | 'RotateNoneFlipY' | 'Rotate90FlipY' | 'Rotate180FlipY' | 'Rotate270FlipY' | 'RotateNoneFlipXY' | 'Rotate90FlipXY' | 'Rotate180FlipXY' | 'Rotate270FlipXY', 
+        saveResultToStorage: boolean, 
+        ...additionalExportFormats: string[]) {
         let name: string = null;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
@@ -102,13 +111,13 @@ class SaveAsApiTests extends ApiTester {
                 }
 
                 await this.testPostRequest(
-                        "postSaveDrawingAsTest",
-                        `Input drawing: ${name}; Output format: ${outputFormat}`,
+                        "postRotateFlipDrawingTest",
+                        `Input drawing: ${name}; Output format: ${outputFormat}, operation: ${operation}`,
                         name,
                         async (inputStream) => {
-                            const request: cad.PostDrawingSaveAsRequest = 
-                            new cad.PostDrawingSaveAsRequest({ drawingData: inputStream, outputFormat, outPath, storage });
-                            const response = await this.cadApi.postDrawingSaveAs(request);
+                            const request: cad.PostDrawingRotateFlipRequest = 
+                            new cad.PostDrawingRotateFlipRequest({ drawingData: inputStream, outputFormat, outPath, storage, rotateFlipType: operation });
+                            const response = await this.cadApi.postDrawingRotateFlip(request);
                             return response;
                         },
                         folder,
@@ -119,17 +128,9 @@ class SaveAsApiTests extends ApiTester {
     }
 }
 
-//process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
-const testClass: SaveAsApiTests = new SaveAsApiTests();
+const testClass: RotateFlipApiTests = new RotateFlipApiTests();
 const useExtendedTests: boolean = process.env.ExtendedTests === "true";
 console.log("Extended: " + useExtendedTests);
-// testClass.beforeAll().then(_ => {
-//     testClass.getSaveDrawingAsTest(".dxf", false);
-//     testClass.postSaveDrawingAsTest(".dwg", false).then(_ => {
-//         testClass.postSaveDrawingAsTest(".dwg", true);
-//     });
-// });
-
 beforeEach(() => {
     jest.setTimeout(ApiTester.DefaultTimeout);
 });
@@ -142,17 +143,18 @@ afterAll(async () =>  {
     await testClass.afterAll();
 });
 
-describe.each([[".dwg", true], [".dxf", false]])(
-    "SaveAsTestSuite_V3",
-    (formatExtension, saveResultToStorage) => {
+// rotateFlipType: 'RotateNoneFlipNone' | 'Rotate90FlipNone' | 'Rotate180FlipNone' | 'Rotate270FlipNone' | 'RotateNoneFlipX' | 'Rotate90FlipX' | 'Rotate180FlipX' | 'Rotate270FlipX' | 'RotateNoneFlipY' | 'Rotate90FlipY' | 'Rotate180FlipY' | 'Rotate270FlipY' | 'RotateNoneFlipXY' | 'Rotate90FlipXY' | 'Rotate180FlipXY' | 'Rotate270FlipXY'
+describe.each([[".dwg", 'RotateNoneFlipNone', true], [".dxf", 'Rotate90FlipX', false]])(
+    "RotateFlipTestSuite_V3",
+    (formatExtension, operation, saveResultToStorage) => {
         if (!saveResultToStorage) {
-            test(`getSaveDrawingAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.getSaveDrawingAsTest(formatExtension, saveResultToStorage);
+            test(`getRotateFlipDrawingTest: saveResultToStorage - ${saveResultToStorage}, op - ${operation}`, async () => {
+                await testClass.getRotateFlipDrawingTest(formatExtension, operation, saveResultToStorage);
             });
         }
 
-        test(`postSaveDrawingAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postSaveDrawingAsTest(formatExtension, saveResultToStorage);
+        test(`postRotateFlipDrawingTest: saveResultToStorage - ${saveResultToStorage}, op - ${operation}`, async () => {
+            await testClass.postRotateFlipDrawingTest(formatExtension, operation, saveResultToStorage);
         });
 
         beforeEach(() => {
@@ -164,17 +166,17 @@ describe.each([[".dwg", true], [".dxf", false]])(
 if (useExtendedTests) {
     console.log("Extended tests enabled");
     
-    describe.each([[".dgn", true],  [".dwf", false]])
-        ("SaveAsTestSuite_Extended_V3",
-        (formatExtension, saveResultToStorage) => {
+    describe.each([[".dgn", 'RotateNoneFlipY', true],  [".dwf", 'RotateNoneFlipX', false]])
+        ("RotateFlipTestSuite_V3",
+        (formatExtension, operation, saveResultToStorage) => {
             if (!saveResultToStorage) {
-                test(`getSaveDrawingAsTest`, async () => {
-                    await testClass.getSaveDrawingAsTest(formatExtension, saveResultToStorage);
+                test(`getRotateFlipDrawingTest: saveResultToStorage - ${saveResultToStorage} op - ${operation}`, async () => {
+                    await testClass.getRotateFlipDrawingTest(formatExtension, operation, saveResultToStorage);
                 });
             }
     
-            test(`postSaveDrawingAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.postSaveDrawingAsTest(formatExtension, saveResultToStorage);
+            test(`postRotateFlipDrawingTest: saveResultToStorage - ${saveResultToStorage}, op - ${operation}`, async () => {
+                await testClass.postRotateFlipDrawingTest(formatExtension, operation, saveResultToStorage);
             });
 
             beforeEach(() => {

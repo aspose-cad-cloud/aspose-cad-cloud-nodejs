@@ -26,7 +26,7 @@ import { IAuthentication, JwtAuth  } from "../internal/auth";
 const defaultBasePath = "https://api.aspose.cloud/";
 
 /**
- * Aspose.Imaging Cloud API configuration
+ * Aspose.CAD Cloud API configuration
  */
 export class Configuration {
     /**
@@ -55,6 +55,11 @@ export class Configuration {
     public debugMode: boolean;
 
     /**
+     *  Gets or sets a url to a proxy.
+     */
+    public proxy: string;
+
+    /**
      * Gets or sets the API version.
      */
     public apiVersion: string = "v3.0";
@@ -65,7 +70,7 @@ export class Configuration {
      */
     public onPremise: boolean = false;
 
-    constructor(appKey: string, appSID: string, baseUrl?: string, debugMode?: boolean, apiVersion?: string) {
+    constructor(appKey: string, appSID: string, baseUrl?: string, debugMode?: boolean, apiVersion?: string, proxy?: string) {
         if (appKey && appSID) {
             this.onPremise = false;
         } else if (baseUrl) {
@@ -83,6 +88,7 @@ export class Configuration {
         this.appSID = appSID;
         this.appKey = appKey;
         this.debugMode = debugMode;
+        this.proxy = proxy;
 
         if (apiVersion) {
             if (apiVersion.startsWith("v1") || apiVersion.startsWith("v2")) {

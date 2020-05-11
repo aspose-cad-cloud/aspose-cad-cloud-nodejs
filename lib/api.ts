@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -47,10 +47,11 @@ export class CadApi {
      * @param appSID App SID. Please, set this value as null in case of on-premise hosting.
      * @param baseUrl Base api Url. This param is required in case of on-premise hosting.
      * @param debugMode A value indicating whether debug mode. In debug mode all requests and responses are logged to console.
+     * @param proxy proxy uri.
      * @param version API version.
      */
-    constructor(appKey: string, appSID: string, baseUrl?: string, debugMode?: boolean, version?: string) {
-        this.configuration = new Configuration(appKey, appSID, baseUrl, debugMode, version);
+    constructor(appKey: string, appSID: string, baseUrl?: string, debugMode?: boolean, version?: string, proxy?: string) {
+        this.configuration = new Configuration(appKey, appSID, baseUrl, debugMode, version, proxy);
     }
 
     /**
@@ -71,13 +72,20 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getDrawingProperties.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: true,
+            json: false,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -122,18 +130,37 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.newHeight" was null or undefined when calling getDrawingResize.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outputFormat) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
+        }
+
+        if (requestObj.newWidth) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
+        }
+
+        if (requestObj.newHeight) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
+        }
+
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: true,
+            json: false,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -171,17 +198,33 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.rotateFlipType" was null or undefined when calling getDrawingRotateFlip.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotateFlipType", requestObj.rotateFlipType);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outputFormat) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
+        }
+
+        if (requestObj.rotateFlipType) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotateFlipType", requestObj.rotateFlipType);
+        }
+
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: true,
+            json: false,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -215,15 +258,25 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.outputFormat" was null or undefined when calling getDrawingSaveAs.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: true,
+            json: false,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -256,15 +309,25 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingBmp.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: true,
+            json: false,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "BmpOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -298,15 +361,25 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingGif.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: true,
+            json: false,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "GifOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -340,15 +413,25 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingJpeg.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: true,
+            json: false,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "JpegOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -382,15 +465,25 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingJpeg2000.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: true,
+            json: false,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "Jpeg2000OptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -424,15 +517,25 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingPdf.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: true,
+            json: false,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "PdfOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -466,15 +569,25 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingPng.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: true,
+            json: false,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "PngOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -513,12 +626,14 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
         };
         
@@ -557,15 +672,25 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingPsd.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: true,
+            json: false,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "PsdOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -609,11 +734,26 @@ export class CadApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outputFormat) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
+        }
+
+        if (requestObj.newWidth) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
+        }
+
+        if (requestObj.newHeight) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         if (requestObj.drawingData !== undefined) {
             const paramKey = "drawingData";
             let formValue = null;
@@ -624,12 +764,14 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
         };
@@ -672,10 +814,22 @@ export class CadApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotateFlipType", requestObj.rotateFlipType);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outputFormat) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
+        }
+
+        if (requestObj.rotateFlipType) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotateFlipType", requestObj.rotateFlipType);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         if (requestObj.drawingData !== undefined) {
             const paramKey = "drawingData";
             let formValue = null;
@@ -686,12 +840,14 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
         };
@@ -730,8 +886,14 @@ export class CadApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         if (requestObj.drawingData !== undefined) {
             const paramKey = "drawingData";
             let formValue = null;
@@ -742,12 +904,14 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
         };
@@ -785,15 +949,25 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingSvg.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: true,
+            json: false,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "SvgOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -827,15 +1001,25 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingTiff.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: true,
+            json: false,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "TiffOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -869,15 +1053,25 @@ export class CadApi {
             throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingWmf.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.folder) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: true,
+            json: false,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "WmfOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -906,8 +1100,14 @@ export class CadApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         if (requestObj.drawingData !== undefined) {
             const paramKey = "drawingData";
             let formValue = null;
@@ -918,6 +1118,7 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
@@ -931,12 +1132,14 @@ export class CadApi {
                     filename: "exportOptions",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
         };
@@ -969,8 +1172,14 @@ export class CadApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         if (requestObj.drawingData !== undefined) {
             const paramKey = "drawingData";
             let formValue = null;
@@ -981,6 +1190,7 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
@@ -994,12 +1204,14 @@ export class CadApi {
                     filename: "exportOptions",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
         };
@@ -1032,8 +1244,14 @@ export class CadApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         if (requestObj.drawingData !== undefined) {
             const paramKey = "drawingData";
             let formValue = null;
@@ -1044,6 +1262,7 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
@@ -1057,12 +1276,14 @@ export class CadApi {
                     filename: "exportOptions",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
         };
@@ -1095,8 +1316,14 @@ export class CadApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         if (requestObj.drawingData !== undefined) {
             const paramKey = "drawingData";
             let formValue = null;
@@ -1107,6 +1334,7 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
@@ -1120,12 +1348,14 @@ export class CadApi {
                     filename: "exportOptions",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
         };
@@ -1158,8 +1388,14 @@ export class CadApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         if (requestObj.drawingData !== undefined) {
             const paramKey = "drawingData";
             let formValue = null;
@@ -1170,6 +1406,7 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
@@ -1183,12 +1420,14 @@ export class CadApi {
                     filename: "exportOptions",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
         };
@@ -1221,8 +1460,14 @@ export class CadApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         if (requestObj.drawingData !== undefined) {
             const paramKey = "drawingData";
             let formValue = null;
@@ -1233,6 +1478,7 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
@@ -1246,12 +1492,14 @@ export class CadApi {
                     filename: "exportOptions",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
         };
@@ -1284,8 +1532,14 @@ export class CadApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         if (requestObj.drawingData !== undefined) {
             const paramKey = "drawingData";
             let formValue = null;
@@ -1296,6 +1550,7 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
@@ -1309,12 +1564,14 @@ export class CadApi {
                     filename: "exportOptions",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
         };
@@ -1347,8 +1604,14 @@ export class CadApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         if (requestObj.drawingData !== undefined) {
             const paramKey = "drawingData";
             let formValue = null;
@@ -1359,6 +1622,7 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
@@ -1372,12 +1636,14 @@ export class CadApi {
                     filename: "exportOptions",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
         };
@@ -1410,8 +1676,14 @@ export class CadApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         if (requestObj.drawingData !== undefined) {
             const paramKey = "drawingData";
             let formValue = null;
@@ -1422,6 +1694,7 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
@@ -1435,12 +1708,14 @@ export class CadApi {
                     filename: "exportOptions",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
         };
@@ -1473,8 +1748,14 @@ export class CadApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.outPath) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+            localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
         if (requestObj.drawingData !== undefined) {
             const paramKey = "drawingData";
             let formValue = null;
@@ -1485,6 +1766,7 @@ export class CadApi {
                     filename: "drawingData",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
@@ -1498,12 +1780,14 @@ export class CadApi {
                     filename: "exportOptions",
                     contentType: "application/octet-stream",
                     knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
                 },
             };
         }
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
         };

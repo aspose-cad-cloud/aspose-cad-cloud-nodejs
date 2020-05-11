@@ -29,11 +29,17 @@ import * as cad from "../../lib/api";
 import { ApiTester } from "../base/api-tester";
 
 /**
- * Class for testing save as API calls
+ * Class for testing rotate flip as API calls
  */
-class SaveAsApiTests extends ApiTester {
+class ResizeApiTests extends ApiTester {
 
-    public async getSaveDrawingAsTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async getResizeDrawingTest(
+        formatExtension: string, 
+        newWidth: number, 
+        newHeight: number, 
+        saveResultToStorage: boolean, 
+        ...additionalExportFormats: string[]) {
+
         let name: string = null;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
@@ -58,14 +64,14 @@ class SaveAsApiTests extends ApiTester {
                 }
 
                 await this.testGetRequest(
-                        "getSaveDrawingAsTest",
-                        `Input drawing: ${name}; Output format: ${outputFormat}`,
+                        "getResizeDrawingTest",
+                        `Input drawing: ${name}; Output format: ${outputFormat}, newWidth: ${newWidth}, newHeight: ${newHeight}`,
                         name,
                         async () => {
-                            const request: cad.GetDrawingSaveAsRequest = 
-                            new cad.GetDrawingSaveAsRequest({ name, outputFormat, folder, storage, outPath });
+                            const request: cad.GetDrawingResizeRequest = 
+                            new cad.GetDrawingResizeRequest({ name, outputFormat, folder, storage, outPath, newWidth, newHeight });
 
-                            const response = await this.cadApi.getDrawingSaveAs(request);
+                            const response = await this.cadApi.getDrawingResize(request);
                             return response;
                         },
                         folder,
@@ -75,7 +81,12 @@ class SaveAsApiTests extends ApiTester {
         }
     }
 
-    public async postSaveDrawingAsTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async postResizeDrawingTest(
+        formatExtension: string, 
+        newWidth: number, 
+        newHeight: number,
+        saveResultToStorage: boolean, 
+        ...additionalExportFormats: string[]) {
         let name: string = null;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
@@ -102,13 +113,13 @@ class SaveAsApiTests extends ApiTester {
                 }
 
                 await this.testPostRequest(
-                        "postSaveDrawingAsTest",
-                        `Input drawing: ${name}; Output format: ${outputFormat}`,
+                        "postResizeDrawingTest",
+                        `Input drawing: ${name}; Output format: ${outputFormat}, newWidth: ${newWidth}, newHeight: ${newHeight}`,
                         name,
                         async (inputStream) => {
-                            const request: cad.PostDrawingSaveAsRequest = 
-                            new cad.PostDrawingSaveAsRequest({ drawingData: inputStream, outputFormat, outPath, storage });
-                            const response = await this.cadApi.postDrawingSaveAs(request);
+                            const request: cad.PostDrawingResizeRequest = 
+                            new cad.PostDrawingResizeRequest({ drawingData: inputStream, outputFormat, outPath, storage, newWidth, newHeight });
+                            const response = await this.cadApi.postDrawingResize(request);
                             return response;
                         },
                         folder,
@@ -119,17 +130,9 @@ class SaveAsApiTests extends ApiTester {
     }
 }
 
-//process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
-const testClass: SaveAsApiTests = new SaveAsApiTests();
+const testClass: ResizeApiTests = new ResizeApiTests();
 const useExtendedTests: boolean = process.env.ExtendedTests === "true";
 console.log("Extended: " + useExtendedTests);
-// testClass.beforeAll().then(_ => {
-//     testClass.getSaveDrawingAsTest(".dxf", false);
-//     testClass.postSaveDrawingAsTest(".dwg", false).then(_ => {
-//         testClass.postSaveDrawingAsTest(".dwg", true);
-//     });
-// });
-
 beforeEach(() => {
     jest.setTimeout(ApiTester.DefaultTimeout);
 });
@@ -142,17 +145,17 @@ afterAll(async () =>  {
     await testClass.afterAll();
 });
 
-describe.each([[".dwg", true], [".dxf", false]])(
-    "SaveAsTestSuite_V3",
-    (formatExtension, saveResultToStorage) => {
+describe.each([[".dwg", 640, 480, true], [".dxf", 1024, 768, false]])(
+    "ResizeTestSuite_V3",
+    (formatExtension, newWidth, newHeight, saveResultToStorage) => {
         if (!saveResultToStorage) {
-            test(`getSaveDrawingAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.getSaveDrawingAsTest(formatExtension, saveResultToStorage);
+            test(`getResizeDrawingTest: saveResultToStorage - ${saveResultToStorage}, width - ${newWidth}, height = ${newHeight}`, async () => {
+                await testClass.getResizeDrawingTest(formatExtension, newWidth, newHeight, saveResultToStorage);
             });
         }
 
-        test(`postSaveDrawingAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postSaveDrawingAsTest(formatExtension, saveResultToStorage);
+        test(`postResizeDrawingTest: saveResultToStorage - ${saveResultToStorage}, width - ${newWidth}, height - ${newHeight}`, async () => {
+            await testClass.postResizeDrawingTest(formatExtension, newWidth, newHeight, saveResultToStorage);
         });
 
         beforeEach(() => {
@@ -164,17 +167,17 @@ describe.each([[".dwg", true], [".dxf", false]])(
 if (useExtendedTests) {
     console.log("Extended tests enabled");
     
-    describe.each([[".dgn", true],  [".dwf", false]])
-        ("SaveAsTestSuite_Extended_V3",
-        (formatExtension, saveResultToStorage) => {
+    describe.each([[".dgn", 500, 600, true],  [".dwf", 240, 320, false]])
+        ("ResizeTestSuite_V3",
+        (formatExtension, newWidth, newHeight, saveResultToStorage) => {
             if (!saveResultToStorage) {
-                test(`getSaveDrawingAsTest`, async () => {
-                    await testClass.getSaveDrawingAsTest(formatExtension, saveResultToStorage);
+                test(`getResizeDrawingTest: saveResultToStorage - ${saveResultToStorage} width - ${newWidth}, height - ${newHeight}`, async () => {
+                    await testClass.getResizeDrawingTest(formatExtension, newWidth, newHeight, saveResultToStorage);
                 });
             }
     
-            test(`postSaveDrawingAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.postSaveDrawingAsTest(formatExtension, saveResultToStorage);
+            test(`postResizeDrawingTest: saveResultToStorage - ${saveResultToStorage}, width - ${newWidth}, height - ${newHeight}`, async () => {
+                await testClass.postResizeDrawingTest(formatExtension, newWidth, newHeight, saveResultToStorage);
             });
 
             beforeEach(() => {

@@ -34,8 +34,8 @@ import { Configuration } from "./configuration";
  * @param confguration api configuration
  * @param notApplyAuthToRequest if setted to true, auth is not applied to request
  */
-export async function invokeApiMethod(requestOptions: request.Options, confguration: Configuration, notApplyAuthToRequest?: boolean): Promise<request.RequestResponse> {
-    return await invokeApiMethodInternal(requestOptions, confguration, notApplyAuthToRequest);
+export async function invokeApiMethod(requestOptions: request.Options, confguration: Configuration, notApplyAuthToRequest?: boolean, proxy: string = null): Promise<request.RequestResponse> {
+    return await invokeApiMethodInternal(requestOptions, confguration, notApplyAuthToRequest, proxy);
 }
 
 /**
@@ -65,13 +65,13 @@ export function addQueryParameterToUrl(url, queryParameters, parameterName, para
  * @param confguration api configuration
  * @param notApplyAuthToRequest if setted to true, auth is not applied to request
  */
-async function invokeApiMethodInternal(requestOptions: request.Options, confguration: Configuration, notApplyAuthToRequest?: boolean): Promise<request.RequestResponse> {
+async function invokeApiMethodInternal(requestOptions: request.Options, confguration: Configuration, notApplyAuthToRequest?: boolean, proxy: string = null): Promise<request.RequestResponse> {
     requestDebug(request, (type, data, r) => {
         if (r.writeDebugToConsole) {
             const toLog = {};
             toLog[type] = data;
             // tslint:disable-next-line:no-console
-            console.log(JSON.stringify(toLog, undefined, 2));
+            // console.log(JSON.stringify(toLog, undefined, 2));
         }
     });
 
@@ -100,6 +100,11 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.pool = {maxSockets: 5};
+    if (proxy) {
+        requestOptions.proxy = proxy;
+    }
+    
+    requestOptions.strictSSL = false;
 
     return new Promise<request.RequestResponse>((resolve, reject) => {
         const r = request(requestOptions, async (error, response) => {

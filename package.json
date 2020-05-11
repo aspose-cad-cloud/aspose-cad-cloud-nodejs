@@ -58,7 +58,7 @@
   "scripts": {
     "compile": "tsc",
     "lint": "tslint lib/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json",
-    "test": "cross-var node --max_old_space_size=4096 ./node_modules/jest/bin/jest.js --testMatch=**/saveas-api-tests-v3_0.ts --verbose --runInBand --no-cache --colors --ci --reporters=default --reporters=jest-junit",
+    "test": "cross-var node --max_old_space_size=4096 ./node_modules/jest/bin/jest.js --testMatch=**/test/**/*-tests-v3_0.ts --verbose --detectOpenHandles --runInBand --no-cache --colors --ci --reporters=default --reporters=jest-junit",
     "ci": "npm run-script compile && npm run-script test"
   },
   "jest-junit": {
@@ -68,22 +68,23 @@
   "dependencies": {
     "@types/request": "^2.47.0",
     "combined-stream": "~1.0.5",
+    "https-proxy-agent": "^5.0.0",
     "isstream": "~0.1.2",
     "node-uuid": "~1.4.3",
     "request": "^2.87.0",
     "request-debug": "^0.2.0"
   },
   "devDependencies": {
-    "@types/node": "^12.0.10",
     "@types/jest": "^23.3.9",
     "@types/jest-each": "^0.3.2",
+    "@types/node": "^12.0.10",
+    "cross-var": "^1.1.0",
     "jest": "^23.6.0",
     "jest-each": "^23.6.0",
     "jest-junit": "^5.2.0",
     "ts-jest": "^23.10.4",
     "ts-node": "^4.0.2",
     "tslint": "^5.8.0",
-    "typescript": "^3.1.1",
-    "cross-var": "^1.1.0"
+    "typescript": "^3.1.1"
   }
 }
