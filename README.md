@@ -56,9 +56,9 @@ Look at [API Reference](https://apireference.aspose.cloud/cad/) for full API spe
 
 The solution is updated using [code generator](https://github.com/aspose-cad-cloud/aspose-cad-cloud-codegen).
 
-For the complete list of use-cases, please refer to the [format support document](https://docs.aspose.cloud/display/cadcloud/Supported+File+Formats) to see what you can achieve!
+For the complete list of use-cases, please refer to the [format support document](https://docs.aspose.cloud/cad/supported-file-formats/) to see what you can achieve!
 
-Detalied official documentation can be found at the [following link](https://docs.aspose.cloud/display/cadcloud).
+Detalied official documentation can be found at the [following link](https://docs.aspose.cloud/cad/).
 
 ## Getting Started
 1. **Sign Up**. Before you begin, you need to sign up for an account on our [Dashboard](https://dashboard.aspose.cloud/) and retrieve your [credentials](https://dashboard.aspose.cloud/#/apps).
@@ -78,7 +78,7 @@ Import the dependencies to your code as follows.
 import * as cad from "@asposecloud/aspose-cad-cloud";
 ```
 
-4. **Using the SDK**. The best way to become familiar with how to use the SDK is to read the [Developer Guide](https://docs.aspose.cloud/display/cadcloud/Developer+Guide). The [Getting Started Guide](https://docs.aspose.cloud/display/cadcloud/Getting+Started) will help you to become familiar with the common concepts.
+4. **Using the SDK**. The best way to become familiar with how to use the SDK is to read the [Developer Guide](https://docs.aspose.cloud/cad/developer-guide/). The [Getting Started Guide](https://docs.aspose.cloud/cad/getting-started/) will help you to become familiar with the common concepts.
 
 ## Quick Examples
 Please, look at [Examples](EXAMPLES.md) document for basic usage or use the [Examples](Examples) folder for more sophisticated scenarios.
@@ -101,7 +101,7 @@ Your feedback is very important to us. Please feel free to contact via
 + [**Web API reference**](https://apireference.aspose.cloud/cad/)
 + [**Website**](https://www.aspose.cloud)
 + [**Product Home**](https://products.aspose.cloud/cad)
-+ [**Documentation**](https://docs.aspose.cloud/display/cadcloud/Home)
++ [**Documentation**](https://docs.aspose.cloud/cad/)
 + [**Blog**](https://blog.aspose.cloud/category/aspose-products/aspose.cad-cloud/)
 
 ## Other languages
