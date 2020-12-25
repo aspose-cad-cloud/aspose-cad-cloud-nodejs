@@ -25,6 +25,7 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
+
 /**
  * Represents information about a drawing.
  */
@@ -1203,7 +1204,7 @@ export class PdfDocumentOptions {
      * compliance
      */
     public compliance: PdfDocumentOptions.ComplianceEnum;
-    
+   
     public constructor(init?: Partial<PdfDocumentOptions>) {
         
         Object.assign(this, init);

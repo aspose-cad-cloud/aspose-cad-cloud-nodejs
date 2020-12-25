@@ -63,7 +63,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling copyFile.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/file/copy/{srcPath}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/file/copy/{srcPath}"
             .replace("{" + "srcPath" + "}", String(requestObj.srcPath));
         const queryParameters: any = {};
 
@@ -114,7 +114,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling copyFolder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/folder/copy/{srcPath}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/folder/copy/{srcPath}"
             .replace("{" + "srcPath" + "}", String(requestObj.srcPath));
         const queryParameters: any = {};
 
@@ -161,7 +161,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling createFolder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/folder/{path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/folder/{path}"
             .replace("{" + "path" + "}", String(requestObj.path));
         const queryParameters: any = {};
 
@@ -195,7 +195,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFile.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/file/{path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/file/{path}"
             .replace("{" + "path" + "}", String(requestObj.path));
         const queryParameters: any = {};
 
@@ -233,7 +233,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFolder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/folder/{path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/folder/{path}"
             .replace("{" + "path" + "}", String(requestObj.path));
         const queryParameters: any = {};
 
@@ -271,7 +271,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling downloadFile.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/file/{path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/file/{path}"
             .replace("{" + "path" + "}", String(requestObj.path));
         const queryParameters: any = {};
 
@@ -313,7 +313,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDiscUsage.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/disc";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/disc";
         const queryParameters: any = {};
 
         if (requestObj.storageName) {
@@ -346,7 +346,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDrawingProperties.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/properties"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/properties"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
 
@@ -389,7 +389,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDrawingResize.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/resize"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/resize"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
 
@@ -462,7 +462,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDrawingRotateFlip.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/rotateflip"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/rotateflip"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
 
@@ -526,7 +526,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDrawingSaveAs.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/saveAs/{outputFormat}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/saveAs/{outputFormat}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "outputFormat" + "}", String(requestObj.outputFormat));
         const queryParameters: any = {};
@@ -578,7 +578,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFileVersions.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/version/{path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/version/{path}"
             .replace("{" + "path" + "}", String(requestObj.path));
         const queryParameters: any = {};
 
@@ -617,7 +617,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFilesList.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/folder/{path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/folder/{path}"
             .replace("{" + "path" + "}", String(requestObj.path));
         const queryParameters: any = {};
 
@@ -656,7 +656,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling moveFile.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/file/move/{srcPath}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/file/move/{srcPath}"
             .replace("{" + "srcPath" + "}", String(requestObj.srcPath));
         const queryParameters: any = {};
 
@@ -707,7 +707,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling moveFolder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/folder/move/{srcPath}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/folder/move/{srcPath}"
             .replace("{" + "srcPath" + "}", String(requestObj.srcPath));
         const queryParameters: any = {};
 
@@ -754,7 +754,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling objectExists.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/exist/{path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/exist/{path}"
             .replace("{" + "path" + "}", String(requestObj.path));
         const queryParameters: any = {};
 
@@ -797,7 +797,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingBmp.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/bmp"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/bmp"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
 
@@ -849,7 +849,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingGif.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/gif"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/gif"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
 
@@ -901,7 +901,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingJpeg.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/jpeg"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/jpeg"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
 
@@ -953,7 +953,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingJpeg2000.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/jpeg2000"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/jpeg2000"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
 
@@ -1005,7 +1005,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingPdf.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/pdf"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/pdf"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
 
@@ -1057,7 +1057,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingPng.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/png"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/png"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
 
@@ -1109,7 +1109,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingProperties.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/properties";
+        const localVarPath = this.configuration.getApiBaseUrl() + "/cad/properties";
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.drawingData' is not null or undefined
@@ -1160,7 +1160,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingPsd.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/psd"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/psd"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
 
@@ -1212,7 +1212,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingResize.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/resize";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/resize";
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.drawingData' is not null or undefined
@@ -1297,7 +1297,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingRotateFlip.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/rotateflip";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/rotateflip";
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.drawingData' is not null or undefined
@@ -1373,7 +1373,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingSaveAs.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/saveAs/{outputFormat}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/saveAs/{outputFormat}"
             .replace("{" + "outputFormat" + "}", String(requestObj.outputFormat));
         const queryParameters: any = {};
 
@@ -1437,7 +1437,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingSvg.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/svg"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/svg"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
 
@@ -1489,7 +1489,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingTiff.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/tiff"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/tiff"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
 
@@ -1541,7 +1541,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingWmf.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/{name}/wmf"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/wmf"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
 
@@ -1593,7 +1593,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingBmp.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/bmp";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/bmp";
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.drawingData' is not null or undefined
@@ -1665,7 +1665,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingGif.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/gif";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/gif";
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.drawingData' is not null or undefined
@@ -1737,7 +1737,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingJpeg.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/jpeg";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/jpeg";
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.drawingData' is not null or undefined
@@ -1809,7 +1809,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingJpeg2000.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/jpeg2000";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/jpeg2000";
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.drawingData' is not null or undefined
@@ -1881,7 +1881,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingPdf.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/pdf";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/pdf";
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.drawingData' is not null or undefined
@@ -1953,7 +1953,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingPng.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/png";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/png";
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.drawingData' is not null or undefined
@@ -2025,7 +2025,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingPsd.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/psd";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/psd";
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.drawingData' is not null or undefined
@@ -2097,7 +2097,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingSvg.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/svg";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/svg";
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.drawingData' is not null or undefined
@@ -2169,7 +2169,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingTiff.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/tiff";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/tiff";
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.drawingData' is not null or undefined
@@ -2241,7 +2241,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingWmf.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/wmf";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/wmf";
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.drawingData' is not null or undefined
@@ -2313,7 +2313,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling storageExists.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/{storageName}/exist"
+        const localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/{storageName}/exist"
             .replace("{" + "storageName" + "}", String(requestObj.storageName));
         const queryParameters: any = {};
 
@@ -2348,7 +2348,7 @@ export class CadApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling uploadFile.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/v3.0/cad/storage/file/{path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/storage/file/{path}"
             .replace("{" + "path" + "}", String(requestObj.path));
         const queryParameters: any = {};
 
