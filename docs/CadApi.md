@@ -1,5 +1,159 @@
 ﻿# Aspose.Cad.Cloud.Sdk.Api.CadApi
 
+<a name="copyFile"></a>
+## **copyFile**
+> copyFile(srcPath, destPath, srcStorageName, destStorageName, versionId)
+
+Copy file
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**srcPath** | **string** | Source file path e.g. '/folder/file.ext' | 
+**destPath** | **string** | Destination file path | 
+**srcStorageName** | **string** | Source storage name | [optional]
+**destStorageName** | **string** | Destination storage name | [optional]
+**versionId** | **string** | File version ID to copy | [optional]
+
+### Return type
+
+****
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="copyFolder"></a>
+## **copyFolder**
+> copyFolder(srcPath, destPath, srcStorageName, destStorageName)
+
+Copy folder
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**srcPath** | **string** | Source folder path e.g. '/src' | 
+**destPath** | **string** | Destination folder path e.g. '/dst' | 
+**srcStorageName** | **string** | Source storage name | [optional]
+**destStorageName** | **string** | Destination storage name | [optional]
+
+### Return type
+
+****
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="createFolder"></a>
+## **createFolder**
+> createFolder(path, storageName)
+
+Create the folder
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**path** | **string** | Folder path to create e.g. 'folder_1/folder_2/' | 
+**storageName** | **string** | Storage name | [optional]
+
+### Return type
+
+****
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="deleteFile"></a>
+## **deleteFile**
+> deleteFile(path, storageName, versionId)
+
+Delete file
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**path** | **string** | File path e.g. '/folder/file.ext' | 
+**storageName** | **string** | Storage name | [optional]
+**versionId** | **string** | File version ID to delete | [optional]
+
+### Return type
+
+****
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="deleteFolder"></a>
+## **deleteFolder**
+> deleteFolder(path, storageName, recursive)
+
+Delete folder
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**path** | **string** | Folder path e.g. '/folder' | 
+**storageName** | **string** | Storage name | [optional]
+**recursive** | **boolean** | Enable to delete folders, subfolders and files | [optional]
+
+### Return type
+
+****
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="downloadFile"></a>
+## **downloadFile**
+> downloadFile(path, storageName, versionId)
+
+Download file
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**path** | **string** | File path e.g. '/folder/file.ext' | 
+**storageName** | **string** | Storage name | [optional]
+**versionId** | **string** | File version ID to download | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: multipart/form-data
+
+<a name="getDiscUsage"></a>
+## **getDiscUsage**
+> getDiscUsage(storageName)
+
+Get disc usage
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**storageName** | **string** | Storage name | [optional]
+
+### Return type
+
+[**DiscUsage**](DiscUsage.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getDrawingProperties"></a>
 ## **getDrawingProperties**
 > getDrawingProperties(name, folder, storage)
@@ -91,6 +245,117 @@ Name | Type | Description  | Notes
 ### Return type
 
 **Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getFilesList"></a>
+## **getFilesList**
+> getFilesList(path, storageName)
+
+Get all files and folders within a folder
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**path** | **string** | Folder path e.g. '/folder' | 
+**storageName** | **string** | Storage name | [optional]
+
+### Return type
+
+[**FilesList**](FilesList.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getFileVersions"></a>
+## **getFileVersions**
+> getFileVersions(path, storageName)
+
+Get file versions
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**path** | **string** | File path e.g. '/file.ext' | 
+**storageName** | **string** | Storage name | [optional]
+
+### Return type
+
+[**FileVersions**](FileVersions.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="moveFile"></a>
+## **moveFile**
+> moveFile(srcPath, destPath, srcStorageName, destStorageName, versionId)
+
+Move file
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**srcPath** | **string** | Source file path e.g. '/src.ext' | 
+**destPath** | **string** | Destination file path e.g. '/dest.ext' | 
+**srcStorageName** | **string** | Source storage name | [optional]
+**destStorageName** | **string** | Destination storage name | [optional]
+**versionId** | **string** | File version ID to move | [optional]
+
+### Return type
+
+****
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="moveFolder"></a>
+## **moveFolder**
+> moveFolder(srcPath, destPath, srcStorageName, destStorageName)
+
+Move folder
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**srcPath** | **string** | Folder path to move e.g. '/folder' | 
+**destPath** | **string** | Destination folder path to move to e.g '/dst' | 
+**srcStorageName** | **string** | Source storage name | [optional]
+**destStorageName** | **string** | Destination storage name | [optional]
+
+### Return type
+
+****
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="objectExists"></a>
+## **objectExists**
+> objectExists(path, storageName, versionId)
+
+Check if file or folder exists
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**path** | **string** | File or folder path e.g. '/file.ext' or '/folder' | 
+**storageName** | **string** | Storage name | [optional]
+**versionId** | **string** | File version ID | [optional]
+
+### Return type
+
+[**ObjectExist**](ObjectExist.md)
 
 ### HTTP request headers
 
@@ -653,6 +918,48 @@ Name | Type | Description  | Notes
 ### Return type
 
 **Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="storageExists"></a>
+## **storageExists**
+> storageExists(storageName)
+
+Check if storage exists
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**storageName** | **string** | Storage name | 
+
+### Return type
+
+[**StorageExist**](StorageExist.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="uploadFile"></a>
+## **uploadFile**
+> uploadFile(path, File, storageName)
+
+Upload file
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**path** | **string** | Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext If the content is multipart and path does not contains the file name it tries to get them from filename parameter from Content-Disposition header.  | 
+**File** | **Buffer** | File to upload | 
+**storageName** | **string** | Storage name | [optional]
+
+### Return type
+
+[**FilesUploadResult**](FilesUploadResult.md)
 
 ### HTTP request headers
 

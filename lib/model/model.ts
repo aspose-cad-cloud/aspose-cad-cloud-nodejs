@@ -358,6 +358,61 @@ export class DgnProperties {
 }
 
 /**
+ * Class for disc space information.
+ */
+export class DiscUsage {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "usedSize",
+            baseName: "UsedSize",
+            type: "number",
+        },        
+        {
+            name: "totalSize",
+            baseName: "TotalSize",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return DiscUsage.attributeTypeMap;
+    }
+
+    /**
+     * Application used disc space.
+     */
+    public usedSize: number;
+    
+    /**
+     * Total disc space.
+     */
+    public totalSize: number;
+    
+    public constructor(init?: Partial<DiscUsage>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Image options base class
  */
 export class DrawingOptionsBaseDTO {
@@ -541,8 +596,205 @@ export class DxfProperties {
 }
 
 /**
- * Represents graphics options for embedded bitmap.
+ * The error details
  */
+export class ErrorDetails {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "requestId",
+            baseName: "RequestId",
+            type: "string",
+        },        
+        {
+            name: "date",
+            baseName: "Date",
+            type: "Date",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ErrorDetails.attributeTypeMap;
+    }
+
+    /**
+     * The request id
+     */
+    public requestId: string;
+    
+    /**
+     * Date
+     */
+    public date: Date;
+    
+    public constructor(init?: Partial<ErrorDetails>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * File versions FileVersion.
+ */
+export class FileVersions {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "value",
+            baseName: "Value",
+            type: "Array<FileVersion>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FileVersions.attributeTypeMap;
+    }
+
+    /**
+     * File versions FileVersion.
+     */
+    public value: Array<FileVersion>;
+    
+    public constructor(init?: Partial<FileVersions>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Files list
+ */
+export class FilesList {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "value",
+            baseName: "Value",
+            type: "Array<StorageFile>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FilesList.attributeTypeMap;
+    }
+
+    /**
+     * Files and folders contained by folder StorageFile.
+     */
+    public value: Array<StorageFile>;
+    
+    public constructor(init?: Partial<FilesList>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * File upload result
+ */
+export class FilesUploadResult {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "uploaded",
+            baseName: "Uploaded",
+            type: "Array<string>",
+        },        
+        {
+            name: "errors",
+            baseName: "Errors",
+            type: "Array<Error>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FilesUploadResult.attributeTypeMap;
+    }
+
+    /**
+     * List of uploaded file names
+     */
+    public uploaded: Array<string>;
+    
+    /**
+     * List of errors.
+     */
+    public errors: Array<Error>;
+    
+    public constructor(init?: Partial<FilesUploadResult>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
 export class GraphicsOptions {
 
     /**
@@ -564,17 +816,17 @@ export class GraphicsOptions {
         {
             name: "textRenderingHint",
             baseName: "TextRenderingHint",
-            type: "any",
+            type: "GraphicsOptions.TextRenderingHintEnum",
         },        
         {
             name: "smoothingMode",
             baseName: "SmoothingMode",
-            type: "any",
+            type: "GraphicsOptions.SmoothingModeEnum",
         },        
         {
             name: "interpolationMode",
             baseName: "InterpolationMode",
-            type: "any",
+            type: "GraphicsOptions.InterpolationModeEnum",
         }    ];
 
     /**
@@ -585,19 +837,19 @@ export class GraphicsOptions {
     }
 
     /**
-     * Gets or sets text rendering hint.
+     * textRenderingHint
      */
-    public textRenderingHint: any;
+    public textRenderingHint: GraphicsOptions.TextRenderingHintEnum;
     
     /**
-     * Gets or sets smoothing mode.
+     * smoothingMode
      */
-    public smoothingMode: any;
+    public smoothingMode: GraphicsOptions.SmoothingModeEnum;
     
     /**
-     * Gets or sets interpolation mode.
+     * interpolationMode
      */
-    public interpolationMode: any;
+    public interpolationMode: GraphicsOptions.InterpolationModeEnum;
     
     public constructor(init?: Partial<GraphicsOptions>) {
         
@@ -605,6 +857,38 @@ export class GraphicsOptions {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace GraphicsOptions {
+    export enum TextRenderingHintEnum {
+        SystemDefault = 'SystemDefault' as any,
+        SingleBitPerPixelGridFit = 'SingleBitPerPixelGridFit' as any,
+        SingleBitPerPixel = 'SingleBitPerPixel' as any,
+        AntiAliasGridFit = 'AntiAliasGridFit' as any,
+        AntiAlias = 'AntiAlias' as any,
+        ClearTypeGridFit = 'ClearTypeGridFit' as any,
+    }
+    export enum SmoothingModeEnum {
+        Default = 'Default' as any,
+        HighSpeed = 'HighSpeed' as any,
+        HighQuality = 'HighQuality' as any,
+        None = 'None' as any,
+        AntiAlias = 'AntiAlias' as any,
+        Invalid = 'Invalid' as any,
+    }
+    export enum InterpolationModeEnum {
+        Default = 'Default' as any,
+        Low = 'Low' as any,
+        High = 'High' as any,
+        Bilinear = 'Bilinear' as any,
+        Bicubic = 'Bicubic' as any,
+        NearestNeighbor = 'NearestNeighbor' as any,
+        HighQualityBilinear = 'HighQualityBilinear' as any,
+        HighQualityBicubic = 'HighQualityBicubic' as any,
+        Invalid = 'Invalid' as any,
+    }
+}
+// tslint:enable:quotemark
 /**
  * Represents information about IFC drawing.
  */
@@ -678,8 +962,135 @@ export class IgsProperties {
 }
 
 /**
- * This class represents set of metadata for document description.
+ * Error
  */
+export class ModelError {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "code",
+            baseName: "Code",
+            type: "string",
+        },        
+        {
+            name: "message",
+            baseName: "Message",
+            type: "string",
+        },        
+        {
+            name: "description",
+            baseName: "Description",
+            type: "string",
+        },        
+        {
+            name: "innerError",
+            baseName: "InnerError",
+            type: "ErrorDetails",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ModelError.attributeTypeMap;
+    }
+
+    /**
+     * Code             
+     */
+    public code: string;
+    
+    /**
+     * Message             
+     */
+    public message: string;
+    
+    /**
+     * Description             
+     */
+    public description: string;
+    
+    /**
+     * Inner Error             
+     */
+    public innerError: ErrorDetails;
+    
+    public constructor(init?: Partial<ModelError>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Object exists
+ */
+export class ObjectExist {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "exists",
+            baseName: "Exists",
+            type: "boolean",
+        },        
+        {
+            name: "isFolder",
+            baseName: "IsFolder",
+            type: "boolean",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ObjectExist.attributeTypeMap;
+    }
+
+    /**
+     * Indicates that the file or folder exists.
+     */
+    public exists: boolean;
+    
+    /**
+     * True if it is a folder, false if it is a file.
+     */
+    public isFolder: boolean;
+    
+    public constructor(init?: Partial<ObjectExist>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
 export class PdfDocumentInfo {
 
     /**
@@ -727,22 +1138,22 @@ export class PdfDocumentInfo {
     }
 
     /**
-     * Gets or sets keywords of the document.
+     * keywords
      */
     public keywords: string;
     
     /**
-     * Gets or sets title of the document.
+     * title
      */
     public title: string;
     
     /**
-     * Gets or sets author of the document.
+     * author
      */
     public author: string;
     
     /**
-     * Gets or sets subject of the document.
+     * subject
      */
     public subject: string;
     
@@ -752,9 +1163,6 @@ export class PdfDocumentInfo {
     }        
 }
 
-/**
- * The PDF options.
- */
 export class PdfDocumentOptions {
 
     /**
@@ -776,7 +1184,12 @@ export class PdfDocumentOptions {
         {
             name: "compliance",
             baseName: "Compliance",
-            type: "any",
+            type: "PdfDocumentOptions.ComplianceEnum",
+        },        
+        {
+            name: "digitalSignatureDetails",
+            baseName: "DigitalSignatureDetails",
+            type: "",
         }    ];
 
     /**
@@ -787,9 +1200,9 @@ export class PdfDocumentOptions {
     }
 
     /**
-     * Desired conformance level for generated PDF document. Important note: This option should not be changed after PdfDocument object is constructed. Default is Pdf15.
+     * compliance
      */
-    public compliance: any;
+    public compliance: PdfDocumentOptions.ComplianceEnum;
     
     public constructor(init?: Partial<PdfDocumentOptions>) {
         
@@ -797,9 +1210,16 @@ export class PdfDocumentOptions {
     }        
 }
 
-/**
- * Drawing pen options
- */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace PdfDocumentOptions {
+    export enum ComplianceEnum {
+        Pdf15 = 'Pdf15' as any,
+        PdfA1a = 'PdfA1a' as any,
+        PdfA1b = 'PdfA1b' as any,
+    }
+}
+// tslint:enable:quotemark
 export class PenOptions {
 
     /**
@@ -821,12 +1241,12 @@ export class PenOptions {
         {
             name: "startCap",
             baseName: "StartCap",
-            type: "any",
+            type: "PenOptions.StartCapEnum",
         },        
         {
             name: "endCap",
             baseName: "EndCap",
-            type: "any",
+            type: "PenOptions.EndCapEnum",
         }    ];
 
     /**
@@ -837,14 +1257,14 @@ export class PenOptions {
     }
 
     /**
-     * Gets or sets the start cap.
+     * startCap
      */
-    public startCap: any;
+    public startCap: PenOptions.StartCapEnum;
     
     /**
-     * Gets or sets the end cap.
+     * endCap
      */
-    public endCap: any;
+    public endCap: PenOptions.EndCapEnum;
     
     public constructor(init?: Partial<PenOptions>) {
         
@@ -852,9 +1272,37 @@ export class PenOptions {
     }        
 }
 
-/**
- * RD optimizer settings class
- */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace PenOptions {
+    export enum StartCapEnum {
+        Flat = 'Flat' as any,
+        Square = 'Square' as any,
+        Round = 'Round' as any,
+        Triangle = 'Triangle' as any,
+        NoAnchor = 'NoAnchor' as any,
+        SquareAnchor = 'SquareAnchor' as any,
+        RoundAnchor = 'RoundAnchor' as any,
+        DiamondAnchor = 'DiamondAnchor' as any,
+        ArrowAnchor = 'ArrowAnchor' as any,
+        AnchorMask = 'AnchorMask' as any,
+        Custom = 'Custom' as any,
+    }
+    export enum EndCapEnum {
+        Flat = 'Flat' as any,
+        Square = 'Square' as any,
+        Round = 'Round' as any,
+        Triangle = 'Triangle' as any,
+        NoAnchor = 'NoAnchor' as any,
+        SquareAnchor = 'SquareAnchor' as any,
+        RoundAnchor = 'RoundAnchor' as any,
+        DiamondAnchor = 'DiamondAnchor' as any,
+        ArrowAnchor = 'ArrowAnchor' as any,
+        AnchorMask = 'AnchorMask' as any,
+        Custom = 'Custom' as any,
+    }
+}
+// tslint:enable:quotemark
 export class RdOptimizerSettings {
 
     /**
@@ -917,37 +1365,37 @@ export class RdOptimizerSettings {
     }
 
     /**
-     * Gets or sets the BPP (bits per pixel) scale factor.
+     * bppScale
      */
     public bppScale: number;
     
     /**
-     * Gets or sets the maximum R value for consideration in  in bits per pixel
+     * bppMax
      */
     public bppMax: number;
     
     /**
-     * Gets or sets the maximum quantization value.
+     * maxQ
      */
     public maxQ: number;
     
     /**
-     * Gets the minimum allowed quantization value.
+     * minQ
      */
     public minQ: number;
     
     /**
-     * Gets the maximum pixel value.
+     * maxPixelValue
      */
     public maxPixelValue: number;
     
     /**
-     * Gets the PSNR maximum expected value.
+     * psnrMax
      */
     public psnrMax: number;
     
     /**
-     * Gets the maximum R value for consideration.
+     * discretizedBppMax
      */
     public discretizedBppMax: number;
     
@@ -957,9 +1405,6 @@ export class RdOptimizerSettings {
     }        
 }
 
-/**
- * The resolution setting for image save options.
- */
 export class ResolutionSetting {
 
     /**
@@ -997,12 +1442,12 @@ export class ResolutionSetting {
     }
 
     /**
-     * Gets or sets the horizontal resolution.
+     * horizontalResolution
      */
     public horizontalResolution: number;
     
     /**
-     * Gets or sets the vertical resolution.
+     * verticalResolution
      */
     public verticalResolution: number;
     
@@ -1043,6 +1488,136 @@ export class StlProperties {
     }
 
     public constructor(init?: Partial<StlProperties>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Storage exists
+ */
+export class StorageExist {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "exists",
+            baseName: "Exists",
+            type: "boolean",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return StorageExist.attributeTypeMap;
+    }
+
+    /**
+     * Shows that the storage exists.             
+     */
+    public exists: boolean;
+    
+    public constructor(init?: Partial<StorageExist>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * File or folder information
+ */
+export class StorageFile {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "name",
+            baseName: "Name",
+            type: "string",
+        },        
+        {
+            name: "isFolder",
+            baseName: "IsFolder",
+            type: "boolean",
+        },        
+        {
+            name: "modifiedDate",
+            baseName: "ModifiedDate",
+            type: "Date",
+        },        
+        {
+            name: "size",
+            baseName: "Size",
+            type: "number",
+        },        
+        {
+            name: "path",
+            baseName: "Path",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return StorageFile.attributeTypeMap;
+    }
+
+    /**
+     * File or folder name.
+     */
+    public name: string;
+    
+    /**
+     * True if it is a folder.
+     */
+    public isFolder: boolean;
+    
+    /**
+     * File or folder last modified DateTime.
+     */
+    public modifiedDate: Date;
+    
+    /**
+     * File or folder size.
+     */
+    public size: number;
+    
+    /**
+     * File or folder path.
+     */
+    public path: string;
+    
+    public constructor(init?: Partial<StorageFile>) {
         
         Object.assign(this, init);
     }        
@@ -1367,6 +1942,61 @@ export class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
 export namespace CadRasterizationOptionsDTO {
 }
 // tslint:enable:quotemark
+/**
+ * File Version
+ */
+export class FileVersion extends StorageFile {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "versionId",
+            baseName: "VersionId",
+            type: "string",
+        },        
+        {
+            name: "isLatest",
+            baseName: "IsLatest",
+            type: "boolean",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(FileVersion.attributeTypeMap);
+    }
+
+    /**
+     * File Version ID.
+     */
+    public versionId: string;
+    
+    /**
+     * Specifies whether the file is (true) or is not (false) the latest version of an file.
+     */
+    public isLatest: boolean;
+    
+    public constructor(init?: Partial<FileVersion>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
 /**
  * Export options for GIF format
  */
@@ -2033,6 +2663,12 @@ export class WmfOptionsDTO extends DrawingOptionsBaseDTO {
 }
 
 const enumsMap = {
+    "GraphicsOptions.TextRenderingHintEnum": GraphicsOptions.TextRenderingHintEnum,
+    "GraphicsOptions.SmoothingModeEnum": GraphicsOptions.SmoothingModeEnum,
+    "GraphicsOptions.InterpolationModeEnum": GraphicsOptions.InterpolationModeEnum,
+    "PdfDocumentOptions.ComplianceEnum": PdfDocumentOptions.ComplianceEnum,
+    "PenOptions.StartCapEnum": PenOptions.StartCapEnum,
+    "PenOptions.EndCapEnum": PenOptions.EndCapEnum,
     "VectorRasterizationOptionsDTO.UnitTypeEnum": VectorRasterizationOptionsDTO.UnitTypeEnum,
     "Jpeg2000OptionsDTO.CodecEnum": Jpeg2000OptionsDTO.CodecEnum,
 };
@@ -2042,22 +2678,32 @@ const typeMap = {
             Cff2Properties,
             Color,
             DgnProperties,
+            DiscUsage,
             DrawingOptionsBaseDTO,
             DwfProperties,
             DwgProperties,
             DxfProperties,
+            ErrorDetails,
+            FileVersions,
+            FilesList,
+            FilesUploadResult,
             GraphicsOptions,
             IfcProperties,
             IgsProperties,
+            ModelError,
+            ObjectExist,
             PdfDocumentInfo,
             PdfDocumentOptions,
             PenOptions,
             RdOptimizerSettings,
             ResolutionSetting,
             StlProperties,
+            StorageExist,
+            StorageFile,
             VectorRasterizationOptionsDTO,
             BmpOptionsDTO,
             CadRasterizationOptionsDTO,
+            FileVersion,
             GifOptionsDTO,
             Jpeg2000OptionsDTO,
             JpegOptionsDTO,
@@ -2070,6 +2716,174 @@ const typeMap = {
 };
 
 export {enumsMap, typeMap};
+
+/**
+ * Request model for CopyFile operation.
+ */
+export class CopyFileRequest {
+    /**
+     * Source file path e.g. '/folder/file.ext'
+     */
+    public srcPath: string;
+
+    /**
+     * Destination file path
+     */
+    public destPath: string;
+
+    /**
+     * Source storage name
+     */
+    public srcStorageName: string;
+
+    /**
+     * Destination storage name
+     */
+    public destStorageName: string;
+
+    /**
+     * File version ID to copy
+     */
+    public versionId: string;
+    
+    public constructor(init?: Partial<CopyFileRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CopyFolder operation.
+ */
+export class CopyFolderRequest {
+    /**
+     * Source folder path e.g. '/src'
+     */
+    public srcPath: string;
+
+    /**
+     * Destination folder path e.g. '/dst'
+     */
+    public destPath: string;
+
+    /**
+     * Source storage name
+     */
+    public srcStorageName: string;
+
+    /**
+     * Destination storage name
+     */
+    public destStorageName: string;
+    
+    public constructor(init?: Partial<CopyFolderRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateFolder operation.
+ */
+export class CreateFolderRequest {
+    /**
+     * Folder path to create e.g. 'folder_1/folder_2/'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+    
+    public constructor(init?: Partial<CreateFolderRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for DeleteFile operation.
+ */
+export class DeleteFileRequest {
+    /**
+     * File path e.g. '/folder/file.ext'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    /**
+     * File version ID to delete
+     */
+    public versionId: string;
+    
+    public constructor(init?: Partial<DeleteFileRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for DeleteFolder operation.
+ */
+export class DeleteFolderRequest {
+    /**
+     * Folder path e.g. '/folder'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    /**
+     * Enable to delete folders, subfolders and files
+     */
+    public recursive: boolean;
+    
+    public constructor(init?: Partial<DeleteFolderRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for DownloadFile operation.
+ */
+export class DownloadFileRequest {
+    /**
+     * File path e.g. '/folder/file.ext'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    /**
+     * File version ID to download
+     */
+    public versionId: string;
+    
+    public constructor(init?: Partial<DownloadFileRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetDiscUsage operation.
+ */
+export class GetDiscUsageRequest {
+    /**
+     * Storage name
+     */
+    public storageName: string;
+    
+    public constructor(init?: Partial<GetDiscUsageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
 
 /**
  * Request model for GetDrawingProperties operation.
@@ -2208,6 +3022,131 @@ export class GetDrawingSaveAsRequest {
     public storage: string;
     
     public constructor(init?: Partial<GetDrawingSaveAsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetFileVersions operation.
+ */
+export class GetFileVersionsRequest {
+    /**
+     * File path e.g. '/file.ext'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+    
+    public constructor(init?: Partial<GetFileVersionsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetFilesList operation.
+ */
+export class GetFilesListRequest {
+    /**
+     * Folder path e.g. '/folder'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+    
+    public constructor(init?: Partial<GetFilesListRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for MoveFile operation.
+ */
+export class MoveFileRequest {
+    /**
+     * Source file path e.g. '/src.ext'
+     */
+    public srcPath: string;
+
+    /**
+     * Destination file path e.g. '/dest.ext'
+     */
+    public destPath: string;
+
+    /**
+     * Source storage name
+     */
+    public srcStorageName: string;
+
+    /**
+     * Destination storage name
+     */
+    public destStorageName: string;
+
+    /**
+     * File version ID to move
+     */
+    public versionId: string;
+    
+    public constructor(init?: Partial<MoveFileRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for MoveFolder operation.
+ */
+export class MoveFolderRequest {
+    /**
+     * Folder path to move e.g. '/folder'
+     */
+    public srcPath: string;
+
+    /**
+     * Destination folder path to move to e.g '/dst'
+     */
+    public destPath: string;
+
+    /**
+     * Source storage name
+     */
+    public srcStorageName: string;
+
+    /**
+     * Destination storage name
+     */
+    public destStorageName: string;
+    
+    public constructor(init?: Partial<MoveFolderRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for ObjectExists operation.
+ */
+export class ObjectExistsRequest {
+    /**
+     * File or folder path e.g. '/file.ext' or '/folder'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    /**
+     * File version ID
+     */
+    public versionId: string;
+    
+    public constructor(init?: Partial<ObjectExistsRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -2954,6 +3893,44 @@ export class PutDrawingWmfRequest {
     public storage: string;
     
     public constructor(init?: Partial<PutDrawingWmfRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for StorageExists operation.
+ */
+export class StorageExistsRequest {
+    /**
+     * Storage name
+     */
+    public storageName: string;
+    
+    public constructor(init?: Partial<StorageExistsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for UploadFile operation.
+ */
+export class UploadFileRequest {
+    /**
+     * Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.             
+     */
+    public path: string;
+
+    /**
+     * File to upload
+     */
+    public file: Buffer;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+    
+    public constructor(init?: Partial<UploadFileRequest>) {        
         Object.assign(this, init);
     } 
 }

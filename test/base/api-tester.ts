@@ -28,7 +28,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as cad from "../../lib/api";
-const StorageApi = require("../../lib/internal/storage/StorageApi");
+import { GetFilesListRequest, UploadFileRequest } from "../../lib/api";
 
 export type GetRequestInvokerDelegate = () => Promise<Buffer>;
 export type PostRequestInvokerDelegate = (inputStream: Buffer) => Promise<Buffer>;
@@ -120,11 +120,6 @@ export abstract class ApiTester {
     protected cadApi: cad.CadApi;
 
     /**
-     * Aspose.Storage API client
-     */
-    protected storageApi;
-
-    /**
      * Setup method
      */
     public async beforeAll() {
@@ -168,8 +163,12 @@ export abstract class ApiTester {
     protected async putCreateFolderAsync(folder: string, storage: string) {
         return new Promise((resolve, reject) => {
             try {
-                this.storageApi.PutCreateFolder(folder, storage, storage, async (responseMessage) => {
-                    resolve(responseMessage.body);
+                this.cadApi.createFolder({
+                    path: folder, 
+                    storageName: storage
+                })
+                .then((responseMessage) => {
+                    resolve(responseMessage);
                 });
             } catch (error) {
                 console.log(error);
@@ -186,7 +185,13 @@ export abstract class ApiTester {
     protected deleteFolderAsync(folder: string, storage: string) {
         return new Promise((resolve, reject) => {
             try {
-                this.storageApi.DeleteFolder(folder, storage, true, (responseMessage) => {
+                this.cadApi.deleteFolder(
+                {
+                    path: folder,
+                    storageName: storage,
+                    recursive: true
+                })
+                .then((responseMessage) => {
                     resolve(responseMessage);
                 });
             } catch (error) {
@@ -203,8 +208,13 @@ export abstract class ApiTester {
     protected getIsExistAsync(outPath: string, storage: string): Promise<boolean> {
         return new Promise((resolve, reject) => {
             try {
-                this.storageApi.GetIsExist(outPath, null, storage, (responseMessage) => {
-                    resolve(responseMessage.body.FileExist.IsExist);
+                this.cadApi.objectExists({
+                    path: outPath,
+                    storageName: storage,
+                    versionId: null
+                })
+                .then((responseMessage) => {
+                    resolve(responseMessage.exists);
                 });
             } catch (error) {
                 console.log(error);
@@ -267,13 +277,6 @@ export abstract class ApiTester {
 
         this.cadApi = new cad.CadApi(appKey, appSid, baseUrl, true, apiVersion, proxy);
 
-        let storageBaseUrl: string = baseUrl;
-        if (!storageBaseUrl.startsWith("https")) {
-            storageBaseUrl = storageBaseUrl.replace("http", "https");
-        }
-        
-        this.storageApi = new StorageApi({ appSid, apiKey: appKey, baseURI: storageBaseUrl, debug: false, proxy, version: "1.1" });
-
         this.InputTestFiles = await this.fetchInputTestFilesInfo(false);
 
         if (!this.InputTestFiles || this.InputTestFiles.length === 0) {
@@ -306,10 +309,14 @@ export abstract class ApiTester {
     protected async getStorageFileInfo(folder: string, fileName: string, storage: string): Promise<any> {
         return new Promise((resolve, reject) => {
             try {
-                this.storageApi.GetListFiles(folder, storage, (responseMessage) => {
-                    const files = responseMessage.body.Files;
+                this.cadApi.getFilesList({
+                    path: folder,
+                    storageName: storage
+                })
+                .then((responseMessage) => {
+                    const files = responseMessage.value;
                     for (const storageFileInfo of files) {
-                        if (folder + "/" + storageFileInfo.Name === fileName) {
+                        if (folder + "/" + storageFileInfo.name === fileName) {
                             resolve(storageFileInfo);
                         }
                     }
@@ -370,8 +377,13 @@ export abstract class ApiTester {
     protected getDownloadAsync(downloadPath: string, storage: string): Promise<Buffer> {
         return new Promise((resolve, reject) => {
             try {
-                this.storageApi.GetDownload(downloadPath, null, storage, async (responseMessage) => {
-                    resolve(responseMessage.body);
+                this.cadApi.downloadFile({
+                    path: downloadPath,
+                    storageName: storage,
+                    versionId: null
+                })
+                .then((responseMessage) => {
+                    resolve(responseMessage);
                 });
             } catch (error) {
                 console.log(error);
@@ -390,11 +402,18 @@ export abstract class ApiTester {
 
         const thisLink = this;
 
-        return new Promise(async (resolve, reject) => {
+        return new Promise<void>(async (resolve, reject) => {
             try {
                 if (!(await thisLink.getIsExistAsync(destFolder + "/" + destFileName, storage))) {
-                    await thisLink.storageApi.PutCopy(fileName, destFolder + "/" + destFileName, null, storage, storage, null, async (responseMessage) => {
-                        resolve(responseMessage.body);
+                    await thisLink.cadApi.copyFile({
+                        srcPath: fileName,
+                        destPath: destFolder + "/" + destFileName,
+                        srcStorageName: storage,
+                        destStorageName: storage,
+                        versionId: null
+                    })
+                    .then((responseMessage) => {
+                        resolve(responseMessage);
                     });
                 } else {
                     resolve();
@@ -413,7 +432,12 @@ export abstract class ApiTester {
     protected deleteFileAsync(file: string, storage: string) {
         return new Promise((resolve, reject) => {
             try {
-                this.storageApi.DeleteFile(file, null, storage, (responseMessage) => {
+                this.cadApi.deleteFile({
+                    path: file,
+                    storageName: storage,
+                    versionId: null
+                })
+                .then((responseMessage) => {
                     resolve(responseMessage);
                 });
             } catch (error) {
@@ -463,7 +487,7 @@ export abstract class ApiTester {
     /**
      * Fetches the input test files info.
      */
-    private async fetchInputTestFilesInfo(forcedUpload: boolean): Promise<any[]> {
+    private async fetchInputTestFilesInfo(forcedUpload: boolean): Promise<cad.StorageFile[]> {
         const thisLink = this;
 
         if (forcedUpload) {
@@ -471,7 +495,12 @@ export abstract class ApiTester {
                 for (const item of items) {
                     const stats = fs.statSync(thisLink.LocalTestFolder + "/" + item);
                     if (!item.endsWith(".json") && stats && stats.isFile() && stats.size > 0) {
-                        thisLink.storageApi.PutCreate(thisLink.OriginalDataFolder + "/" + item, null, thisLink.TestStorage, thisLink.LocalTestFolder + "/" + item);
+                        thisLink.cadApi.uploadFile(new UploadFileRequest(
+                        { 
+                            path: thisLink.OriginalDataFolder + "/" + item, 
+                            file: fs.readFileSync(thisLink.LocalTestFolder + "/" + item),
+                            storageName: thisLink.TestStorage
+                        }));
                     }
                 }
             });
@@ -480,8 +509,13 @@ export abstract class ApiTester {
         return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     try {
-                        this.storageApi.GetListFiles(this.OriginalDataFolder, this.TestStorage, (responseMessage) => {
-                            resolve(responseMessage.body.Files);
+                        this.cadApi.getFilesList(new GetFilesListRequest(
+                        {
+                            path: this.OriginalDataFolder,
+                            storageName: this.TestStorage
+                        }))
+                        .then((responseMessage) => {
+                            resolve(responseMessage.value);
                         });
                     } catch (error) {
                         reject(error);
