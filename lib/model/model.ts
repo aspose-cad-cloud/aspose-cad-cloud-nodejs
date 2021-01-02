@@ -25,7 +25,6 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-
 /**
  * Represents information about a drawing.
  */
@@ -207,9 +206,6 @@ export class Cff2Properties {
     }        
 }
 
-/**
- * The color of the pixel.
- */
 export class Color {
 
     /**
@@ -277,42 +273,42 @@ export class Color {
     }
 
     /**
-     * Gets the red component value of this Color structure.
+     * R
      */
     public R: number;
     
     /**
-     * Gets the green component value of this Color structure.
+     * G
      */
     public G: number;
     
     /**
-     * Gets the blue component value of this Color structure.
+     * B
      */
     public B: number;
     
     /**
-     * Gets the alpha component value of this Color structure.
+     * A
      */
     public A: number;
     
     /**
-     * Gets a value indicating whether this Color structure is a predefined color. Predefined colors are represented by the elements of the KnownColor enumeration.
+     * isKnownColor
      */
     public isKnownColor: boolean;
     
     /**
-     * Gets a value indicating whether this Color structure is uninitialized.
+     * isEmpty
      */
     public isEmpty: boolean;
     
     /**
-     * Gets a value indicating whether this Color structure is a named color or a member of the KnownColor enumeration.
+     * isNamedColor
      */
     public isNamedColor: boolean;
     
     /**
-     * Gets the name of this Color.
+     * name
      */
     public name: string;
     
@@ -1186,11 +1182,6 @@ export class PdfDocumentOptions {
             name: "compliance",
             baseName: "Compliance",
             type: "PdfDocumentOptions.ComplianceEnum",
-        },        
-        {
-            name: "digitalSignatureDetails",
-            baseName: "DigitalSignatureDetails",
-            type: "",
         }    ];
 
     /**
@@ -1204,7 +1195,7 @@ export class PdfDocumentOptions {
      * compliance
      */
     public compliance: PdfDocumentOptions.ComplianceEnum;
-   
+    
     public constructor(init?: Partial<PdfDocumentOptions>) {
         
         Object.assign(this, init);

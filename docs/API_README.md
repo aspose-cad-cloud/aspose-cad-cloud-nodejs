@@ -51,7 +51,6 @@ Class | Method | HTTP request | Description
 
 Class | Description
 ----- | -----
-[**   **](   .md) | 
 [**BmpOptionsDTO**](BmpOptionsDTO.md) | Export options for BMP format
 [**CadRasterizationOptionsDTO**](CadRasterizationOptionsDTO.md) | Raster export options
 [**CadResponse**](CadResponse.md) | Represents information about a drawing.

@@ -102,7 +102,7 @@ export abstract class ApiTester {
     /**
      * Input test files info
      */
-    protected InputTestFiles: any[];
+    protected InputTestFiles: cad.StorageFile[];
 
     /**
      * Dynamic temp folder name.
@@ -151,7 +151,7 @@ export abstract class ApiTester {
     public async afterAll() {
         if (!ApiTester.FailedAnyTest && this.RemoveResult && 
             (await this.getIsExistAsync(this.TempFolder, this.TestStorage))) {
-            await this.deleteFolderAsync(this.TestStorage, this.TempFolder);
+            await this.deleteFolderAsync(this.TempFolder, this.TestStorage);
         } 
     }
 
@@ -292,7 +292,7 @@ export abstract class ApiTester {
      */
     protected checkInputFileExists(inputFileName: string): boolean {
         for (const storageFileInfo of this.InputTestFiles) {
-            if (storageFileInfo.Name === inputFileName) {
+            if (storageFileInfo.name === inputFileName) {
                 return true;
             }
         }
