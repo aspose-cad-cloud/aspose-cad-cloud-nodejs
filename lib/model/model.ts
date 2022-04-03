@@ -25,6 +25,130 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
+export class AsnEncodedData {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "oid",
+            baseName: "Oid",
+            type: "Oid",
+        },        
+        {
+            name: "rawData",
+            baseName: "RawData",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return AsnEncodedData.attributeTypeMap;
+    }
+
+    /**
+     * oid
+     */
+    public oid: Oid;
+    
+    /**
+     * rawData
+     */
+    public rawData: string;
+    
+    public constructor(init?: Partial<AsnEncodedData>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+export class AsymmetricAlgorithm {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "keySize",
+            baseName: "KeySize",
+            type: "number",
+        },        
+        {
+            name: "legalKeySizes",
+            baseName: "LegalKeySizes",
+            type: "Array<KeySizes>",
+        },        
+        {
+            name: "signatureAlgorithm",
+            baseName: "SignatureAlgorithm",
+            type: "string",
+        },        
+        {
+            name: "keyExchangeAlgorithm",
+            baseName: "KeyExchangeAlgorithm",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return AsymmetricAlgorithm.attributeTypeMap;
+    }
+
+    /**
+     * keySize
+     */
+    public keySize: number;
+    
+    /**
+     * legalKeySizes
+     */
+    public legalKeySizes: Array<KeySizes>;
+    
+    /**
+     * signatureAlgorithm
+     */
+    public signatureAlgorithm: string;
+    
+    /**
+     * keyExchangeAlgorithm
+     */
+    public keyExchangeAlgorithm: string;
+    
+    public constructor(init?: Partial<AsymmetricAlgorithm>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
 /**
  * Represents information about a drawing.
  */
@@ -97,9 +221,24 @@ export class CadResponse {
             type: "DwfProperties",
         },        
         {
-            name: "cff2Properties",
-            baseName: "Cff2Properties",
-            type: "Cff2Properties",
+            name: "cf2Properties",
+            baseName: "Cf2Properties",
+            type: "Cf2Properties",
+        },        
+        {
+            name: "fbxProperties",
+            baseName: "FbxProperties",
+            type: "FbxProperties",
+        },        
+        {
+            name: "objProperties",
+            baseName: "ObjProperties",
+            type: "ObjProperties",
+        },        
+        {
+            name: "pltProperties",
+            baseName: "PltProperties",
+            type: "PltProperties",
         }    ];
 
     /**
@@ -160,9 +299,24 @@ export class CadResponse {
     public dwfProperties: DwfProperties;
     
     /**
-     * Gets or sets the CFF2 properties.
+     * Gets or sets the Cf2 properties.
      */
-    public cff2Properties: Cff2Properties;
+    public cf2Properties: Cf2Properties;
+    
+    /**
+     * Gets or sets the Cf2 properties.
+     */
+    public fbxProperties: FbxProperties;
+    
+    /**
+     * Gets or sets the FBX properties.
+     */
+    public objProperties: ObjProperties;
+    
+    /**
+     * Gets or sets the Cf2 properties.
+     */
+    public pltProperties: PltProperties;
     
     public constructor(init?: Partial<CadResponse>) {
         
@@ -171,9 +325,9 @@ export class CadResponse {
 }
 
 /**
- * Represents information about CFF2 drawing.
+ * Represents information about CF2 drawing.
  */
-export class Cff2Properties {
+export class Cf2Properties {
 
     /**
      * Attribute type map
@@ -197,10 +351,10 @@ export class Cff2Properties {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return Cff2Properties.attributeTypeMap;
+        return Cf2Properties.attributeTypeMap;
     }
 
-    public constructor(init?: Partial<Cff2Properties>) {
+    public constructor(init?: Partial<Cf2Properties>) {
         
         Object.assign(this, init);
     }        
@@ -648,6 +802,42 @@ export class ErrorDetails {
 }
 
 /**
+ * Represents information about FBX drawing.
+ */
+export class FbxProperties {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FbxProperties.attributeTypeMap;
+    }
+
+    public constructor(init?: Partial<FbxProperties>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * File versions FileVersion.
  */
 export class FileVersions {
@@ -787,6 +977,58 @@ export class FilesUploadResult {
     public errors: Array<Error>;
     
     public constructor(init?: Partial<FilesUploadResult>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+export class GetAccessTokenRequest {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "clientId",
+            baseName: "ClientId",
+            type: "string",
+        },        
+        {
+            name: "clientSecret",
+            baseName: "ClientSecret",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return GetAccessTokenRequest.attributeTypeMap;
+    }
+
+    /**
+     * clientId
+     */
+    public clientId: string;
+    
+    /**
+     * clientSecret
+     */
+    public clientSecret: string;
+    
+    public constructor(init?: Partial<GetAccessTokenRequest>) {
         
         Object.assign(this, init);
     }        
@@ -958,6 +1200,101 @@ export class IgsProperties {
     }        
 }
 
+export class IntPtr {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return IntPtr.attributeTypeMap;
+    }
+
+    public constructor(init?: Partial<IntPtr>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+export class KeySizes {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "minSize",
+            baseName: "MinSize",
+            type: "number",
+        },        
+        {
+            name: "maxSize",
+            baseName: "MaxSize",
+            type: "number",
+        },        
+        {
+            name: "skipSize",
+            baseName: "SkipSize",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return KeySizes.attributeTypeMap;
+    }
+
+    /**
+     * minSize
+     */
+    public minSize: number;
+    
+    /**
+     * maxSize
+     */
+    public maxSize: number;
+    
+    /**
+     * skipSize
+     */
+    public skipSize: number;
+    
+    public constructor(init?: Partial<KeySizes>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
 /**
  * Error
  */
@@ -1034,6 +1371,42 @@ export class ModelError {
 }
 
 /**
+ * Represents information about OBJ drawing.
+ */
+export class ObjProperties {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ObjProperties.attributeTypeMap;
+    }
+
+    public constructor(init?: Partial<ObjProperties>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Object exists
  */
 export class ObjectExist {
@@ -1088,6 +1461,152 @@ export class ObjectExist {
     }        
 }
 
+export class Oid {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "value",
+            baseName: "Value",
+            type: "string",
+        },        
+        {
+            name: "friendlyName",
+            baseName: "FriendlyName",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return Oid.attributeTypeMap;
+    }
+
+    /**
+     * value
+     */
+    public value: string;
+    
+    /**
+     * friendlyName
+     */
+    public friendlyName: string;
+    
+    public constructor(init?: Partial<Oid>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+export class PdfDigitalSignatureDetailsCore {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "certificate",
+            baseName: "Certificate",
+            type: "X509Certificate2",
+        },        
+        {
+            name: "reason",
+            baseName: "Reason",
+            type: "string",
+        },        
+        {
+            name: "location",
+            baseName: "Location",
+            type: "string",
+        },        
+        {
+            name: "signatureDate",
+            baseName: "SignatureDate",
+            type: "Date",
+        },        
+        {
+            name: "hashAlgorithm",
+            baseName: "HashAlgorithm",
+            type: "PdfDigitalSignatureDetailsCore.HashAlgorithmEnum",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return PdfDigitalSignatureDetailsCore.attributeTypeMap;
+    }
+
+    /**
+     * certificate
+     */
+    public certificate: X509Certificate2;
+    
+    /**
+     * reason
+     */
+    public reason: string;
+    
+    /**
+     * location
+     */
+    public location: string;
+    
+    /**
+     * signatureDate
+     */
+    public signatureDate: Date;
+    
+    /**
+     * hashAlgorithm
+     */
+    public hashAlgorithm: PdfDigitalSignatureDetailsCore.HashAlgorithmEnum;
+    
+    public constructor(init?: Partial<PdfDigitalSignatureDetailsCore>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace PdfDigitalSignatureDetailsCore {
+    export enum HashAlgorithmEnum {
+        Sha1 = 'Sha1' as any,
+        Sha256 = 'Sha256' as any,
+        Sha384 = 'Sha384' as any,
+        Sha512 = 'Sha512' as any,
+        Md5 = 'Md5' as any,
+    }
+}
+// tslint:enable:quotemark
 export class PdfDocumentInfo {
 
     /**
@@ -1182,6 +1701,11 @@ export class PdfDocumentOptions {
             name: "compliance",
             baseName: "Compliance",
             type: "PdfDocumentOptions.ComplianceEnum",
+        },        
+        {
+            name: "digitalSignatureDetails",
+            baseName: "DigitalSignatureDetails",
+            type: "PdfDigitalSignatureDetailsCore",
         }    ];
 
     /**
@@ -1195,6 +1719,11 @@ export class PdfDocumentOptions {
      * compliance
      */
     public compliance: PdfDocumentOptions.ComplianceEnum;
+    
+    /**
+     * digitalSignatureDetails
+     */
+    public digitalSignatureDetails: PdfDigitalSignatureDetailsCore;
     
     public constructor(init?: Partial<PdfDocumentOptions>) {
         
@@ -1295,6 +1824,114 @@ export namespace PenOptions {
     }
 }
 // tslint:enable:quotemark
+/**
+ * Represents information about PLT drawing.
+ */
+export class PltProperties {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return PltProperties.attributeTypeMap;
+    }
+
+    public constructor(init?: Partial<PltProperties>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+export class PublicKey {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "encodedKeyValue",
+            baseName: "EncodedKeyValue",
+            type: "AsnEncodedData",
+        },        
+        {
+            name: "encodedParameters",
+            baseName: "EncodedParameters",
+            type: "AsnEncodedData",
+        },        
+        {
+            name: "key",
+            baseName: "Key",
+            type: "AsymmetricAlgorithm",
+        },        
+        {
+            name: "oid",
+            baseName: "Oid",
+            type: "Oid",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return PublicKey.attributeTypeMap;
+    }
+
+    /**
+     * encodedKeyValue
+     */
+    public encodedKeyValue: AsnEncodedData;
+    
+    /**
+     * encodedParameters
+     */
+    public encodedParameters: AsnEncodedData;
+    
+    /**
+     * key
+     */
+    public key: AsymmetricAlgorithm;
+    
+    /**
+     * oid
+     */
+    public oid: Oid;
+    
+    public constructor(init?: Partial<PublicKey>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
 export class RdOptimizerSettings {
 
     /**
@@ -1769,6 +2406,68 @@ export namespace VectorRasterizationOptionsDTO {
     }
 }
 // tslint:enable:quotemark
+export class X509Certificate {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "handle",
+            baseName: "Handle",
+            type: "IntPtr",
+        },        
+        {
+            name: "issuer",
+            baseName: "Issuer",
+            type: "string",
+        },        
+        {
+            name: "subject",
+            baseName: "Subject",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return X509Certificate.attributeTypeMap;
+    }
+
+    /**
+     * handle
+     */
+    public handle: IntPtr;
+    
+    /**
+     * issuer
+     */
+    public issuer: string;
+    
+    /**
+     * subject
+     */
+    public subject: string;
+    
+    public constructor(init?: Partial<X509Certificate>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
 /**
  * Export options for BMP format
  */
@@ -1934,6 +2633,114 @@ export class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
 export namespace CadRasterizationOptionsDTO {
 }
 // tslint:enable:quotemark
+/**
+ * Export options for DWF format
+ */
+export class DwfOptionsDTO extends DrawingOptionsBaseDTO {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(DwfOptionsDTO.attributeTypeMap);
+    }
+
+    public constructor(init?: Partial<DwfOptionsDTO>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Export options for DXF format
+ */
+export class DxfOptionsDTO extends DrawingOptionsBaseDTO {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(DxfOptionsDTO.attributeTypeMap);
+    }
+
+    public constructor(init?: Partial<DxfOptionsDTO>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Export options for FBX format
+ */
+export class FbxOptionsDTO extends DrawingOptionsBaseDTO {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(FbxOptionsDTO.attributeTypeMap);
+    }
+
+    public constructor(init?: Partial<FbxOptionsDTO>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
 /**
  * File Version
  */
@@ -2239,6 +3046,42 @@ export class JpegOptionsDTO extends DrawingOptionsBaseDTO {
     public rdOptSettings: RdOptimizerSettings;
     
     public constructor(init?: Partial<JpegOptionsDTO>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Export options for FBX format
+ */
+export class ObjOptionsDTO extends DrawingOptionsBaseDTO {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(ObjOptionsDTO.attributeTypeMap);
+    }
+
+    public constructor(init?: Partial<ObjOptionsDTO>) {
         super(init);
         Object.assign(this, init);
     }        
@@ -2654,10 +3497,235 @@ export class WmfOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+export class X500DistinguishedName extends AsnEncodedData {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "name",
+            baseName: "Name",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(X500DistinguishedName.attributeTypeMap);
+    }
+
+    /**
+     * name
+     */
+    public name: string;
+    
+    public constructor(init?: Partial<X500DistinguishedName>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+export class X509Certificate2 extends X509Certificate {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "archived",
+            baseName: "Archived",
+            type: "boolean",
+        },        
+        {
+            name: "extensions",
+            baseName: "Extensions",
+            type: "Array<any>",
+        },        
+        {
+            name: "friendlyName",
+            baseName: "FriendlyName",
+            type: "string",
+        },        
+        {
+            name: "hasPrivateKey",
+            baseName: "HasPrivateKey",
+            type: "boolean",
+        },        
+        {
+            name: "privateKey",
+            baseName: "PrivateKey",
+            type: "AsymmetricAlgorithm",
+        },        
+        {
+            name: "issuerName",
+            baseName: "IssuerName",
+            type: "X500DistinguishedName",
+        },        
+        {
+            name: "notAfter",
+            baseName: "NotAfter",
+            type: "Date",
+        },        
+        {
+            name: "notBefore",
+            baseName: "NotBefore",
+            type: "Date",
+        },        
+        {
+            name: "publicKey",
+            baseName: "PublicKey",
+            type: "PublicKey",
+        },        
+        {
+            name: "rawData",
+            baseName: "RawData",
+            type: "string",
+        },        
+        {
+            name: "serialNumber",
+            baseName: "SerialNumber",
+            type: "string",
+        },        
+        {
+            name: "signatureAlgorithm",
+            baseName: "SignatureAlgorithm",
+            type: "Oid",
+        },        
+        {
+            name: "subjectName",
+            baseName: "SubjectName",
+            type: "X500DistinguishedName",
+        },        
+        {
+            name: "thumbprint",
+            baseName: "Thumbprint",
+            type: "string",
+        },        
+        {
+            name: "version",
+            baseName: "Version",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(X509Certificate2.attributeTypeMap);
+    }
+
+    /**
+     * archived
+     */
+    public archived: boolean;
+    
+    /**
+     * extensions
+     */
+    public extensions: Array<any>;
+    
+    /**
+     * friendlyName
+     */
+    public friendlyName: string;
+    
+    /**
+     * hasPrivateKey
+     */
+    public hasPrivateKey: boolean;
+    
+    /**
+     * privateKey
+     */
+    public privateKey: AsymmetricAlgorithm;
+    
+    /**
+     * issuerName
+     */
+    public issuerName: X500DistinguishedName;
+    
+    /**
+     * notAfter
+     */
+    public notAfter: Date;
+    
+    /**
+     * notBefore
+     */
+    public notBefore: Date;
+    
+    /**
+     * publicKey
+     */
+    public publicKey: PublicKey;
+    
+    /**
+     * rawData
+     */
+    public rawData: string;
+    
+    /**
+     * serialNumber
+     */
+    public serialNumber: string;
+    
+    /**
+     * signatureAlgorithm
+     */
+    public signatureAlgorithm: Oid;
+    
+    /**
+     * subjectName
+     */
+    public subjectName: X500DistinguishedName;
+    
+    /**
+     * thumbprint
+     */
+    public thumbprint: string;
+    
+    /**
+     * version
+     */
+    public version: number;
+    
+    public constructor(init?: Partial<X509Certificate2>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
 const enumsMap = {
     "GraphicsOptions.TextRenderingHintEnum": GraphicsOptions.TextRenderingHintEnum,
     "GraphicsOptions.SmoothingModeEnum": GraphicsOptions.SmoothingModeEnum,
     "GraphicsOptions.InterpolationModeEnum": GraphicsOptions.InterpolationModeEnum,
+    "PdfDigitalSignatureDetailsCore.HashAlgorithmEnum": PdfDigitalSignatureDetailsCore.HashAlgorithmEnum,
     "PdfDocumentOptions.ComplianceEnum": PdfDocumentOptions.ComplianceEnum,
     "PenOptions.StartCapEnum": PenOptions.StartCapEnum,
     "PenOptions.EndCapEnum": PenOptions.EndCapEnum,
@@ -2666,8 +3734,10 @@ const enumsMap = {
 };
 
 const typeMap = {
+            AsnEncodedData,
+            AsymmetricAlgorithm,
             CadResponse,
-            Cff2Properties,
+            Cf2Properties,
             Color,
             DgnProperties,
             DiscUsage,
@@ -2676,35 +3746,51 @@ const typeMap = {
             DwgProperties,
             DxfProperties,
             ErrorDetails,
+            FbxProperties,
             FileVersions,
             FilesList,
             FilesUploadResult,
+            GetAccessTokenRequest,
             GraphicsOptions,
             IfcProperties,
             IgsProperties,
+            IntPtr,
+            KeySizes,
             ModelError,
+            ObjProperties,
             ObjectExist,
+            Oid,
+            PdfDigitalSignatureDetailsCore,
             PdfDocumentInfo,
             PdfDocumentOptions,
             PenOptions,
+            PltProperties,
+            PublicKey,
             RdOptimizerSettings,
             ResolutionSetting,
             StlProperties,
             StorageExist,
             StorageFile,
             VectorRasterizationOptionsDTO,
+            X509Certificate,
             BmpOptionsDTO,
             CadRasterizationOptionsDTO,
+            DwfOptionsDTO,
+            DxfOptionsDTO,
+            FbxOptionsDTO,
             FileVersion,
             GifOptionsDTO,
             Jpeg2000OptionsDTO,
             JpegOptionsDTO,
+            ObjOptionsDTO,
             PdfOptionsDTO,
             PngOptionsDTO,
             PsdOptionsDTO,
             SvgOptionsDTO,
             TiffOptionsDTO,
             WmfOptionsDTO,
+            X500DistinguishedName,
+            X509Certificate2,
 };
 
 export {enumsMap, typeMap};
@@ -3178,6 +4264,108 @@ export class PostDrawingBmpRequest {
 }
 
 /**
+ * Request model for PostDrawingDXF operation.
+ */
+export class PostDrawingDXFRequest {
+    /**
+     * Filename of an input drawing on a storage.
+     */
+    public name: string;
+
+    /**
+     * Export DXF options passed as a JSON on a request body.
+     */
+    public options: DxfOptionsDTO;
+
+    /**
+     * Folder with a drawing to process.
+     */
+    public folder: string;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed file).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<PostDrawingDXFRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for PostDrawingDwf operation.
+ */
+export class PostDrawingDwfRequest {
+    /**
+     * Filename of an input drawing on a storage.
+     */
+    public name: string;
+
+    /**
+     * Export Dwf options passed as a JSON on a request body.
+     */
+    public options: DwfOptionsDTO;
+
+    /**
+     * Folder with a drawing to process.
+     */
+    public folder: string;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed file).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<PostDrawingDwfRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for PostDrawingFbx operation.
+ */
+export class PostDrawingFbxRequest {
+    /**
+     * Filename of an input drawing on a storage.
+     */
+    public name: string;
+
+    /**
+     * Export Fbx options passed as a JSON on a request body.
+     */
+    public options: FbxOptionsDTO;
+
+    /**
+     * Folder with a drawing to process.
+     */
+    public folder: string;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed file).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<PostDrawingFbxRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for PostDrawingGif operation.
  */
 export class PostDrawingGifRequest {
@@ -3275,6 +4463,40 @@ export class PostDrawingJpeg2000Request {
     public storage: string;
     
     public constructor(init?: Partial<PostDrawingJpeg2000Request>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for PostDrawingObj operation.
+ */
+export class PostDrawingObjRequest {
+    /**
+     * Filename of an input drawing on a storage.
+     */
+    public name: string;
+
+    /**
+     * Export Obj options passed as a JSON on a request body.
+     */
+    public options: ObjOptionsDTO;
+
+    /**
+     * Folder with a drawing to process.
+     */
+    public folder: string;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed file).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<PostDrawingObjRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -3629,6 +4851,93 @@ export class PutDrawingBmpRequest {
 }
 
 /**
+ * Request model for PutDrawingDXF operation.
+ */
+export class PutDrawingDXFRequest {
+    /**
+     * Input drawing
+     */
+    public drawingData: Buffer;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed file).
+     */
+    public outPath: string;
+
+    /**
+     * JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/DxfOptionsDTO model definition.
+     */
+    public exportOptions: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<PutDrawingDXFRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for PutDrawingDwf operation.
+ */
+export class PutDrawingDwfRequest {
+    /**
+     * Input drawing
+     */
+    public drawingData: Buffer;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed file).
+     */
+    public outPath: string;
+
+    /**
+     * JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/DwfOptionsDTO model definition.
+     */
+    public exportOptions: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<PutDrawingDwfRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for PutDrawingFbx operation.
+ */
+export class PutDrawingFbxRequest {
+    /**
+     * Input drawing
+     */
+    public drawingData: Buffer;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed file).
+     */
+    public outPath: string;
+
+    /**
+     * JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/FbxOptionsDTO model definition.
+     */
+    public exportOptions: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<PutDrawingFbxRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for PutDrawingGif operation.
  */
 export class PutDrawingGifRequest {
@@ -3711,6 +5020,35 @@ export class PutDrawingJpeg2000Request {
     public storage: string;
     
     public constructor(init?: Partial<PutDrawingJpeg2000Request>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for PutDrawingObj operation.
+ */
+export class PutDrawingObjRequest {
+    /**
+     * Input drawing
+     */
+    public drawingData: Buffer;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed file).
+     */
+    public outPath: string;
+
+    /**
+     * JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/ObjOptionsDTO model definition.
+     */
+    public exportOptions: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<PutDrawingObjRequest>) {        
         Object.assign(this, init);
     } 
 }

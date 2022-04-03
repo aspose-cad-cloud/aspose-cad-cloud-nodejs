@@ -21,9 +21,13 @@ Class | Method | HTTP request | Description
 *CadApi* | [**moveFolder**](CadApi.md#moveFolder) | **PUT** /cad/storage/folder/move/\{srcPath} | Move folder
 *CadApi* | [**objectExists**](CadApi.md#objectExists) | **GET** /cad/storage/exist/\{path} | Check if file or folder exists
 *CadApi* | [**postDrawingBmp**](CadApi.md#postDrawingBmp) | **POST** /cad/\{name}/bmp | Export an existing drawing to BMP format with export settings specified.
+*CadApi* | [**postDrawingDwf**](CadApi.md#postDrawingDwf) | **POST** /cad/\{name}/dwf | Export an existing drawing to Dwf format with export settings specified.
+*CadApi* | [**postDrawingDXF**](CadApi.md#postDrawingDXF) | **POST** /cad/\{name}/dxf | Export an existing drawing to DXF format with export settings specified.
+*CadApi* | [**postDrawingFbx**](CadApi.md#postDrawingFbx) | **POST** /cad/\{name}/fbx | Export an existing drawing to Fbx format with export settings specified.
 *CadApi* | [**postDrawingGif**](CadApi.md#postDrawingGif) | **POST** /cad/\{name}/gif | Export an existing drawing into GIF format with export settings specified.
 *CadApi* | [**postDrawingJpeg**](CadApi.md#postDrawingJpeg) | **POST** /cad/\{name}/jpeg | Export an existing drawing into JPEG format with export settings specified.
 *CadApi* | [**postDrawingJpeg2000**](CadApi.md#postDrawingJpeg2000) | **POST** /cad/\{name}/jpeg2000 | Export an existing drawing into JPEG2000 format with export settings specified.
+*CadApi* | [**postDrawingObj**](CadApi.md#postDrawingObj) | **POST** /cad/\{name}/obj | Export an existing drawing to Obj format with export settings specified.
 *CadApi* | [**postDrawingPdf**](CadApi.md#postDrawingPdf) | **POST** /cad/\{name}/pdf | Export an existing drawing to PDF format with export settings specified.
 *CadApi* | [**postDrawingPng**](CadApi.md#postDrawingPng) | **POST** /cad/\{name}/png | Export an existing drawing into PNG format with export settings specified.
 *CadApi* | [**postDrawingProperties**](CadApi.md#postDrawingProperties) | **POST** /cad/properties | Retrieves info about drawing which is passed as a zero-indexed multipart/form-data content or as raw body stream.
@@ -35,9 +39,13 @@ Class | Method | HTTP request | Description
 *CadApi* | [**postDrawingTiff**](CadApi.md#postDrawingTiff) | **POST** /cad/\{name}/tiff | Export an existing drawing into TIFF format with export settings specified.
 *CadApi* | [**postDrawingWmf**](CadApi.md#postDrawingWmf) | **POST** /cad/\{name}/wmf | Export an existing drawing to WMF format with export settings specified.
 *CadApi* | [**putDrawingBmp**](CadApi.md#putDrawingBmp) | **PUT** /cad/bmp | Export drawing to BMP format. Drawing data is passed as zero-indexed multipart/form-data as well as export BMP options serialized as JSON. Order of drawing data and BMP options could vary.
+*CadApi* | [**putDrawingDwf**](CadApi.md#putDrawingDwf) | **PUT** /cad/dwf | Export drawing to Dwf format. Drawing data is passed as zero-indexed multipart/form-data as well as export Dwf options serialized as JSON. Order of drawing data and Dwf options could vary.
+*CadApi* | [**putDrawingDXF**](CadApi.md#putDrawingDXF) | **PUT** /cad/dxf | Export drawing to DXF format. Drawing data is passed as zero-indexed multipart/form-data as well as export DXF options serialized as JSON. Order of drawing data and DXF options could vary.
+*CadApi* | [**putDrawingFbx**](CadApi.md#putDrawingFbx) | **PUT** /cad/fbx | Export drawing to Fbx format. Drawing data is passed as zero-indexed multipart/form-data as well as export Fbx options serialized as JSON. Order of drawing data and Fbx options could vary.
 *CadApi* | [**putDrawingGif**](CadApi.md#putDrawingGif) | **PUT** /cad/gif | Export drawing to GIF format. Drawing data is passed as zero-indexed multipart/form-data as well as export GIF options serialized as JSON. Order of drawing data and GIF options could vary.
 *CadApi* | [**putDrawingJpeg**](CadApi.md#putDrawingJpeg) | **PUT** /cad/jpeg | Export drawing to JPEG format. Drawing data is passed as zero-indexed multipart/form-data as well as export JPEG options serialized as JSON. Order of drawing data and JPEG options could vary.
 *CadApi* | [**putDrawingJpeg2000**](CadApi.md#putDrawingJpeg2000) | **PUT** /cad/jpeg2000 | Export drawing to JPEG2000 format. Drawing data is passed as zero-indexed multipart/form-data as well as export JPEG2000 options serialized as JSON. Order of drawing data and JPEG2000 options could vary.
+*CadApi* | [**putDrawingObj**](CadApi.md#putDrawingObj) | **PUT** /cad/obj | Export drawing to Obj format. Drawing data is passed as zero-indexed multipart/form-data as well as export Obj options serialized as JSON. Order of drawing data and Obj options could vary.
 *CadApi* | [**putDrawingPdf**](CadApi.md#putDrawingPdf) | **PUT** /cad/pdf | Export drawing to PDF format. Drawing data is passed as zero-indexed multipart/form-data as well as export PDF options serialized as JSON. Order of drawing data and PDF options could vary.
 *CadApi* | [**putDrawingPng**](CadApi.md#putDrawingPng) | **PUT** /cad/png | Export drawing to PNG format. Drawing data is passed as zero-indexed multipart/form-data as well as export PNG options serialized as JSON. Order of drawing data and PNG options could vary.
 *CadApi* | [**putDrawingPsd**](CadApi.md#putDrawingPsd) | **PUT** /cad/psd | Export drawing to PSD format. Drawing data is passed as zero-indexed multipart/form-data as well as export PSD options serialized as JSON. Order of drawing data and PSD options could vary.
@@ -51,36 +59,51 @@ Class | Method | HTTP request | Description
 
 Class | Description
 ----- | -----
+[**AsnEncodedData**](AsnEncodedData.md) | 
+[**AsymmetricAlgorithm**](AsymmetricAlgorithm.md) | 
 [**BmpOptionsDTO**](BmpOptionsDTO.md) | Export options for BMP format
 [**CadRasterizationOptionsDTO**](CadRasterizationOptionsDTO.md) | Raster export options
 [**CadResponse**](CadResponse.md) | Represents information about a drawing.
-[**Cff2Properties**](Cff2Properties.md) | Represents information about CFF2 drawing.
+[**Cf2Properties**](Cf2Properties.md) | Represents information about CF2 drawing.
 [**Color**](Color.md) | 
 [**DgnProperties**](DgnProperties.md) | Represents information about DGN drawing.
 [**DiscUsage**](DiscUsage.md) | Class for disc space information.
 [**DrawingOptionsBaseDTO**](DrawingOptionsBaseDTO.md) | Image options base class
+[**DwfOptionsDTO**](DwfOptionsDTO.md) | Export options for DWF format
 [**DwfProperties**](DwfProperties.md) | Represents information about DWF drawing.
 [**DwgProperties**](DwgProperties.md) | Represents information about DWG drawing.
+[**DxfOptionsDTO**](DxfOptionsDTO.md) | Export options for DXF format
 [**DxfProperties**](DxfProperties.md) | Represents information about DXF drawing.
 [**Error**](Error.md) | Error
 [**ErrorDetails**](ErrorDetails.md) | The error details
+[**FbxOptionsDTO**](FbxOptionsDTO.md) | Export options for FBX format
+[**FbxProperties**](FbxProperties.md) | Represents information about FBX drawing.
 [**FilesList**](FilesList.md) | Files list
 [**FilesUploadResult**](FilesUploadResult.md) | File upload result
 [**FileVersion**](FileVersion.md) | File Version
 [**FileVersions**](FileVersions.md) | File versions FileVersion.
+[**GetAccessTokenRequest**](GetAccessTokenRequest.md) | 
 [**GifOptionsDTO**](GifOptionsDTO.md) | Export options for GIF format
 [**GraphicsOptions**](GraphicsOptions.md) | 
 [**IfcProperties**](IfcProperties.md) | Represents information about IFC drawing.
 [**IgsProperties**](IgsProperties.md) | Represents information about IGS drawing.
+[**IntPtr**](IntPtr.md) | 
 [**Jpeg2000OptionsDTO**](Jpeg2000OptionsDTO.md) | Export options for JPEG2000 format
 [**JpegOptionsDTO**](JpegOptionsDTO.md) | Export options for JPEG format
+[**KeySizes**](KeySizes.md) | 
 [**ObjectExist**](ObjectExist.md) | Object exists
+[**ObjOptionsDTO**](ObjOptionsDTO.md) | Export options for FBX format
+[**ObjProperties**](ObjProperties.md) | Represents information about OBJ drawing.
+[**Oid**](Oid.md) | 
+[**PdfDigitalSignatureDetailsCore**](PdfDigitalSignatureDetailsCore.md) | 
 [**PdfDocumentInfo**](PdfDocumentInfo.md) | 
 [**PdfDocumentOptions**](PdfDocumentOptions.md) | 
 [**PdfOptionsDTO**](PdfOptionsDTO.md) | Export options for PDF format
 [**PenOptions**](PenOptions.md) | 
+[**PltProperties**](PltProperties.md) | Represents information about PLT drawing.
 [**PngOptionsDTO**](PngOptionsDTO.md) | Export options for PNG format
 [**PsdOptionsDTO**](PsdOptionsDTO.md) | Export options for PSD format
+[**PublicKey**](PublicKey.md) | 
 [**RdOptimizerSettings**](RdOptimizerSettings.md) | 
 [**ResolutionSetting**](ResolutionSetting.md) | 
 [**StlProperties**](StlProperties.md) | Represents information about STL drawing.
@@ -90,3 +113,6 @@ Class | Description
 [**TiffOptionsDTO**](TiffOptionsDTO.md) | Export options for TIFF format
 [**VectorRasterizationOptionsDTO**](VectorRasterizationOptionsDTO.md) | Base raster export options class
 [**WmfOptionsDTO**](WmfOptionsDTO.md) | Export options for WMF format
+[**X500DistinguishedName**](X500DistinguishedName.md) | 
+[**X509Certificate**](X509Certificate.md) | 
+[**X509Certificate2**](X509Certificate2.md) | 

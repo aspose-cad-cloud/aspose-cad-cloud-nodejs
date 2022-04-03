@@ -14,7 +14,10 @@ Name | Type | Description | Notes
 **igsProperties** | [**IgsProperties**](IgsProperties.md) | Gets or sets the IGS properties. | [optional]
 **stlProperties** | [**StlProperties**](StlProperties.md) | Gets or sets the STL properties. | [optional]
 **dwfProperties** | [**DwfProperties**](DwfProperties.md) | Gets or sets the DWF properties. | [optional]
-**cff2Properties** | [**Cff2Properties**](Cff2Properties.md) | Gets or sets the CFF2 properties. | [optional]
+**cf2Properties** | [**Cf2Properties**](Cf2Properties.md) | Gets or sets the Cf2 properties. | [optional]
+**fbxProperties** | [**FbxProperties**](FbxProperties.md) | Gets or sets the Cf2 properties. | [optional]
+**objProperties** | [**ObjProperties**](ObjProperties.md) | Gets or sets the FBX properties. | [optional]
+**pltProperties** | [**PltProperties**](PltProperties.md) | Gets or sets the Cf2 properties. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md) [[View Source]](../src/models/cadResponse.ts)
 
