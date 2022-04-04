@@ -1005,58 +1005,6 @@ export class FilesUploadResult {
     }        
 }
 
-export class GetAccessTokenRequest {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{
-        /**
-         * Attribute name
-         */
-        name: string, 
-        /**
-         * Attribute base name
-         */
-        baseName: string,
-        /**
-         * Attribute type
-         */
-        type: string}> = [
-        {
-            name: "clientId",
-            baseName: "ClientId",
-            type: "string",
-        },        
-        {
-            name: "clientSecret",
-            baseName: "ClientSecret",
-            type: "string",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return GetAccessTokenRequest.attributeTypeMap;
-    }
-
-    /**
-     * clientId
-     */
-    public clientId: string;
-    
-    /**
-     * clientSecret
-     */
-    public clientSecret: string;
-    
-    public constructor(init?: Partial<GetAccessTokenRequest>) {
-        
-        Object.assign(this, init);
-    }        
-}
-
 export class GraphicsOptions {
 
     /**
@@ -3979,7 +3927,6 @@ const typeMap = {
             FileVersions,
             FilesList,
             FilesUploadResult,
-            GetAccessTokenRequest,
             GraphicsOptions,
             IfcProperties,
             IgsProperties,

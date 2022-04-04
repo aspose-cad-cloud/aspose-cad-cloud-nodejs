@@ -123,6 +123,8 @@ export abstract class ApiTester {
      * Setup method
      */
     public async beforeAll() {
+        console.log("==== BEFORE ALL");
+
         let tempPostfix: string = process.env.BUILD_NUMBER;
         if (!tempPostfix) {
             tempPostfix = require("os").userInfo().username;
@@ -227,8 +229,9 @@ export abstract class ApiTester {
      * Creates the API instances using given access parameters.
      */
     protected async createApiInstances() {
-        console.log("Trying to obtain the creds from environment variables.");
         const onPremise = process.env.OnPremise === "true";
+        console.log("Trying to obtain the creds from environment variables (on premise = " + onPremise + ")");
+        
         let appKey = onPremise ? undefined : process.env.AppKey;
         let appSid = onPremise ? undefined : process.env.AppSid;
         let baseUrl = process.env.ApiEndpoint;
@@ -244,6 +247,7 @@ export abstract class ApiTester {
             console.log("Set default API version");
         }
 
+        console.log("==== reading " + this.LocalTestFolder + "/" + this.ServerAccessFile + " for test run settings...");
         const serverAccessPath: string = path.join(this.LocalTestFolder, this.ServerAccessFile);
         const stats = fs.statSync(serverAccessPath);
         if (stats && stats.isFile() && stats.size > 0) {

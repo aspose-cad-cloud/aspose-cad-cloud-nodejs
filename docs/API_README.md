@@ -53,7 +53,6 @@ Class | Method | HTTP request | Description
 *CadApi* | [**putDrawingTiff**](CadApi.md#putDrawingTiff) | **PUT** /cad/tiff | Export drawing to TIFF format. Drawing data is passed as zero-indexed multipart/form-data as well as export TIFF options serialized as JSON. Order of drawing data and TIFF options could vary.
 *CadApi* | [**putDrawingWmf**](CadApi.md#putDrawingWmf) | **PUT** /cad/wmf | Export drawing to WMF format. Drawing data is passed as zero-indexed multipart/form-data as well as export WMF options serialized as JSON. Order of drawing data and WMF options could vary.
 *CadApi* | [**storageExists**](CadApi.md#storageExists) | **GET** /cad/storage/\{storageName}/exist | Check if storage exists
-*CadApi* | [**token**](CadApi.md#token) | **POST** /connect/token | 
 *CadApi* | [**uploadFile**](CadApi.md#uploadFile) | **PUT** /cad/storage/file/\{path} | Upload file
 
 ## Documentation for Models
@@ -83,7 +82,6 @@ Class | Description
 [**FilesUploadResult**](FilesUploadResult.md) | File upload result
 [**FileVersion**](FileVersion.md) | File Version
 [**FileVersions**](FileVersions.md) | File versions FileVersion.
-[**GetAccessTokenRequest**](GetAccessTokenRequest.md) | 
 [**GifOptionsDTO**](GifOptionsDTO.md) | Export options for GIF format
 [**GraphicsOptions**](GraphicsOptions.md) | 
 [**IfcProperties**](IfcProperties.md) | Represents information about IFC drawing.

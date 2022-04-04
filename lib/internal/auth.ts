@@ -75,6 +75,8 @@ export class JwtAuth implements IAuthentication {
         postData += "&client_id=" + configuration.appSID;
         postData += "&client_secret=" + configuration.appKey;
 
+        console.log("requesting JWT: POST " + configuration.baseUrl + "connect/token" + " form: " + postData);
+
         const requestOptions: request.Options = {
             method: "POST",
             uri: configuration.baseUrl + "connect/token",
@@ -87,6 +89,9 @@ export class JwtAuth implements IAuthentication {
         const response = await invokeApiMethod(requestOptions, configuration, true);
         const parsedResponse = JSON.parse(response.body);
         this.accessTokenValue = parsedResponse.access_token;
+
+        console.log("received JWT: " + this.accessTokenValue);
+
         return Promise.resolve();
     }
 }
