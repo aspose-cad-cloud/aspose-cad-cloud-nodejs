@@ -587,7 +587,7 @@ export class DrawingOptionsBaseDTO {
         {
             name: "rotation",
             baseName: "Rotation",
-            type: "any",
+            type: "DrawingOptionsBaseDTO.RotationEnum",
         },        
         {
             name: "layers",
@@ -615,7 +615,7 @@ export class DrawingOptionsBaseDTO {
     /**
      * Resulting rotation operation
      */
-    public rotation: any;
+    public rotation: DrawingOptionsBaseDTO.RotationEnum;
     
     /**
      * Layers to export
@@ -638,6 +638,29 @@ export class DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace DrawingOptionsBaseDTO {
+    export enum RotationEnum {
+        RotateNoneFlipNone = 'RotateNoneFlipNone' as any,
+        Rotate90FlipNone = 'Rotate90FlipNone' as any,
+        Rotate180FlipNone = 'Rotate180FlipNone' as any,
+        Rotate270FlipNone = 'Rotate270FlipNone' as any,
+        RotateNoneFlipX = 'RotateNoneFlipX' as any,
+        Rotate90FlipX = 'Rotate90FlipX' as any,
+        Rotate180FlipX = 'Rotate180FlipX' as any,
+        Rotate270FlipX = 'Rotate270FlipX' as any,
+        RotateNoneFlipY = 'RotateNoneFlipY' as any,
+        Rotate90FlipY = 'Rotate90FlipY' as any,
+        Rotate180FlipY = 'Rotate180FlipY' as any,
+        Rotate270FlipY = 'Rotate270FlipY' as any,
+        RotateNoneFlipXY = 'RotateNoneFlipXY' as any,
+        Rotate90FlipXY = 'Rotate90FlipXY' as any,
+        Rotate180FlipXY = 'Rotate180FlipXY' as any,
+        Rotate270FlipXY = 'Rotate270FlipXY' as any,
+    }
+}
+// tslint:enable:quotemark
 /**
  * Represents information about DWF drawing.
  */
@@ -2497,7 +2520,7 @@ export class BmpOptionsDTO extends DrawingOptionsBaseDTO {
         {
             name: "compression",
             baseName: "Compression",
-            type: "any",
+            type: "BmpOptionsDTO.CompressionEnum",
         }    ];
 
     /**
@@ -2515,7 +2538,7 @@ export class BmpOptionsDTO extends DrawingOptionsBaseDTO {
     /**
      * Compression type
      */
-    public compression: any;
+    public compression: BmpOptionsDTO.CompressionEnum;
     
     public constructor(init?: Partial<BmpOptionsDTO>) {
         super(init);
@@ -2523,6 +2546,21 @@ export class BmpOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace BmpOptionsDTO {
+    export enum CompressionEnum {
+        Rgb = 'Rgb' as any,
+        Rle8 = 'Rle8' as any,
+        Rle4 = 'Rle4' as any,
+        Bitfields = 'Bitfields' as any,
+        Jpeg = 'Jpeg' as any,
+        Png = 'Png' as any,
+        AlphaBitfields = 'AlphaBitfields' as any,
+        Dxt1 = 'Dxt1' as any,
+    }
+}
+// tslint:enable:quotemark
 /**
  * Raster export options
  */
@@ -2572,7 +2610,7 @@ export class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
         {
             name: "drawType",
             baseName: "DrawType",
-            type: "any",
+            type: "CadRasterizationOptionsDTO.DrawTypeEnum",
         },        
         {
             name: "noScaling",
@@ -2615,7 +2653,7 @@ export class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
     /**
      * Drawing mode
      */
-    public drawType: any;
+    public drawType: CadRasterizationOptionsDTO.DrawTypeEnum;
     
     /**
      * Determines whether scaling has to be turned off
@@ -2631,6 +2669,10 @@ export class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace CadRasterizationOptionsDTO {
+    export enum DrawTypeEnum {
+        UseDrawColor = 'UseDrawColor' as any,
+        UseObjectColor = 'UseObjectColor' as any,
+    }
 }
 // tslint:enable:quotemark
 /**
@@ -2669,6 +2711,11 @@ export class DwfOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace DwfOptionsDTO {
+}
+// tslint:enable:quotemark
 /**
  * Export options for DXF format
  */
@@ -2705,6 +2752,11 @@ export class DxfOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace DxfOptionsDTO {
+}
+// tslint:enable:quotemark
 /**
  * Export options for FBX format
  */
@@ -2741,6 +2793,11 @@ export class FbxOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace FbxOptionsDTO {
+}
+// tslint:enable:quotemark
 /**
  * File Version
  */
@@ -2901,6 +2958,11 @@ export class GifOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace GifOptionsDTO {
+}
+// tslint:enable:quotemark
 /**
  * Export options for JPEG2000 format
  */
@@ -2995,12 +3057,12 @@ export class JpegOptionsDTO extends DrawingOptionsBaseDTO {
         {
             name: "compressionType",
             baseName: "CompressionType",
-            type: "any",
+            type: "JpegOptionsDTO.CompressionTypeEnum",
         },        
         {
             name: "colorType",
             baseName: "ColorType",
-            type: "any",
+            type: "JpegOptionsDTO.ColorTypeEnum",
         },        
         {
             name: "quality",
@@ -3028,12 +3090,12 @@ export class JpegOptionsDTO extends DrawingOptionsBaseDTO {
     /**
      * Compression type
      */
-    public compressionType: any;
+    public compressionType: JpegOptionsDTO.CompressionTypeEnum;
     
     /**
      * Color type
      */
-    public colorType: any;
+    public colorType: JpegOptionsDTO.ColorTypeEnum;
     
     /**
      * Quality level
@@ -3051,6 +3113,24 @@ export class JpegOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace JpegOptionsDTO {
+    export enum CompressionTypeEnum {
+        Baseline = 'Baseline' as any,
+        Progressive = 'Progressive' as any,
+        Lossless = 'Lossless' as any,
+        JpegLs = 'JpegLs' as any,
+    }
+    export enum ColorTypeEnum {
+        Grayscale = 'Grayscale' as any,
+        YCbCr = 'YCbCr' as any,
+        Cmyk = 'Cmyk' as any,
+        Ycck = 'Ycck' as any,
+        Rgb = 'Rgb' as any,
+    }
+}
+// tslint:enable:quotemark
 /**
  * Export options for FBX format
  */
@@ -3087,6 +3167,11 @@ export class ObjOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace ObjOptionsDTO {
+}
+// tslint:enable:quotemark
 /**
  * Export options for PDF format
  */
@@ -3142,6 +3227,11 @@ export class PdfOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace PdfOptionsDTO {
+}
+// tslint:enable:quotemark
 /**
  * Export options for PNG format
  */
@@ -3166,7 +3256,7 @@ export class PngOptionsDTO extends DrawingOptionsBaseDTO {
         {
             name: "colorType",
             baseName: "ColorType",
-            type: "any",
+            type: "PngOptionsDTO.ColorTypeEnum",
         },        
         {
             name: "progressive",
@@ -3176,7 +3266,7 @@ export class PngOptionsDTO extends DrawingOptionsBaseDTO {
         {
             name: "filterType",
             baseName: "FilterType",
-            type: "any",
+            type: "PngOptionsDTO.FilterTypeEnum",
         },        
         {
             name: "compressionLevel",
@@ -3199,7 +3289,7 @@ export class PngOptionsDTO extends DrawingOptionsBaseDTO {
     /**
      * Color type
      */
-    public colorType: any;
+    public colorType: PngOptionsDTO.ColorTypeEnum;
     
     /**
      * Determines whether 'progressive' method is used
@@ -3209,7 +3299,7 @@ export class PngOptionsDTO extends DrawingOptionsBaseDTO {
     /**
      * Filter type
      */
-    public filterType: any;
+    public filterType: PngOptionsDTO.FilterTypeEnum;
     
     /**
      * Compression level
@@ -3227,6 +3317,26 @@ export class PngOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace PngOptionsDTO {
+    export enum ColorTypeEnum {
+        Grayscale = 'Grayscale' as any,
+        Truecolor = 'Truecolor' as any,
+        IndexedColor = 'IndexedColor' as any,
+        GrayscaleWithAlpha = 'GrayscaleWithAlpha' as any,
+        TruecolorWithAlpha = 'TruecolorWithAlpha' as any,
+    }
+    export enum FilterTypeEnum {
+        None = 'None' as any,
+        Sub = 'Sub' as any,
+        Up = 'Up' as any,
+        Avg = 'Avg' as any,
+        Paeth = 'Paeth' as any,
+        Adaptive = 'Adaptive' as any,
+    }
+}
+// tslint:enable:quotemark
 /**
  * Export options for PSD format
  */
@@ -3256,12 +3366,12 @@ export class PsdOptionsDTO extends DrawingOptionsBaseDTO {
         {
             name: "compressionMethod",
             baseName: "CompressionMethod",
-            type: "any",
+            type: "PsdOptionsDTO.CompressionMethodEnum",
         },        
         {
             name: "colorMode",
             baseName: "ColorMode",
-            type: "any",
+            type: "PsdOptionsDTO.ColorModeEnum",
         },        
         {
             name: "channelBitsCount",
@@ -3289,12 +3399,12 @@ export class PsdOptionsDTO extends DrawingOptionsBaseDTO {
     /**
      * Compression method
      */
-    public compressionMethod: any;
+    public compressionMethod: PsdOptionsDTO.CompressionMethodEnum;
     
     /**
      * Color mode
      */
-    public colorMode: any;
+    public colorMode: PsdOptionsDTO.ColorModeEnum;
     
     /**
      * Bits count per channel
@@ -3312,6 +3422,27 @@ export class PsdOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace PsdOptionsDTO {
+    export enum CompressionMethodEnum {
+        Raw = 'Raw' as any,
+        RLE = 'RLE' as any,
+        ZipWithoutPrediction = 'ZipWithoutPrediction' as any,
+        ZipWithPrediction = 'ZipWithPrediction' as any,
+    }
+    export enum ColorModeEnum {
+        Bitmap = 'Bitmap' as any,
+        Grayscale = 'Grayscale' as any,
+        Indexed = 'Indexed' as any,
+        Rgb = 'Rgb' as any,
+        Cmyk = 'Cmyk' as any,
+        Multichannel = 'Multichannel' as any,
+        Duotone = 'Duotone' as any,
+        Lab = 'Lab' as any,
+    }
+}
+// tslint:enable:quotemark
 /**
  * Export options for SVG format
  */
@@ -3336,7 +3467,7 @@ export class SvgOptionsDTO extends DrawingOptionsBaseDTO {
         {
             name: "colorType",
             baseName: "ColorType",
-            type: "any",
+            type: "SvgOptionsDTO.ColorTypeEnum",
         },        
         {
             name: "textAsShapes",
@@ -3354,7 +3485,7 @@ export class SvgOptionsDTO extends DrawingOptionsBaseDTO {
     /**
      * Color type
      */
-    public colorType: any;
+    public colorType: SvgOptionsDTO.ColorTypeEnum;
     
     /**
      * Render text as shapes
@@ -3367,6 +3498,18 @@ export class SvgOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace SvgOptionsDTO {
+    export enum ColorTypeEnum {
+        Grayscale = 'Grayscale' as any,
+        YCbCr = 'YCbCr' as any,
+        Cmyk = 'Cmyk' as any,
+        Ycck = 'Ycck' as any,
+        Rgb = 'Rgb' as any,
+    }
+}
+// tslint:enable:quotemark
 /**
  * Export options for TIFF format
  */
@@ -3391,17 +3534,17 @@ export class TiffOptionsDTO extends DrawingOptionsBaseDTO {
         {
             name: "byteOrder",
             baseName: "ByteOrder",
-            type: "any",
+            type: "TiffOptionsDTO.ByteOrderEnum",
         },        
         {
             name: "compression",
             baseName: "Compression",
-            type: "any",
+            type: "TiffOptionsDTO.CompressionEnum",
         },        
         {
             name: "expectedFormat",
             baseName: "ExpectedFormat",
-            type: "any",
+            type: "TiffOptionsDTO.ExpectedFormatEnum",
         },        
         {
             name: "bitsPerSample",
@@ -3411,7 +3554,7 @@ export class TiffOptionsDTO extends DrawingOptionsBaseDTO {
         {
             name: "photometric",
             baseName: "Photometric",
-            type: "any",
+            type: "TiffOptionsDTO.PhotometricEnum",
         }    ];
 
     /**
@@ -3424,17 +3567,17 @@ export class TiffOptionsDTO extends DrawingOptionsBaseDTO {
     /**
      * Bytes order (little/big-endian notation)
      */
-    public byteOrder: any;
+    public byteOrder: TiffOptionsDTO.ByteOrderEnum;
     
     /**
      * Compression level
      */
-    public compression: any;
+    public compression: TiffOptionsDTO.CompressionEnum;
     
     /**
      * Expected TIFF sub-format
      */
-    public expectedFormat: any;
+    public expectedFormat: TiffOptionsDTO.ExpectedFormatEnum;
     
     /**
      * Bits per pixel
@@ -3444,7 +3587,7 @@ export class TiffOptionsDTO extends DrawingOptionsBaseDTO {
     /**
      * Photometric options
      */
-    public photometric: any;
+    public photometric: TiffOptionsDTO.PhotometricEnum;
     
     public constructor(init?: Partial<TiffOptionsDTO>) {
         super(init);
@@ -3452,6 +3595,73 @@ export class TiffOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace TiffOptionsDTO {
+    export enum ByteOrderEnum {
+        LittleEndian = 'LittleEndian' as any,
+        BigEndian = 'BigEndian' as any,
+    }
+    export enum CompressionEnum {
+        None = 'None' as any,
+        CcittRle = 'CcittRle' as any,
+        CcittFax3 = 'CcittFax3' as any,
+        CcittFax4 = 'CcittFax4' as any,
+        Lzw = 'Lzw' as any,
+        Ojpeg = 'Ojpeg' as any,
+        Jpeg = 'Jpeg' as any,
+        AdobeDeflate = 'AdobeDeflate' as any,
+        Next = 'Next' as any,
+        CcittRleW = 'CcittRleW' as any,
+        Packbits = 'Packbits' as any,
+        Thunderscan = 'Thunderscan' as any,
+        It8Ctpad = 'It8Ctpad' as any,
+        It8Lw = 'It8Lw' as any,
+        It8Mp = 'It8Mp' as any,
+        It8Bl = 'It8Bl' as any,
+        PixarFilm = 'PixarFilm' as any,
+        PixarLog = 'PixarLog' as any,
+        Deflate = 'Deflate' as any,
+        Dcs = 'Dcs' as any,
+        Jbig = 'Jbig' as any,
+        Sgilog = 'Sgilog' as any,
+        Sgilog24 = 'Sgilog24' as any,
+        Jp2000 = 'Jp2000' as any,
+    }
+    export enum ExpectedFormatEnum {
+        Default = 'Default' as any,
+        TiffLzwBw = 'TiffLzwBw' as any,
+        TiffLzwRgb = 'TiffLzwRgb' as any,
+        TiffLzwRgba = 'TiffLzwRgba' as any,
+        TiffLzwCmyk = 'TiffLzwCmyk' as any,
+        TiffCcittFax3 = 'TiffCcittFax3' as any,
+        TiffCcittFax4 = 'TiffCcittFax4' as any,
+        TiffDeflateBw = 'TiffDeflateBw' as any,
+        TiffDeflateRgb = 'TiffDeflateRgb' as any,
+        TiffDeflateRgba = 'TiffDeflateRgba' as any,
+        TiffCcitRle = 'TiffCcitRle' as any,
+        TiffJpegRgb = 'TiffJpegRgb' as any,
+        TiffJpegYCbCr = 'TiffJpegYCbCr' as any,
+        TiffNoCompressionBw = 'TiffNoCompressionBw' as any,
+        TiffNoCompressionRgb = 'TiffNoCompressionRgb' as any,
+        TiffNoCompressionRgba = 'TiffNoCompressionRgba' as any,
+    }
+    export enum PhotometricEnum {
+        MinIsWhite = 'MinIsWhite' as any,
+        MinIsBlack = 'MinIsBlack' as any,
+        Rgb = 'Rgb' as any,
+        Palette = 'Palette' as any,
+        Mask = 'Mask' as any,
+        Separated = 'Separated' as any,
+        Ycbcr = 'Ycbcr' as any,
+        Cielab = 'Cielab' as any,
+        Icclab = 'Icclab' as any,
+        Itulab = 'Itulab' as any,
+        Logl = 'Logl' as any,
+        Logluv = 'Logluv' as any,
+    }
+}
+// tslint:enable:quotemark
 /**
  * Export options for WMF format
  */
@@ -3497,6 +3707,11 @@ export class WmfOptionsDTO extends DrawingOptionsBaseDTO {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace WmfOptionsDTO {
+}
+// tslint:enable:quotemark
 export class X500DistinguishedName extends AsnEncodedData {
 
     /**
@@ -3722,6 +3937,7 @@ export class X509Certificate2 extends X509Certificate {
 }
 
 const enumsMap = {
+    "DrawingOptionsBaseDTO.RotationEnum": DrawingOptionsBaseDTO.RotationEnum,
     "GraphicsOptions.TextRenderingHintEnum": GraphicsOptions.TextRenderingHintEnum,
     "GraphicsOptions.SmoothingModeEnum": GraphicsOptions.SmoothingModeEnum,
     "GraphicsOptions.InterpolationModeEnum": GraphicsOptions.InterpolationModeEnum,
@@ -3730,7 +3946,20 @@ const enumsMap = {
     "PenOptions.StartCapEnum": PenOptions.StartCapEnum,
     "PenOptions.EndCapEnum": PenOptions.EndCapEnum,
     "VectorRasterizationOptionsDTO.UnitTypeEnum": VectorRasterizationOptionsDTO.UnitTypeEnum,
+    "BmpOptionsDTO.CompressionEnum": BmpOptionsDTO.CompressionEnum,
+    "CadRasterizationOptionsDTO.DrawTypeEnum": CadRasterizationOptionsDTO.DrawTypeEnum,
     "Jpeg2000OptionsDTO.CodecEnum": Jpeg2000OptionsDTO.CodecEnum,
+    "JpegOptionsDTO.CompressionTypeEnum": JpegOptionsDTO.CompressionTypeEnum,
+    "JpegOptionsDTO.ColorTypeEnum": JpegOptionsDTO.ColorTypeEnum,
+    "PngOptionsDTO.ColorTypeEnum": PngOptionsDTO.ColorTypeEnum,
+    "PngOptionsDTO.FilterTypeEnum": PngOptionsDTO.FilterTypeEnum,
+    "PsdOptionsDTO.CompressionMethodEnum": PsdOptionsDTO.CompressionMethodEnum,
+    "PsdOptionsDTO.ColorModeEnum": PsdOptionsDTO.ColorModeEnum,
+    "SvgOptionsDTO.ColorTypeEnum": SvgOptionsDTO.ColorTypeEnum,
+    "TiffOptionsDTO.ByteOrderEnum": TiffOptionsDTO.ByteOrderEnum,
+    "TiffOptionsDTO.CompressionEnum": TiffOptionsDTO.CompressionEnum,
+    "TiffOptionsDTO.ExpectedFormatEnum": TiffOptionsDTO.ExpectedFormatEnum,
+    "TiffOptionsDTO.PhotometricEnum": TiffOptionsDTO.PhotometricEnum,
 };
 
 const typeMap = {

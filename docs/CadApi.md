@@ -1132,6 +1132,26 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="token"></a>
+## **token**
+> token(request)
+
+
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**request** | [**GetAccessTokenRequest**](GetAccessTokenRequest.md) |  | 
+
+### Return type
+
+**string**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="uploadFile"></a>
 ## **uploadFile**
 > uploadFile(path, File, storageName)
