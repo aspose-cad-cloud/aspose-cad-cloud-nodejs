@@ -1132,11 +1132,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
 <a name="uploadFile"></a>
 ## **uploadFile**
 > uploadFile(path, File, storageName)
