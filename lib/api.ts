@@ -55,6 +55,66 @@ export class CadApi {
     }
 
     /**
+     * Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
+     * @param requestObj contains request parameters
+     */
+    public async convert(requestObj: model.ConvertRequest): Promise<model.Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling convert.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/Convert";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.outputFormat' is not null or undefined
+        if (requestObj.outputFormat === null || requestObj.outputFormat === undefined) {
+            throw new Error('Required parameter "requestObj.outputFormat" was null or undefined when calling convert.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.outputFormat) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
+        }
+
+        if (requestObj.outputTypeExt) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputTypeExt", requestObj.outputTypeExt);
+        }
+
+        if (requestObj.drawing !== undefined) {
+            const paramKey = "drawing";
+            let formValue = null;
+            formValue = requestObj.drawing;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawing",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "Buffer");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Copy file
      * @param requestObj contains request parameters
      */
@@ -301,6 +361,155 @@ export class CadApi {
         let result = null;
         result = response.body;
 
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Get Metadata info
+     * @param requestObj contains request parameters
+     */
+    public async editMetadata(requestObj: model.EditMetadataRequest): Promise<model.string> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling editMetadata.');
+        }
+
+        const localVarPath = this.configuration.getApiBaseUrl() + "/cad/EditMetadata";
+        const queryParameters: any = {};
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.drawing !== undefined) {
+            const paramKey = "drawing";
+            let formValue = null;
+            formValue = requestObj.drawing;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawing",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "string");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Extract Metadata from CAD drawing to txt, xml or json file.
+     * @param requestObj contains request parameters
+     */
+    public async extractMetadata(requestObj: model.ExtractMetadataRequest): Promise<model.Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling extractMetadata.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/ExtractMetadata";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.outputFormat' is not null or undefined
+        if (requestObj.outputFormat === null || requestObj.outputFormat === undefined) {
+            throw new Error('Required parameter "requestObj.outputFormat" was null or undefined when calling extractMetadata.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.outputFormat) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
+        }
+
+        if (requestObj.drawing !== undefined) {
+            const paramKey = "drawing";
+            let formValue = null;
+            formValue = requestObj.drawing;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawing",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "Buffer");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Extract Text from CAD drawing to txt file
+     * @param requestObj contains request parameters
+     */
+    public async extractText(requestObj: model.ExtractTextRequest): Promise<model.Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling extractText.');
+        }
+
+        const localVarPath = this.configuration.getApiBaseUrl() + "/cad/ExtractText";
+        const queryParameters: any = {};
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.drawing !== undefined) {
+            const paramKey = "drawing";
+            let formValue = null;
+            formValue = requestObj.drawing;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawing",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "Buffer");
+        }
         return Promise.resolve(result);        
     }
 
@@ -789,6 +998,62 @@ export class CadApi {
     }
 
     /**
+     * Convert bitmap image to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG format.
+     * @param requestObj contains request parameters
+     */
+    public async paperToCad(requestObj: model.PaperToCadRequest): Promise<model.Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling paperToCad.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/paper-to-cad";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.outputFormat' is not null or undefined
+        if (requestObj.outputFormat === null || requestObj.outputFormat === undefined) {
+            throw new Error('Required parameter "requestObj.outputFormat" was null or undefined when calling paperToCad.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.outputFormat) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
+        }
+
+        if (requestObj.drawing !== undefined) {
+            const paramKey = "drawing";
+            let formValue = null;
+            formValue = requestObj.drawing;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawing",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "Buffer");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Export an existing drawing to BMP format with export settings specified.
      * @param requestObj contains request parameters
      */
@@ -841,6 +1106,58 @@ export class CadApi {
     }
 
     /**
+     * Export an existing drawing to CGM format with export settings specified.
+     * @param requestObj contains request parameters
+     */
+    public async postDrawingCgm(requestObj: model.PostDrawingCgmRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingCgm.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/cgm"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postDrawingCgm.');
+        }
+
+        // verify required parameter 'requestObj.options' is not null or undefined
+        if (requestObj.options === null || requestObj.options === undefined) {
+            throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingCgm.');
+        }
+
+        if (requestObj.folder) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+            json: false,
+            body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "CgmOptionsDTO" : requestObj.options.constructor.name),
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Export an existing drawing to DXF format with export settings specified.
      * @param requestObj contains request parameters
      */
@@ -883,6 +1200,58 @@ export class CadApi {
             encoding: null,
             json: false,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "DxfOptionsDTO" : requestObj.options.constructor.name),
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Export an existing drawing to Dicom format with export settings specified.
+     * @param requestObj contains request parameters
+     */
+    public async postDrawingDicom(requestObj: model.PostDrawingDicomRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingDicom.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/dicom"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postDrawingDicom.');
+        }
+
+        // verify required parameter 'requestObj.options' is not null or undefined
+        if (requestObj.options === null || requestObj.options === undefined) {
+            throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingDicom.');
+        }
+
+        if (requestObj.folder) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+            json: false,
+            body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "DicomOptionsDTO" : requestObj.options.constructor.name),
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1039,6 +1408,110 @@ export class CadApi {
             encoding: null,
             json: false,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "GifOptionsDTO" : requestObj.options.constructor.name),
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Export an existing drawing to GLB format with export settings specified.
+     * @param requestObj contains request parameters
+     */
+    public async postDrawingGlb(requestObj: model.PostDrawingGlbRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingGlb.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/glb"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postDrawingGlb.');
+        }
+
+        // verify required parameter 'requestObj.options' is not null or undefined
+        if (requestObj.options === null || requestObj.options === undefined) {
+            throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingGlb.');
+        }
+
+        if (requestObj.folder) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+            json: false,
+            body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "GlbOptionsDTO" : requestObj.options.constructor.name),
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Export an existing drawing to GLTF format with export settings specified.
+     * @param requestObj contains request parameters
+     */
+    public async postDrawingGltf(requestObj: model.PostDrawingGltfRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingGltf.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/gltf"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postDrawingGltf.');
+        }
+
+        // verify required parameter 'requestObj.options' is not null or undefined
+        if (requestObj.options === null || requestObj.options === undefined) {
+            throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingGltf.');
+        }
+
+        if (requestObj.folder) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+            json: false,
+            body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "GltfOptionsDTO" : requestObj.options.constructor.name),
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1573,6 +2046,58 @@ export class CadApi {
     }
 
     /**
+     * Export an existing drawing to STP format with export settings specified.
+     * @param requestObj contains request parameters
+     */
+    public async postDrawingSTP(requestObj: model.PostDrawingSTPRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingSTP.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/stp"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postDrawingSTP.');
+        }
+
+        // verify required parameter 'requestObj.options' is not null or undefined
+        if (requestObj.options === null || requestObj.options === undefined) {
+            throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingSTP.');
+        }
+
+        if (requestObj.folder) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+            json: false,
+            body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "StpOptionsDTO" : requestObj.options.constructor.name),
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Export existing drawing to another format. Drawing data is passed as zero-indexed multipart/form-data content or as raw body stream.             
      * @param requestObj contains request parameters
      */
@@ -1689,6 +2214,58 @@ export class CadApi {
     }
 
     /**
+     * Export an existing drawing to 3ds format with export settings specified.
+     * @param requestObj contains request parameters
+     */
+    public async postDrawingThreeDS(requestObj: model.PostDrawingThreeDSRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingThreeDS.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/3ds"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postDrawingThreeDS.');
+        }
+
+        // verify required parameter 'requestObj.options' is not null or undefined
+        if (requestObj.options === null || requestObj.options === undefined) {
+            throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingThreeDS.');
+        }
+
+        if (requestObj.folder) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+            json: false,
+            body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "ThreeDSOptionsDTO" : requestObj.options.constructor.name),
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Export an existing drawing into TIFF format with export settings specified.
      * @param requestObj contains request parameters
      */
@@ -1731,6 +2308,110 @@ export class CadApi {
             encoding: null,
             json: false,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "TiffOptionsDTO" : requestObj.options.constructor.name),
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Export an existing drawing to U3d format with export settings specified.
+     * @param requestObj contains request parameters
+     */
+    public async postDrawingU3d(requestObj: model.PostDrawingU3dRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingU3d.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/u3d"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postDrawingU3d.');
+        }
+
+        // verify required parameter 'requestObj.options' is not null or undefined
+        if (requestObj.options === null || requestObj.options === undefined) {
+            throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingU3d.');
+        }
+
+        if (requestObj.folder) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+            json: false,
+            body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "U3dOptionsDTO" : requestObj.options.constructor.name),
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Export an existing drawing to Webp format with export settings specified.
+     * @param requestObj contains request parameters
+     */
+    public async postDrawingWebp(requestObj: model.PostDrawingWebpRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingWebp.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/{name}/webp"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postDrawingWebp.');
+        }
+
+        // verify required parameter 'requestObj.options' is not null or undefined
+        if (requestObj.options === null || requestObj.options === undefined) {
+            throw new Error('Required parameter "requestObj.options" was null or undefined when calling postDrawingWebp.');
+        }
+
+        if (requestObj.folder) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        }
+
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+            json: false,
+            body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "WebpOptionsDTO" : requestObj.options.constructor.name),
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1865,6 +2546,78 @@ export class CadApi {
     }
 
     /**
+     * Export drawing to CGM format. Drawing data is passed as zero-indexed multipart/form-data as well as export CGM options serialized as JSON. Order of drawing data and CGM options could vary.
+     * @param requestObj contains request parameters
+     */
+    public async putDrawingCgm(requestObj: model.PutDrawingCgmRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingCgm.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/cgm";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling putDrawingCgm.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
+            let formValue = null;
+            formValue = requestObj.drawingData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        if (requestObj.exportOptions !== undefined) {
+            const paramKey = "exportOptions";
+            let formValue = null;
+            formValue = ObjectSerializer.serialize(requestObj.exportOptions, "string");
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "exportOptions",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Export drawing to DXF format. Drawing data is passed as zero-indexed multipart/form-data as well as export DXF options serialized as JSON. Order of drawing data and DXF options could vary.
      * @param requestObj contains request parameters
      */
@@ -1879,6 +2632,78 @@ export class CadApi {
         // verify required parameter 'requestObj.drawingData' is not null or undefined
         if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
             throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling putDrawingDXF.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
+            let formValue = null;
+            formValue = requestObj.drawingData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        if (requestObj.exportOptions !== undefined) {
+            const paramKey = "exportOptions";
+            let formValue = null;
+            formValue = ObjectSerializer.serialize(requestObj.exportOptions, "string");
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "exportOptions",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Export drawing to Dicom format. Drawing data is passed as zero-indexed multipart/form-data as well as export Dicom options serialized as JSON. Order of drawing data and Dicom options could vary.
+     * @param requestObj contains request parameters
+     */
+    public async putDrawingDicom(requestObj: model.PutDrawingDicomRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingDicom.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/dicom";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling putDrawingDicom.');
         }
 
         const formParams: { [key: string]: any } = {};
@@ -2095,6 +2920,150 @@ export class CadApi {
         // verify required parameter 'requestObj.drawingData' is not null or undefined
         if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
             throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling putDrawingGif.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
+            let formValue = null;
+            formValue = requestObj.drawingData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        if (requestObj.exportOptions !== undefined) {
+            const paramKey = "exportOptions";
+            let formValue = null;
+            formValue = ObjectSerializer.serialize(requestObj.exportOptions, "string");
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "exportOptions",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Export drawing to GLB format. Drawing data is passed as zero-indexed multipart/form-data as well as export GLB options serialized as JSON. Order of drawing data and GLB options could vary.
+     * @param requestObj contains request parameters
+     */
+    public async putDrawingGlb(requestObj: model.PutDrawingGlbRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingGlb.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/glb";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling putDrawingGlb.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
+            let formValue = null;
+            formValue = requestObj.drawingData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        if (requestObj.exportOptions !== undefined) {
+            const paramKey = "exportOptions";
+            let formValue = null;
+            formValue = ObjectSerializer.serialize(requestObj.exportOptions, "string");
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "exportOptions",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Export drawing to GLTF format. Drawing data is passed as zero-indexed multipart/form-data as well as export GLTF options serialized as JSON. Order of drawing data and GLTF options could vary.
+     * @param requestObj contains request parameters
+     */
+    public async putDrawingGltf(requestObj: model.PutDrawingGltfRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingGltf.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/gltf";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling putDrawingGltf.');
         }
 
         const formParams: { [key: string]: any } = {};
@@ -2585,6 +3554,78 @@ export class CadApi {
     }
 
     /**
+     * Export drawing to Stp format. Drawing data is passed as zero-indexed multipart/form-data as well as export Stp options serialized as JSON. Order of drawing data and Stp options could vary.
+     * @param requestObj contains request parameters
+     */
+    public async putDrawingSTP(requestObj: model.PutDrawingSTPRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingSTP.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/stp";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling putDrawingSTP.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
+            let formValue = null;
+            formValue = requestObj.drawingData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        if (requestObj.exportOptions !== undefined) {
+            const paramKey = "exportOptions";
+            let formValue = null;
+            formValue = ObjectSerializer.serialize(requestObj.exportOptions, "string");
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "exportOptions",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Export drawing to SVG format. Drawing data is passed as zero-indexed multipart/form-data as well as export SVG options serialized as JSON. Order of drawing data and SVG options could vary.
      * @param requestObj contains request parameters
      */
@@ -2599,6 +3640,78 @@ export class CadApi {
         // verify required parameter 'requestObj.drawingData' is not null or undefined
         if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
             throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling putDrawingSvg.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
+            let formValue = null;
+            formValue = requestObj.drawingData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        if (requestObj.exportOptions !== undefined) {
+            const paramKey = "exportOptions";
+            let formValue = null;
+            formValue = ObjectSerializer.serialize(requestObj.exportOptions, "string");
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "exportOptions",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Export drawing to 3ds format. Drawing data is passed as zero-indexed multipart/form-data as well as export 3ds options serialized as JSON. Order of drawing data and 3ds options could vary.
+     * @param requestObj contains request parameters
+     */
+    public async putDrawingThreeDS(requestObj: model.PutDrawingThreeDSRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingThreeDS.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/3ds";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling putDrawingThreeDS.');
         }
 
         const formParams: { [key: string]: any } = {};
@@ -2729,6 +3842,150 @@ export class CadApi {
     }
 
     /**
+     * Export drawing to U3d format. Drawing data is passed as zero-indexed multipart/form-data as well as export U3d options serialized as JSON. Order of drawing data and U3d options could vary.
+     * @param requestObj contains request parameters
+     */
+    public async putDrawingU3d(requestObj: model.PutDrawingU3dRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingU3d.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/u3d";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling putDrawingU3d.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
+            let formValue = null;
+            formValue = requestObj.drawingData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        if (requestObj.exportOptions !== undefined) {
+            const paramKey = "exportOptions";
+            let formValue = null;
+            formValue = ObjectSerializer.serialize(requestObj.exportOptions, "string");
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "exportOptions",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Export drawing to Webp format. Drawing data is passed as zero-indexed multipart/form-data as well as export Webp options serialized as JSON. Order of drawing data and Webp options could vary.
+     * @param requestObj contains request parameters
+     */
+    public async putDrawingWebp(requestObj: model.PutDrawingWebpRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingWebp.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/webp";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling putDrawingWebp.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.outPath) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        }
+
+        if (requestObj.storage) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        }
+
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
+            let formValue = null;
+            formValue = requestObj.drawingData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        if (requestObj.exportOptions !== undefined) {
+            const paramKey = "exportOptions";
+            let formValue = null;
+            formValue = ObjectSerializer.serialize(requestObj.exportOptions, "string");
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "exportOptions",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Export drawing to WMF format. Drawing data is passed as zero-indexed multipart/form-data as well as export WMF options serialized as JSON. Order of drawing data and WMF options could vary.
      * @param requestObj contains request parameters
      */
@@ -2797,6 +4054,67 @@ export class CadApi {
         let result = null;
         result = response.body;
 
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Save Metadata
+     * @param requestObj contains request parameters
+     */
+    public async putEditMetadata(requestObj: model.PutEditMetadataRequest): Promise<model.Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling putEditMetadata.');
+        }
+
+        const localVarPath = this.configuration.getApiBaseUrl() + "/cad/EditMetadata";
+        const queryParameters: any = {};
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.drawing !== undefined) {
+            const paramKey = "drawing";
+            let formValue = null;
+            formValue = requestObj.drawing;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawing",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        if (requestObj.metadataComponent !== undefined) {
+            const paramKey = "metadataComponent";
+            let formValue = null;
+            formValue = ObjectSerializer.serialize(requestObj.metadataComponent, "string");
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "metadataComponent",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "Buffer");
+        }
         return Promise.resolve(result);        
     }
 
@@ -2892,6 +4210,136 @@ export class CadApi {
         
         if (response.body) {
             result = ObjectSerializer.deserialize(response.body, "FilesUploadResult");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Return file for viewer
+     * @param requestObj contains request parameters
+     */
+    public async viewer(requestObj: model.ViewerRequest): Promise<model.Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling viewer.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/Viewer";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.outputFormat' is not null or undefined
+        if (requestObj.outputFormat === null || requestObj.outputFormat === undefined) {
+            throw new Error('Required parameter "requestObj.outputFormat" was null or undefined when calling viewer.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.outputFormat) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
+        }
+
+        if (requestObj.drawing !== undefined) {
+            const paramKey = "drawing";
+            let formValue = null;
+            formValue = requestObj.drawing;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawing",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "Buffer");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Add watermark to drawing
+     * @param requestObj contains request parameters
+     */
+    public async watermark(requestObj: model.WatermarkRequest): Promise<model.Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling watermark.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/cad/Watermark";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.outputFormat' is not null or undefined
+        if (requestObj.outputFormat === null || requestObj.outputFormat === undefined) {
+            throw new Error('Required parameter "requestObj.outputFormat" was null or undefined when calling watermark.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.outputFormat) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
+        }
+
+        if (requestObj.outputTypeExt) {
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputTypeExt", requestObj.outputTypeExt);
+        }
+
+        if (requestObj.drawing !== undefined) {
+            const paramKey = "drawing";
+            let formValue = null;
+            formValue = requestObj.drawing;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "drawing",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        if (requestObj.watermarkRgb !== undefined) {
+            const paramKey = "watermarkRgb";
+            let formValue = null;
+            formValue = ObjectSerializer.serialize(requestObj.watermarkRgb, "string");
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "watermarkRgb",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                    proxy: this.configuration.proxy,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            proxy: this.configuration.proxy,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "Buffer");
         }
         return Promise.resolve(result);        
     }

@@ -1,5 +1,27 @@
 ﻿# Aspose.Cad.Cloud.Sdk.Api.CadApi
 
+<a name="convert"></a>
+## **convert**
+> convert(outputFormat, drawing, outputTypeExt)
+
+Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**outputFormat** | **string** | Output DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG, PNG, BMP, DIB, TIFF, TIF, JPEG, GIF, PSD, JPG, JPE, JIF, JFIF, PSD, WEBP, DCM, DICOM, JP2, J2K, JPF, JPM, JPG2, J2C, JPC, JPX, MJ2 , DJVU file format. | 
+**drawing** | **Buffer** | Form-data file | [optional]
+**outputTypeExt** | **string** | For output pdf format: PDF_15, PDFa_1a OR PDFa_1b. Null for another format | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
 <a name="copyFile"></a>
 ## **copyFile**
 > copyFile(srcPath, destPath, srcStorageName, destStorageName, versionId)
@@ -134,6 +156,67 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: multipart/form-data
 
+<a name="editMetadata"></a>
+## **editMetadata**
+> editMetadata(drawing)
+
+Get Metadata info
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**drawing** | **Buffer** |  | [optional]
+
+### Return type
+
+**string**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="extractMetadata"></a>
+## **extractMetadata**
+> extractMetadata(outputFormat, drawing)
+
+Extract Metadata from CAD drawing to txt, xml or json file.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**outputFormat** | **string** | Output TXT, XML or JSON file format. | 
+**drawing** | **Buffer** | Form-data file | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="extractText"></a>
+## **extractText**
+> extractText(drawing)
+
+Extract Text from CAD drawing to txt file
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**drawing** | **Buffer** |  | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
 <a name="getDiscUsage"></a>
 ## **getDiscUsage**
 > getDiscUsage(storageName)
@@ -213,7 +296,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | Filename of a drawing. | 
 **outputFormat** | **string** | Resulting file format. | 
-**rotateFlipType** | [****](.md) | Rotate/flip operation to apply. Possible values: RotateNoneFlipNone, Rotate90FlipNone, Rotate180FlipNone, Rotate270FlipNone, RotateNoneFlipX, Rotate90FlipX, Rotate180FlipX, Rotate270FlipX, RotateNoneFlipY, Rotate90FlipY, Rotate180FlipY, Rotate270FlipY, RotateNoneFlipXY, Rotate90FlipXY, Rotate180FlipXY, Rotate270FlipXY | 
+**rotateFlipType** | **string** | Rotate/flip operation to apply. Possible values: RotateNoneFlipNone, Rotate90FlipNone, Rotate180FlipNone, Rotate270FlipNone, RotateNoneFlipX, Rotate90FlipX, Rotate180FlipX, Rotate270FlipX, RotateNoneFlipY, Rotate90FlipY, Rotate180FlipY, Rotate270FlipY, RotateNoneFlipXY, Rotate90FlipXY, Rotate180FlipXY, Rotate270FlipXY | 
 **folder** | **string** | Folder with a drawing to process. | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
@@ -362,6 +445,27 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="paperToCad"></a>
+## **paperToCad**
+> paperToCad(outputFormat, drawing)
+
+Convert bitmap image to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG format.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**outputFormat** | **string** | Output DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG file format. | 
+**drawing** | **Buffer** | Form-data file | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
 <a name="postDrawingBmp"></a>
 ## **postDrawingBmp**
 > postDrawingBmp(name, options, folder, outPath, storage)
@@ -373,6 +477,54 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | Filename of an input drawing on a storage. | 
 **options** | [**BmpOptionsDTO**](BmpOptionsDTO.md) | Export BMP options passed as a JSON on a request body. | 
+**folder** | **string** | Folder with a drawing to process. | [optional]
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postDrawingCgm"></a>
+## **postDrawingCgm**
+> postDrawingCgm(name, options, folder, outPath, storage)
+
+Export an existing drawing to CGM format with export settings specified.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Filename of an input drawing on a storage. | 
+**options** | [**CgmOptionsDTO**](CgmOptionsDTO.md) | Export CGM options passed as a JSON on a request body. | 
+**folder** | **string** | Folder with a drawing to process. | [optional]
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postDrawingDicom"></a>
+## **postDrawingDicom**
+> postDrawingDicom(name, options, folder, outPath, storage)
+
+Export an existing drawing to Dicom format with export settings specified.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Filename of an input drawing on a storage. | 
+**options** | [**DicomOptionsDTO**](DicomOptionsDTO.md) | Export Dicom options passed as a JSON on a request body. | 
 **folder** | **string** | Folder with a drawing to process. | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
@@ -469,6 +621,54 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | Filename of an input drawing on a storage. | 
 **options** | [**GifOptionsDTO**](GifOptionsDTO.md) | Export GIF options passed as a JSON on a request body. | 
+**folder** | **string** | Folder with a drawing to process. | [optional]
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postDrawingGlb"></a>
+## **postDrawingGlb**
+> postDrawingGlb(name, options, folder, outPath, storage)
+
+Export an existing drawing to GLB format with export settings specified.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Filename of an input drawing on a storage. | 
+**options** | [**GlbOptionsDTO**](GlbOptionsDTO.md) | Export GLB options passed as a JSON on a request body. | 
+**folder** | **string** | Folder with a drawing to process. | [optional]
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postDrawingGltf"></a>
+## **postDrawingGltf**
+> postDrawingGltf(name, options, folder, outPath, storage)
+
+Export an existing drawing to GLTF format with export settings specified.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Filename of an input drawing on a storage. | 
+**options** | [**GltfOptionsDTO**](GltfOptionsDTO.md) | Export GLTF options passed as a JSON on a request body. | 
 **folder** | **string** | Folder with a drawing to process. | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
@@ -682,7 +882,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **drawingData** | **Buffer** | Input drawing | 
 **outputFormat** | **string** | Resulting file format. | 
-**rotateFlipType** | [****](.md) | Rotate/flip operation to apply. Possible values: RotateNoneFlipNone, Rotate90FlipNone, Rotate180FlipNone, Rotate270FlipNone, RotateNoneFlipX, Rotate90FlipX, Rotate180FlipX, Rotate270FlipX, RotateNoneFlipY, Rotate90FlipY, Rotate180FlipY, Rotate270FlipY, RotateNoneFlipXY, Rotate90FlipXY, Rotate180FlipXY, Rotate270FlipXY | 
+**rotateFlipType** | **string** | Rotate/flip operation to apply. Possible values: RotateNoneFlipNone, Rotate90FlipNone, Rotate180FlipNone, Rotate270FlipNone, RotateNoneFlipX, Rotate90FlipX, Rotate180FlipX, Rotate270FlipX, RotateNoneFlipY, Rotate90FlipY, Rotate180FlipY, Rotate270FlipY, RotateNoneFlipXY, Rotate90FlipXY, Rotate180FlipXY, Rotate270FlipXY | 
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
@@ -718,6 +918,30 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/octet-stream
  - **Accept**: application/json
 
+<a name="postDrawingSTP"></a>
+## **postDrawingSTP**
+> postDrawingSTP(name, options, folder, outPath, storage)
+
+Export an existing drawing to STP format with export settings specified.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Filename of an input drawing on a storage. | 
+**options** | [**StpOptionsDTO**](StpOptionsDTO.md) | Export STP options passed as a JSON on a request body. | 
+**folder** | **string** | Folder with a drawing to process. | [optional]
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="postDrawingSvg"></a>
 ## **postDrawingSvg**
 > postDrawingSvg(name, options, folder, outPath, storage)
@@ -742,6 +966,30 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="postDrawingThreeDS"></a>
+## **postDrawingThreeDS**
+> postDrawingThreeDS(name, options, folder, outPath, storage)
+
+Export an existing drawing to 3ds format with export settings specified.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Filename of an input drawing on a storage. | 
+**options** | [**ThreeDSOptionsDTO**](ThreeDSOptionsDTO.md) | Export 3ds options passed as a JSON on a request body. | 
+**folder** | **string** | Folder with a drawing to process. | [optional]
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="postDrawingTiff"></a>
 ## **postDrawingTiff**
 > postDrawingTiff(name, options, folder, outPath, storage)
@@ -753,6 +1001,54 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | Filename of an input drawing on a storage. | 
 **options** | [**TiffOptionsDTO**](TiffOptionsDTO.md) | Export TIFF options passed as a JSON on a request body. | 
+**folder** | **string** | Folder with a drawing to process. | [optional]
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postDrawingU3d"></a>
+## **postDrawingU3d**
+> postDrawingU3d(name, options, folder, outPath, storage)
+
+Export an existing drawing to U3d format with export settings specified.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Filename of an input drawing on a storage. | 
+**options** | [**U3dOptionsDTO**](U3dOptionsDTO.md) | Export U3d options passed as a JSON on a request body. | 
+**folder** | **string** | Folder with a drawing to process. | [optional]
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postDrawingWebp"></a>
+## **postDrawingWebp**
+> postDrawingWebp(name, options, folder, outPath, storage)
+
+Export an existing drawing to Webp format with export settings specified.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Filename of an input drawing on a storage. | 
+**options** | [**WebpOptionsDTO**](WebpOptionsDTO.md) | Export Webp options passed as a JSON on a request body. | 
 **folder** | **string** | Folder with a drawing to process. | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
@@ -802,6 +1098,52 @@ Name | Type | Description  | Notes
 **drawingData** | **Buffer** | Input drawing | 
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
 **exportOptions** | **string** | JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/BmpOptionsDTO model definition. | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/octet-stream
+ - **Accept**: application/json
+
+<a name="putDrawingCgm"></a>
+## **putDrawingCgm**
+> putDrawingCgm(drawingData, outPath, exportOptions, storage)
+
+Export drawing to CGM format. Drawing data is passed as zero-indexed multipart/form-data as well as export CGM options serialized as JSON. Order of drawing data and CGM options could vary.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**drawingData** | **Buffer** | Input drawing | 
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**exportOptions** | **string** | JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/CgmOptionsDTO model definition. | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="putDrawingDicom"></a>
+## **putDrawingDicom**
+> putDrawingDicom(drawingData, outPath, exportOptions, storage)
+
+Export drawing to Dicom format. Drawing data is passed as zero-indexed multipart/form-data as well as export Dicom options serialized as JSON. Order of drawing data and Dicom options could vary.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**drawingData** | **Buffer** | Input drawing | 
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**exportOptions** | **string** | JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/DicomOptionsDTO model definition. | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
 ### Return type
@@ -894,6 +1236,52 @@ Name | Type | Description  | Notes
 **drawingData** | **Buffer** | Input drawing | 
 **exportOptions** | **string** | JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/GifOptionsDTO model definition. | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="putDrawingGlb"></a>
+## **putDrawingGlb**
+> putDrawingGlb(drawingData, outPath, exportOptions, storage)
+
+Export drawing to GLB format. Drawing data is passed as zero-indexed multipart/form-data as well as export GLB options serialized as JSON. Order of drawing data and GLB options could vary.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**drawingData** | **Buffer** | Input drawing | 
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**exportOptions** | **string** | JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/GlbOptionsDTO model definition. | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="putDrawingGltf"></a>
+## **putDrawingGltf**
+> putDrawingGltf(drawingData, outPath, exportOptions, storage)
+
+Export drawing to GLTF format. Drawing data is passed as zero-indexed multipart/form-data as well as export GLTF options serialized as JSON. Order of drawing data and GLTF options could vary.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**drawingData** | **Buffer** | Input drawing | 
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**exportOptions** | **string** | JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/GltfOptionsDTO model definition. | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
 ### Return type
@@ -1043,6 +1431,29 @@ Name | Type | Description  | Notes
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
+<a name="putDrawingSTP"></a>
+## **putDrawingSTP**
+> putDrawingSTP(drawingData, outPath, exportOptions, storage)
+
+Export drawing to Stp format. Drawing data is passed as zero-indexed multipart/form-data as well as export Stp options serialized as JSON. Order of drawing data and Stp options could vary.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**drawingData** | **Buffer** | Input drawing | 
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**exportOptions** | **string** | JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/StpOptionsDTO model definition. | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
 <a name="putDrawingSvg"></a>
 ## **putDrawingSvg**
 > putDrawingSvg(drawingData, outPath, exportOptions, storage)
@@ -1064,6 +1475,29 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="putDrawingThreeDS"></a>
+## **putDrawingThreeDS**
+> putDrawingThreeDS(drawingData, outPath, exportOptions, storage)
+
+Export drawing to 3ds format. Drawing data is passed as zero-indexed multipart/form-data as well as export 3ds options serialized as JSON. Order of drawing data and 3ds options could vary.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**drawingData** | **Buffer** | Input drawing | 
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**exportOptions** | **string** | JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/ThreeDSOptionsDTO model definition. | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/octet-stream
  - **Accept**: application/json
 
 <a name="putDrawingTiff"></a>
@@ -1089,6 +1523,52 @@ Name | Type | Description  | Notes
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
+<a name="putDrawingU3d"></a>
+## **putDrawingU3d**
+> putDrawingU3d(drawingData, outPath, exportOptions, storage)
+
+Export drawing to U3d format. Drawing data is passed as zero-indexed multipart/form-data as well as export U3d options serialized as JSON. Order of drawing data and U3d options could vary.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**drawingData** | **Buffer** | Input drawing | 
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**exportOptions** | **string** | JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/U3dOptionsDTO model definition. | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/octet-stream
+ - **Accept**: application/json
+
+<a name="putDrawingWebp"></a>
+## **putDrawingWebp**
+> putDrawingWebp(drawingData, outPath, exportOptions, storage)
+
+Export drawing to Webp format. Drawing data is passed as zero-indexed multipart/form-data as well as export Webp options serialized as JSON. Order of drawing data and Webp options could vary.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**drawingData** | **Buffer** | Input drawing | 
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**exportOptions** | **string** | JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/WebpOptionsDTO model definition. | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/octet-stream
+ - **Accept**: application/json
+
 <a name="putDrawingWmf"></a>
 ## **putDrawingWmf**
 > putDrawingWmf(drawingData, outPath, exportOptions, storage)
@@ -1102,6 +1582,27 @@ Name | Type | Description  | Notes
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
 **exportOptions** | **string** | JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/WmfOptionsDTO model definition. | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="putEditMetadata"></a>
+## **putEditMetadata**
+> putEditMetadata(drawing, metadataComponent)
+
+Save Metadata
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**drawing** | **Buffer** |  | [optional]
+**metadataComponent** | **string** |  | [optional]
 
 ### Return type
 
@@ -1148,6 +1649,50 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**FilesUploadResult**](FilesUploadResult.md)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="viewer"></a>
+## **viewer**
+> viewer(outputFormat, drawing)
+
+Return file for viewer
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**outputFormat** | **string** |  | 
+**drawing** | **Buffer** |  | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="watermark"></a>
+## **watermark**
+> watermark(outputFormat, drawing, watermarkRgb, outputTypeExt)
+
+Add watermark to drawing
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**outputFormat** | **string** |  | 
+**drawing** | **Buffer** |  | [optional]
+**watermarkRgb** | **string** |  | [optional]
+**outputTypeExt** | **string** |  | [optional]
+
+### Return type
+
+**Buffer**
 
 ### HTTP request headers
 
