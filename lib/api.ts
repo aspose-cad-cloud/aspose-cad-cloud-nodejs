@@ -58,7 +58,7 @@ export class CadApi {
      * Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
      * @param requestObj contains request parameters
      */
-    public async convert(requestObj: model.ConvertRequest): Promise<model.Buffer> {
+    public async convert(requestObj: model.ConvertRequest): Promise<Buffer> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling convert.');
         }
@@ -107,10 +107,8 @@ export class CadApi {
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
-        
-        if (response.body) {
-            result = ObjectSerializer.deserialize(response.body, "Buffer");
-        }
+        result = response.body;
+
         return Promise.resolve(result);        
     }
 
@@ -368,7 +366,7 @@ export class CadApi {
      * Get Metadata info
      * @param requestObj contains request parameters
      */
-    public async editMetadata(requestObj: model.EditMetadataRequest): Promise<model.string> {
+    public async editMetadata(requestObj: model.EditMetadataRequest): Promise<Buffer> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling editMetadata.');
         }
@@ -396,6 +394,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
+            encoding: null,
         };
         
         if (Object.keys(formParams).length > 0) {
@@ -403,10 +402,8 @@ export class CadApi {
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
-        
-        if (response.body) {
-            result = ObjectSerializer.deserialize(response.body, "string");
-        }
+        result = response.body;
+
         return Promise.resolve(result);        
     }
 
@@ -414,7 +411,7 @@ export class CadApi {
      * Extract Metadata from CAD drawing to txt, xml or json file.
      * @param requestObj contains request parameters
      */
-    public async extractMetadata(requestObj: model.ExtractMetadataRequest): Promise<model.Buffer> {
+    public async extractMetadata(requestObj: model.ExtractMetadataRequest): Promise<Buffer> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling extractMetadata.');
         }
@@ -459,10 +456,8 @@ export class CadApi {
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
-        
-        if (response.body) {
-            result = ObjectSerializer.deserialize(response.body, "Buffer");
-        }
+        result = response.body;
+
         return Promise.resolve(result);        
     }
 
@@ -470,7 +465,7 @@ export class CadApi {
      * Extract Text from CAD drawing to txt file
      * @param requestObj contains request parameters
      */
-    public async extractText(requestObj: model.ExtractTextRequest): Promise<model.Buffer> {
+    public async extractText(requestObj: model.ExtractTextRequest): Promise<Buffer> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling extractText.');
         }
@@ -506,10 +501,8 @@ export class CadApi {
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
-        
-        if (response.body) {
-            result = ObjectSerializer.deserialize(response.body, "Buffer");
-        }
+        result = response.body;
+
         return Promise.resolve(result);        
     }
 
@@ -1001,7 +994,7 @@ export class CadApi {
      * Convert bitmap image to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG format.
      * @param requestObj contains request parameters
      */
-    public async paperToCad(requestObj: model.PaperToCadRequest): Promise<model.Buffer> {
+    public async paperToCad(requestObj: model.PaperToCadRequest): Promise<Buffer> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling paperToCad.');
         }
@@ -1046,10 +1039,8 @@ export class CadApi {
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
-        
-        if (response.body) {
-            result = ObjectSerializer.deserialize(response.body, "Buffer");
-        }
+        result = response.body;
+
         return Promise.resolve(result);        
     }
 
@@ -4061,7 +4052,7 @@ export class CadApi {
      * Save Metadata
      * @param requestObj contains request parameters
      */
-    public async putEditMetadata(requestObj: model.PutEditMetadataRequest): Promise<model.Buffer> {
+    public async putEditMetadata(requestObj: model.PutEditMetadataRequest): Promise<Buffer> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putEditMetadata.');
         }
@@ -4111,10 +4102,8 @@ export class CadApi {
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
-        
-        if (response.body) {
-            result = ObjectSerializer.deserialize(response.body, "Buffer");
-        }
+        result = response.body;
+
         return Promise.resolve(result);        
     }
 
@@ -4218,7 +4207,7 @@ export class CadApi {
      * Return file for viewer
      * @param requestObj contains request parameters
      */
-    public async viewer(requestObj: model.ViewerRequest): Promise<model.Buffer> {
+    public async viewer(requestObj: model.ViewerRequest): Promise<Buffer> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling viewer.');
         }
@@ -4263,10 +4252,8 @@ export class CadApi {
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
-        
-        if (response.body) {
-            result = ObjectSerializer.deserialize(response.body, "Buffer");
-        }
+        result = response.body;
+
         return Promise.resolve(result);        
     }
 
@@ -4274,7 +4261,7 @@ export class CadApi {
      * Add watermark to drawing
      * @param requestObj contains request parameters
      */
-    public async watermark(requestObj: model.WatermarkRequest): Promise<model.Buffer> {
+    public async watermark(requestObj: model.WatermarkRequest): Promise<Buffer> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling watermark.');
         }
@@ -4337,10 +4324,8 @@ export class CadApi {
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
-        
-        if (response.body) {
-            result = ObjectSerializer.deserialize(response.body, "Buffer");
-        }
+        result = response.body;
+
         return Promise.resolve(result);        
     }
 

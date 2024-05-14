@@ -5,6 +5,7 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "suppressImplicitAnyIndexErrors": true,
+        "ignoreDeprecations": "5.0",
         "target": "ES6",        
         "moduleResolution": "node",
         "removeComments": false,
