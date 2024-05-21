@@ -1084,7 +1084,7 @@ export class FilesUploadResult {
         {
             name: "errors",
             baseName: "Errors",
-            type: "Array<Error>",
+            type: "Array<ErrorModel>",
         }    ];
 
     /**
@@ -1102,7 +1102,7 @@ export class FilesUploadResult {
     /**
      * List of errors.
      */
-    public errors: Array<Error>;
+    public errors: Array<ErrorModel>;
     
     public constructor(init?: Partial<FilesUploadResult>) {
         

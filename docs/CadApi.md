@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**string**
+**Buffer**
 
 ### HTTP request headers
 
