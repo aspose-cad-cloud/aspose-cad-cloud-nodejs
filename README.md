@@ -39,7 +39,7 @@ Please, add the following [npm package](https://www.npmjs.com/package/@asposeclo
 ```json
 {
   "dependencies": {
-    "@asposecloud/aspose-cad-cloud": "^24.1.0"
+    "@asposecloud/aspose-cad-cloud": "^24.5.0"
   }
 }
 

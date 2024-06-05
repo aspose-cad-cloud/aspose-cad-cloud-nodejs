@@ -4,12 +4,12 @@
 ## **convert**
 > convert(outputFormat, drawing, outputTypeExt)
 
-Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
+Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**outputFormat** | **string** | Output DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG, PNG, BMP, DIB, TIFF, TIF, JPEG, GIF, PSD, JPG, JPE, JIF, JFIF, PSD, WEBP, DCM, DICOM, JP2, J2K, JPF, JPM, JPG2, J2C, JPC, JPX, MJ2 , DJVU file format. | 
+**outputFormat** | **string** | Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG, PNG, BMP, DIB, TIFF, TIF, JPEG, GIF, PSD, JPG, JPE, JIF, JFIF, PSD, WEBP, DCM, DICOM, JP2, J2K, JPF, JPM, JPG2, J2C, JPC, JPX, MJ2 , DJVU file format. | 
 **drawing** | **Buffer** | Form-data file | [optional]
 **outputTypeExt** | **string** | For output pdf format: PDF_15, PDFa_1a OR PDFa_1b. Null for another format | [optional]
 
@@ -449,12 +449,12 @@ Name | Type | Description  | Notes
 ## **paperToCad**
 > paperToCad(outputFormat, drawing)
 
-Convert bitmap image to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG format.
+Convert bitmap image to DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG format.
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**outputFormat** | **string** | Output DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG file format. | 
+**outputFormat** | **string** | Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG file format. | 
 **drawing** | **Buffer** | Form-data file | [optional]
 
 ### Return type
@@ -525,6 +525,30 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | Filename of an input drawing on a storage. | 
 **options** | [**DicomOptionsDTO**](DicomOptionsDTO.md) | Export Dicom options passed as a JSON on a request body. | 
+**folder** | **string** | Folder with a drawing to process. | [optional]
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postDrawingDraco"></a>
+## **postDrawingDraco**
+> postDrawingDraco(name, options, folder, outPath, storage)
+
+Export an existing drawing to Draco format with export settings specified.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Filename of an input drawing on a storage. | 
+**options** | [**DracoOptionsDTO**](DracoOptionsDTO.md) | Export Draco options passed as a JSON on a request body. | 
 **folder** | **string** | Folder with a drawing to process. | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
@@ -1153,6 +1177,29 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/octet-stream
+ - **Accept**: application/json
+
+<a name="putDrawingDraco"></a>
+## **putDrawingDraco**
+> putDrawingDraco(drawingData, outPath, exportOptions, storage)
+
+Export drawing to Draco format. Drawing data is passed as zero-indexed multipart/form-data as well as export Draco options serialized as JSON. Order of drawing data and Draco options could vary.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**drawingData** | **Buffer** | Input drawing | 
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
+**exportOptions** | **string** | JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/DracoOptionsDTO model definition. | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 <a name="putDrawingDwf"></a>
