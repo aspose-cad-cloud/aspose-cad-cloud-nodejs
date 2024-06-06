@@ -3145,6 +3145,47 @@ export namespace DicomOptionsDTO {
 }
 // tslint:enable:quotemark
 /**
+ * Export options for Draco format
+ */
+export class DracoOptionsDTO extends DrawingOptionsBaseDTO {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(DracoOptionsDTO.attributeTypeMap);
+    }
+
+    public constructor(init?: Partial<DracoOptionsDTO>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace DracoOptionsDTO {
+}
+// tslint:enable:quotemark
+/**
  * Export options for DWF format
  */
 export class DwfOptionsDTO extends DrawingOptionsBaseDTO {
@@ -4512,6 +4553,7 @@ const typeMap = {
             CadRasterizationOptionsDTO,
             CgmOptionsDTO,
             DicomOptionsDTO,
+            DracoOptionsDTO,
             DwfOptionsDTO,
             DxfOptionsDTO,
             FbxOptionsDTO,
@@ -4541,7 +4583,7 @@ export {enumsMap, typeMap};
  */
 export class ConvertRequest {
     /**
-     * Output DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG, PNG, BMP, DIB, TIFF, TIF, JPEG, GIF, PSD, JPG, JPE, JIF, JFIF, PSD, WEBP, DCM, DICOM, JP2, J2K, JPF, JPM, JPG2, J2C, JPC, JPX, MJ2 , DJVU file format.
+     * Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG, PNG, BMP, DIB, TIFF, TIF, JPEG, GIF, PSD, JPG, JPE, JIF, JFIF, PSD, WEBP, DCM, DICOM, JP2, J2K, JPF, JPM, JPG2, J2C, JPC, JPX, MJ2 , DJVU file format.
      */
     public outputFormat: string;
 
@@ -5046,7 +5088,7 @@ export class ObjectExistsRequest {
  */
 export class PaperToCadRequest {
     /**
-     * Output DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG file format.
+     * Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG file format.
      */
     public outputFormat: string;
 
@@ -5192,6 +5234,40 @@ export class PostDrawingDicomRequest {
     public storage: string;
     
     public constructor(init?: Partial<PostDrawingDicomRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for PostDrawingDraco operation.
+ */
+export class PostDrawingDracoRequest {
+    /**
+     * Filename of an input drawing on a storage.
+     */
+    public name: string;
+
+    /**
+     * Export Draco options passed as a JSON on a request body.
+     */
+    public options: DracoOptionsDTO;
+
+    /**
+     * Folder with a drawing to process.
+     */
+    public folder: string;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed file).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<PostDrawingDracoRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -6036,6 +6112,35 @@ export class PutDrawingDicomRequest {
     public storage: string;
     
     public constructor(init?: Partial<PutDrawingDicomRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for PutDrawingDraco operation.
+ */
+export class PutDrawingDracoRequest {
+    /**
+     * Input drawing
+     */
+    public drawingData: Buffer;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed file).
+     */
+    public outPath: string;
+
+    /**
+     * JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/DracoOptionsDTO model definition.
+     */
+    public exportOptions: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<PutDrawingDracoRequest>) {        
         Object.assign(this, init);
     } 
 }
