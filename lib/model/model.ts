@@ -318,7 +318,10 @@ export class Cf2Properties {
     }        
 }
 
-export class Color {
+/**
+ * RGB color values
+ */
+export class ColorDTO {
 
     /**
      * Attribute type map
@@ -350,81 +353,31 @@ export class Color {
             name: "B",
             baseName: "B",
             type: "number",
-        },        
-        {
-            name: "A",
-            baseName: "A",
-            type: "number",
-        },        
-        {
-            name: "isKnownColor",
-            baseName: "IsKnownColor",
-            type: "boolean",
-        },        
-        {
-            name: "isEmpty",
-            baseName: "IsEmpty",
-            type: "boolean",
-        },        
-        {
-            name: "isNamedColor",
-            baseName: "IsNamedColor",
-            type: "boolean",
-        },        
-        {
-            name: "name",
-            baseName: "Name",
-            type: "string",
         }    ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return Color.attributeTypeMap;
+        return ColorDTO.attributeTypeMap;
     }
 
     /**
-     * R
+     * Red light(0-255).
      */
     public R: number;
     
     /**
-     * G
+     * Green light(0-255).
      */
     public G: number;
     
     /**
-     * B
+     * Blue light(0-255).
      */
     public B: number;
     
-    /**
-     * A
-     */
-    public A: number;
-    
-    /**
-     * isKnownColor
-     */
-    public isKnownColor: boolean;
-    
-    /**
-     * isEmpty
-     */
-    public isEmpty: boolean;
-    
-    /**
-     * isNamedColor
-     */
-    public isNamedColor: boolean;
-    
-    /**
-     * name
-     */
-    public name: string;
-    
-    public constructor(init?: Partial<Color>) {
+    public constructor(init?: Partial<ColorDTO>) {
         
         Object.assign(this, init);
     }        
@@ -855,81 +808,6 @@ export class ErrorDetails {
 }
 
 /**
- * Error
- */
-export class ErrorModel {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{
-        /**
-         * Attribute name
-         */
-        name: string, 
-        /**
-         * Attribute base name
-         */
-        baseName: string,
-        /**
-         * Attribute type
-         */
-        type: string}> = [
-        {
-            name: "code",
-            baseName: "Code",
-            type: "string",
-        },        
-        {
-            name: "message",
-            baseName: "Message",
-            type: "string",
-        },        
-        {
-            name: "description",
-            baseName: "Description",
-            type: "string",
-        },        
-        {
-            name: "innerError",
-            baseName: "InnerError",
-            type: "ErrorDetails",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return ErrorModel.attributeTypeMap;
-    }
-
-    /**
-     * Code             
-     */
-    public code: string;
-    
-    /**
-     * Message             
-     */
-    public message: string;
-    
-    /**
-     * Description             
-     */
-    public description: string;
-    
-    /**
-     * Inner Error             
-     */
-    public innerError: ErrorDetails;
-    
-    public constructor(init?: Partial<ErrorModel>) {
-        
-        Object.assign(this, init);
-    }        
-}
-
-/**
  * Represents information about FBX drawing.
  */
 export class FbxProperties {
@@ -1084,7 +962,7 @@ export class FilesUploadResult {
         {
             name: "errors",
             baseName: "Errors",
-            type: "Array<ErrorModel>",
+            type: "Array<Error>",
         }    ];
 
     /**
@@ -1102,7 +980,7 @@ export class FilesUploadResult {
     /**
      * List of errors.
      */
-    public errors: Array<ErrorModel>;
+    public errors: Array<Error>;
     
     public constructor(init?: Partial<FilesUploadResult>) {
         
@@ -1451,6 +1329,81 @@ export class LineCap {
     }
 
     public constructor(init?: Partial<LineCap>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Error
+ */
+export class ModelError {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "code",
+            baseName: "Code",
+            type: "string",
+        },        
+        {
+            name: "message",
+            baseName: "Message",
+            type: "string",
+        },        
+        {
+            name: "description",
+            baseName: "Description",
+            type: "string",
+        },        
+        {
+            name: "innerError",
+            baseName: "InnerError",
+            type: "ErrorDetails",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ModelError.attributeTypeMap;
+    }
+
+    /**
+     * Code             
+     */
+    public code: string;
+    
+    /**
+     * Message             
+     */
+    public message: string;
+    
+    /**
+     * Description             
+     */
+    public description: string;
+    
+    /**
+     * Inner Error             
+     */
+    public innerError: ErrorDetails;
+    
+    public constructor(init?: Partial<ModelError>) {
         
         Object.assign(this, init);
     }        
@@ -2768,12 +2721,12 @@ export class VectorRasterizationOptionsDTO {
         {
             name: "backgroundColor",
             baseName: "BackgroundColor",
-            type: "Color",
+            type: "ColorDTO",
         },        
         {
             name: "drawColor",
             baseName: "DrawColor",
-            type: "Color",
+            type: "ColorDTO",
         },        
         {
             name: "unitType",
@@ -2821,12 +2774,12 @@ export class VectorRasterizationOptionsDTO {
     /**
      * Gets or sets a background color.
      */
-    public backgroundColor: Color;
+    public backgroundColor: ColorDTO;
     
     /**
      * Gets or sets a foreground color.
      */
-    public drawColor: Color;
+    public drawColor: ColorDTO;
     
     /**
      * unitType
@@ -2878,6 +2831,81 @@ export namespace VectorRasterizationOptionsDTO {
     }
 }
 // tslint:enable:quotemark
+/**
+ * Watermark text with RGB values
+ */
+export class WatermarkRGB {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "text",
+            baseName: "Text",
+            type: "string",
+        },        
+        {
+            name: "R",
+            baseName: "R",
+            type: "number",
+        },        
+        {
+            name: "G",
+            baseName: "G",
+            type: "number",
+        },        
+        {
+            name: "B",
+            baseName: "B",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return WatermarkRGB.attributeTypeMap;
+    }
+
+    /**
+     * Watermark text.
+     */
+    public text: string;
+    
+    /**
+     * Red light(0-255).
+     */
+    public R: number;
+    
+    /**
+     * Green light(0-255).
+     */
+    public G: number;
+    
+    /**
+     * Blue light(0-255).
+     */
+    public B: number;
+    
+    public constructor(init?: Partial<WatermarkRGB>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
 /**
  * Export options for BMP format
  */
@@ -4499,7 +4527,7 @@ const typeMap = {
             CadDrawTypeMode,
             CadResponse,
             Cf2Properties,
-            Color,
+            ColorDTO,
             ColorModes,
             CompressionMethod,
             DgnProperties,
@@ -4509,7 +4537,6 @@ const typeMap = {
             DwgProperties,
             DxfProperties,
             ErrorDetails,
-            ErrorModel,
             FbxProperties,
             FileVersions,
             FilesList,
@@ -4522,6 +4549,7 @@ const typeMap = {
             JpegCompressionColorMode,
             JpegCompressionMode,
             LineCap,
+            ModelError,
             ObjProperties,
             ObjectExist,
             PdfCompliance,
@@ -4549,6 +4577,7 @@ const typeMap = {
             TiffPhotometrics,
             UnitType,
             VectorRasterizationOptionsDTO,
+            WatermarkRGB,
             BmpOptionsDTO,
             CadRasterizationOptionsDTO,
             CgmOptionsDTO,
@@ -4583,14 +4612,14 @@ export {enumsMap, typeMap};
  */
 export class ConvertRequest {
     /**
+     * Input drawing
+     */
+    public drawingData: Buffer;
+
+    /**
      * Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG, PNG, BMP, DIB, TIFF, TIF, JPEG, GIF, PSD, JPG, JPE, JIF, JFIF, PSD, WEBP, DCM, DICOM, JP2, J2K, JPF, JPM, JPG2, J2C, JPC, JPX, MJ2 , DJVU file format.
      */
     public outputFormat: string;
-
-    /**
-     * Form-data file
-     */
-    public drawing: Buffer;
 
     /**
      * For output pdf format: PDF_15, PDFa_1a OR PDFa_1b. Null for another format
@@ -4761,9 +4790,9 @@ export class DownloadFileRequest {
  */
 export class EditMetadataRequest {
     /**
-     * Gets or sets drawing
+     * Input drawing
      */
-    public drawing: Buffer;
+    public drawingData: Buffer;
     
     public constructor(init?: Partial<EditMetadataRequest>) {        
         Object.assign(this, init);
@@ -4775,14 +4804,14 @@ export class EditMetadataRequest {
  */
 export class ExtractMetadataRequest {
     /**
+     * Input drawing
+     */
+    public drawingData: Buffer;
+
+    /**
      * Output TXT, XML or JSON file format.
      */
     public outputFormat: string;
-
-    /**
-     * Form-data file
-     */
-    public drawing: Buffer;
     
     public constructor(init?: Partial<ExtractMetadataRequest>) {        
         Object.assign(this, init);
@@ -4794,9 +4823,9 @@ export class ExtractMetadataRequest {
  */
 export class ExtractTextRequest {
     /**
-     * Gets or sets drawing
+     * Input drawing
      */
-    public drawing: Buffer;
+    public drawingData: Buffer;
     
     public constructor(init?: Partial<ExtractTextRequest>) {        
         Object.assign(this, init);
@@ -5088,14 +5117,14 @@ export class ObjectExistsRequest {
  */
 export class PaperToCadRequest {
     /**
+     * Input drawing
+     */
+    public drawingData: Buffer;
+
+    /**
      * Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG file format.
      */
     public outputFormat: string;
-
-    /**
-     * Form-data file
-     */
-    public drawing: Buffer;
     
     public constructor(init?: Partial<PaperToCadRequest>) {        
         Object.assign(this, init);
@@ -6672,12 +6701,12 @@ export class PutDrawingWmfRequest {
  */
 export class PutEditMetadataRequest {
     /**
-     * Gets or sets drawing
+     * Input drawing
      */
-    public drawing: Buffer;
+    public drawingData: Buffer;
 
     /**
-     * Gets or sets metadataComponent
+     * Metadata string json from POST/EditMetadata
      */
     public metadataComponent: string;
     
@@ -6748,19 +6777,19 @@ export class ViewerRequest {
  */
 export class WatermarkRequest {
     /**
+     * Input drawing
+     */
+    public drawingData: Buffer;
+
+    /**
      * Gets or sets outputFormat
      */
     public outputFormat: string;
 
     /**
-     * Gets or sets drawing
+     * JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/WatermarkRGB model definition.
      */
-    public drawing: Buffer;
-
-    /**
-     * Gets or sets watermarkRgb
-     */
-    public watermarkRgb: string;
+    public watermark: string;
 
     /**
      * Gets or sets outputTypeExt

@@ -55,7 +55,7 @@ export class CadApi {
     }
 
     /**
-     * Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
+     * Convert CAD drawing to DXF, DWG, DGN, DRC, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
      * @param requestObj contains request parameters
      */
     public async convert(requestObj: model.ConvertRequest): Promise<Buffer> {
@@ -65,6 +65,11 @@ export class CadApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/cad/Convert";
         const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling convert.');
+        }
 
         // verify required parameter 'requestObj.outputFormat' is not null or undefined
         if (requestObj.outputFormat === null || requestObj.outputFormat === undefined) {
@@ -80,17 +85,17 @@ export class CadApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputTypeExt", requestObj.outputTypeExt);
         }
 
-        if (requestObj.drawing !== undefined) {
-            const paramKey = "drawing";
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
             let formValue = null;
-            formValue = requestObj.drawing;
+            formValue = requestObj.drawingData;
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "drawing",
-                    contentType: "application/octet-stream",
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -156,7 +161,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: false,
+            json: true,
         };
         
         await invokeApiMethod(requestOptions, this.configuration);
@@ -203,7 +208,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: false,
+            json: true,
         };
         
         await invokeApiMethod(requestOptions, this.configuration);
@@ -237,7 +242,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: false,
+            json: true,
         };
         
         await invokeApiMethod(requestOptions, this.configuration);
@@ -275,7 +280,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: false,
+            json: true,
         };
         
         await invokeApiMethod(requestOptions, this.configuration);
@@ -313,7 +318,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: false,
+            json: true,
         };
         
         await invokeApiMethod(requestOptions, this.configuration);
@@ -352,7 +357,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -374,18 +379,23 @@ export class CadApi {
         const localVarPath = this.configuration.getApiBaseUrl() + "/cad/EditMetadata";
         const queryParameters: any = {};
 
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling editMetadata.');
+        }
+
         const formParams: { [key: string]: any } = {};
-        if (requestObj.drawing !== undefined) {
-            const paramKey = "drawing";
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
             let formValue = null;
-            formValue = requestObj.drawing;
+            formValue = requestObj.drawingData;
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "drawing",
-                    contentType: "application/octet-stream",
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -419,6 +429,11 @@ export class CadApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/cad/ExtractMetadata";
         const queryParameters: any = {};
 
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling extractMetadata.');
+        }
+
         // verify required parameter 'requestObj.outputFormat' is not null or undefined
         if (requestObj.outputFormat === null || requestObj.outputFormat === undefined) {
             throw new Error('Required parameter "requestObj.outputFormat" was null or undefined when calling extractMetadata.');
@@ -429,17 +444,17 @@ export class CadApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
         }
 
-        if (requestObj.drawing !== undefined) {
-            const paramKey = "drawing";
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
             let formValue = null;
-            formValue = requestObj.drawing;
+            formValue = requestObj.drawingData;
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "drawing",
-                    contentType: "application/octet-stream",
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -473,18 +488,23 @@ export class CadApi {
         const localVarPath = this.configuration.getApiBaseUrl() + "/cad/ExtractText";
         const queryParameters: any = {};
 
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling extractText.');
+        }
+
         const formParams: { [key: string]: any } = {};
-        if (requestObj.drawing !== undefined) {
-            const paramKey = "drawing";
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
             let formValue = null;
-            formValue = requestObj.drawing;
+            formValue = requestObj.drawingData;
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "drawing",
-                    contentType: "application/octet-stream",
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -527,7 +547,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: false,
+            json: true,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -570,7 +590,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: false,
+            json: true,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -645,7 +665,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -709,7 +729,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -761,7 +781,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -798,7 +818,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: false,
+            json: true,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -837,7 +857,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: false,
+            json: true,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -893,7 +913,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: false,
+            json: true,
         };
         
         await invokeApiMethod(requestOptions, this.configuration);
@@ -940,7 +960,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: false,
+            json: true,
         };
         
         await invokeApiMethod(requestOptions, this.configuration);
@@ -978,7 +998,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: false,
+            json: true,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1002,6 +1022,11 @@ export class CadApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/cad/paper-to-cad";
         const queryParameters: any = {};
 
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling paperToCad.');
+        }
+
         // verify required parameter 'requestObj.outputFormat' is not null or undefined
         if (requestObj.outputFormat === null || requestObj.outputFormat === undefined) {
             throw new Error('Required parameter "requestObj.outputFormat" was null or undefined when calling paperToCad.');
@@ -1012,17 +1037,17 @@ export class CadApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputFormat", requestObj.outputFormat);
         }
 
-        if (requestObj.drawing !== undefined) {
-            const paramKey = "drawing";
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
             let formValue = null;
-            formValue = requestObj.drawing;
+            formValue = requestObj.drawingData;
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "drawing",
-                    contentType: "application/octet-stream",
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -1085,7 +1110,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "BmpOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1137,7 +1162,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "CgmOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1189,7 +1214,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "DxfOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1241,7 +1266,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "DicomOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1293,7 +1318,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "DracoOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1345,7 +1370,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "DwfOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1397,7 +1422,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "FbxOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1449,7 +1474,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "GifOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1501,7 +1526,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "GlbOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1553,7 +1578,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "GltfOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1605,7 +1630,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "JpegOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1657,7 +1682,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "Jpeg2000OptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1709,7 +1734,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "ObjOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1761,7 +1786,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "PdfOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1813,7 +1838,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "PngOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1850,9 +1875,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -1916,7 +1941,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "PsdOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -1988,9 +2013,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2064,9 +2089,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2129,7 +2154,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "StpOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -2180,9 +2205,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2245,7 +2270,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "SvgOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -2297,7 +2322,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "ThreeDSOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -2349,7 +2374,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "TiffOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -2401,7 +2426,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "U3dOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -2453,7 +2478,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "WebpOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -2505,7 +2530,7 @@ export class CadApi {
             proxy: this.configuration.proxy,
             uri: localVarPath,
             encoding: null,
-            json: false,
+            json: true,
             body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "WmfOptionsDTO" : requestObj.options.constructor.name),
         };
         
@@ -2550,9 +2575,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2563,10 +2588,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2622,9 +2644,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2635,10 +2657,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2694,9 +2713,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2707,10 +2726,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2766,9 +2782,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2779,10 +2795,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2838,9 +2851,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2851,10 +2864,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2910,9 +2920,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2923,10 +2933,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2982,9 +2989,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -2995,10 +3002,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3054,9 +3058,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3067,10 +3071,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3126,9 +3127,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3139,10 +3140,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3198,9 +3196,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3211,10 +3209,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3270,9 +3265,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3283,10 +3278,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3342,9 +3334,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3355,10 +3347,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3414,9 +3403,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3427,10 +3416,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3486,9 +3472,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3499,10 +3485,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3558,9 +3541,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3571,10 +3554,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3630,9 +3610,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3643,10 +3623,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3702,9 +3679,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3715,10 +3692,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3774,9 +3748,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3787,10 +3761,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3846,9 +3817,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3859,10 +3830,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3918,9 +3886,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3931,10 +3899,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -3990,9 +3955,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -4003,10 +3968,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -4062,9 +4024,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -4075,10 +4037,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -4134,9 +4093,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawingData",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -4147,10 +4106,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "exportOptions",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -4184,18 +4140,28 @@ export class CadApi {
         const localVarPath = this.configuration.getApiBaseUrl() + "/cad/EditMetadata";
         const queryParameters: any = {};
 
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling putEditMetadata.');
+        }
+
+        // verify required parameter 'requestObj.metadataComponent' is not null or undefined
+        if (requestObj.metadataComponent === null || requestObj.metadataComponent === undefined) {
+            throw new Error('Required parameter "requestObj.metadataComponent" was null or undefined when calling putEditMetadata.');
+        }
+
         const formParams: { [key: string]: any } = {};
-        if (requestObj.drawing !== undefined) {
-            const paramKey = "drawing";
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
             let formValue = null;
-            formValue = requestObj.drawing;
+            formValue = requestObj.drawingData;
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "drawing",
-                    contentType: "application/octet-stream",
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -4206,10 +4172,7 @@ export class CadApi {
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "metadataComponent",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -4254,7 +4217,7 @@ export class CadApi {
             qs: queryParameters,
             proxy: this.configuration.proxy,
             uri: localVarPath,
-            json: false,
+            json: true,
         };
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4302,9 +4265,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "File",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -4357,9 +4320,9 @@ export class CadApi {
                 value: formValue,
                 options: {
                     filename: "drawing",
-                    contentType: "application/octet-stream",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
@@ -4393,9 +4356,19 @@ export class CadApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/cad/Watermark";
         const queryParameters: any = {};
 
+        // verify required parameter 'requestObj.drawingData' is not null or undefined
+        if (requestObj.drawingData === null || requestObj.drawingData === undefined) {
+            throw new Error('Required parameter "requestObj.drawingData" was null or undefined when calling watermark.');
+        }
+
         // verify required parameter 'requestObj.outputFormat' is not null or undefined
         if (requestObj.outputFormat === null || requestObj.outputFormat === undefined) {
             throw new Error('Required parameter "requestObj.outputFormat" was null or undefined when calling watermark.');
+        }
+
+        // verify required parameter 'requestObj.watermark' is not null or undefined
+        if (requestObj.watermark === null || requestObj.watermark === undefined) {
+            throw new Error('Required parameter "requestObj.watermark" was null or undefined when calling watermark.');
         }
 
         const formParams: { [key: string]: any } = {};
@@ -4407,31 +4380,28 @@ export class CadApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outputTypeExt", requestObj.outputTypeExt);
         }
 
-        if (requestObj.drawing !== undefined) {
-            const paramKey = "drawing";
+        if (requestObj.drawingData !== undefined) {
+            const paramKey = "drawingData";
             let formValue = null;
-            formValue = requestObj.drawing;
+            formValue = requestObj.drawingData;
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "drawing",
-                    contentType: "application/octet-stream",
+                    filename: "drawingData",
+                    contentType: "application/octet-stream",                    
                     knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }
-        if (requestObj.watermarkRgb !== undefined) {
-            const paramKey = "watermarkRgb";
+        if (requestObj.watermark !== undefined) {
+            const paramKey = "watermark";
             let formValue = null;
-            formValue = ObjectSerializer.serialize(requestObj.watermarkRgb, "string");
+            formValue = ObjectSerializer.serialize(requestObj.watermark, "string");
             formParams[paramKey] = {
                 value: formValue,
                 options: {
-                    filename: "watermarkRgb",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                    proxy: this.configuration.proxy,
+                    proxy: this.configuration.proxy
                 },
             };
         }

@@ -2,15 +2,15 @@
 
 <a name="convert"></a>
 ## **convert**
-> convert(outputFormat, drawing, outputTypeExt)
+> convert(drawingData, outputFormat, outputTypeExt)
 
-Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
+Convert CAD drawing to DXF, DWG, DGN, DRC, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+**drawingData** | **Buffer** | Input drawing | 
 **outputFormat** | **string** | Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG, PNG, BMP, DIB, TIFF, TIF, JPEG, GIF, PSD, JPG, JPE, JIF, JFIF, PSD, WEBP, DCM, DICOM, JP2, J2K, JPF, JPM, JPG2, J2C, JPC, JPX, MJ2 , DJVU file format. | 
-**drawing** | **Buffer** | Form-data file | [optional]
 **outputTypeExt** | **string** | For output pdf format: PDF_15, PDFa_1a OR PDFa_1b. Null for another format | [optional]
 
 ### Return type
@@ -19,7 +19,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/octet-stream
  - **Accept**: application/json
 
 <a name="copyFile"></a>
@@ -158,14 +158,14 @@ Name | Type | Description  | Notes
 
 <a name="editMetadata"></a>
 ## **editMetadata**
-> editMetadata(drawing)
+> editMetadata(drawingData)
 
 Get Metadata info
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**drawing** | **Buffer** |  | [optional]
+**drawingData** | **Buffer** | Input drawing | 
 
 ### Return type
 
@@ -173,20 +173,20 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/octet-stream
  - **Accept**: application/json
 
 <a name="extractMetadata"></a>
 ## **extractMetadata**
-> extractMetadata(outputFormat, drawing)
+> extractMetadata(drawingData, outputFormat)
 
 Extract Metadata from CAD drawing to txt, xml or json file.
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+**drawingData** | **Buffer** | Input drawing | 
 **outputFormat** | **string** | Output TXT, XML or JSON file format. | 
-**drawing** | **Buffer** | Form-data file | [optional]
 
 ### Return type
 
@@ -194,19 +194,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/octet-stream
  - **Accept**: application/json
 
 <a name="extractText"></a>
 ## **extractText**
-> extractText(drawing)
+> extractText(drawingData)
 
 Extract Text from CAD drawing to txt file
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**drawing** | **Buffer** |  | [optional]
+**drawingData** | **Buffer** | Input drawing | 
 
 ### Return type
 
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/octet-stream
  - **Accept**: application/json
 
 <a name="getDiscUsage"></a>
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | Filename of a drawing. | 
 **outputFormat** | **string** | Resulting file format. | 
-**rotateFlipType** | **string** | Rotate/flip operation to apply. Possible values: RotateNoneFlipNone, Rotate90FlipNone, Rotate180FlipNone, Rotate270FlipNone, RotateNoneFlipX, Rotate90FlipX, Rotate180FlipX, Rotate270FlipX, RotateNoneFlipY, Rotate90FlipY, Rotate180FlipY, Rotate270FlipY, RotateNoneFlipXY, Rotate90FlipXY, Rotate180FlipXY, Rotate270FlipXY | 
+**rotateFlipType** | [**RotateFlipType**](RotateFlipType.md) | Rotate/flip operation to apply. Possible values: RotateNoneFlipNone, Rotate90FlipNone, Rotate180FlipNone, Rotate270FlipNone, RotateNoneFlipX, Rotate90FlipX, Rotate180FlipX, Rotate270FlipX, RotateNoneFlipY, Rotate90FlipY, Rotate180FlipY, Rotate270FlipY, RotateNoneFlipXY, Rotate90FlipXY, Rotate180FlipXY, Rotate270FlipXY | 
 **folder** | **string** | Folder with a drawing to process. | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
@@ -447,15 +447,15 @@ Name | Type | Description  | Notes
 
 <a name="paperToCad"></a>
 ## **paperToCad**
-> paperToCad(outputFormat, drawing)
+> paperToCad(drawingData, outputFormat)
 
 Convert bitmap image to DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG format.
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+**drawingData** | **Buffer** | Input drawing | 
 **outputFormat** | **string** | Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG file format. | 
-**drawing** | **Buffer** | Form-data file | [optional]
 
 ### Return type
 
@@ -463,7 +463,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/octet-stream
  - **Accept**: application/json
 
 <a name="postDrawingBmp"></a>
@@ -906,7 +906,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **drawingData** | **Buffer** | Input drawing | 
 **outputFormat** | **string** | Resulting file format. | 
-**rotateFlipType** | **string** | Rotate/flip operation to apply. Possible values: RotateNoneFlipNone, Rotate90FlipNone, Rotate180FlipNone, Rotate270FlipNone, RotateNoneFlipX, Rotate90FlipX, Rotate180FlipX, Rotate270FlipX, RotateNoneFlipY, Rotate90FlipY, Rotate180FlipY, Rotate270FlipY, RotateNoneFlipXY, Rotate90FlipXY, Rotate180FlipXY, Rotate270FlipXY | 
+**rotateFlipType** | [**RotateFlipType**](RotateFlipType.md) | Rotate/flip operation to apply. Possible values: RotateNoneFlipNone, Rotate90FlipNone, Rotate180FlipNone, Rotate270FlipNone, RotateNoneFlipX, Rotate90FlipX, Rotate180FlipX, Rotate270FlipX, RotateNoneFlipY, Rotate90FlipY, Rotate180FlipY, Rotate270FlipY, RotateNoneFlipXY, Rotate90FlipXY, Rotate180FlipXY, Rotate270FlipXY | 
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed file). | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
@@ -1641,15 +1641,15 @@ Name | Type | Description  | Notes
 
 <a name="putEditMetadata"></a>
 ## **putEditMetadata**
-> putEditMetadata(drawing, metadataComponent)
+> putEditMetadata(drawingData, metadataComponent)
 
 Save Metadata
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**drawing** | **Buffer** |  | [optional]
-**metadataComponent** | **string** |  | [optional]
+**drawingData** | **Buffer** | Input drawing | 
+**metadataComponent** | **string** | Metadata string json from POST/EditMetadata | 
 
 ### Return type
 
@@ -1657,7 +1657,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/octet-stream
  - **Accept**: application/json
 
 <a name="storageExists"></a>
@@ -1725,16 +1725,16 @@ Name | Type | Description  | Notes
 
 <a name="watermark"></a>
 ## **watermark**
-> watermark(outputFormat, drawing, watermarkRgb, outputTypeExt)
+> watermark(drawingData, outputFormat, watermark, outputTypeExt)
 
 Add watermark to drawing
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+**drawingData** | **Buffer** | Input drawing | 
 **outputFormat** | **string** |  | 
-**drawing** | **Buffer** |  | [optional]
-**watermarkRgb** | **string** |  | [optional]
+**watermark** | [**WatermarkRGB**](WatermarkRGB.md) | JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/WatermarkRGB model definition. | 
 **outputTypeExt** | **string** |  | [optional]
 
 ### Return type
@@ -1743,7 +1743,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/octet-stream
  - **Accept**: application/json
 
 

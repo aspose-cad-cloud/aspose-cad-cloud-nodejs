@@ -4,7 +4,7 @@ All URIs are relative to *https://api.aspose.cloud/v3.0/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CadApi* | [**convert**](CadApi.md#convert) | **POST** /cad/Convert | Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
+*CadApi* | [**convert**](CadApi.md#convert) | **POST** /cad/Convert | Convert CAD drawing to DXF, DWG, DGN, DRC, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
 *CadApi* | [**copyFile**](CadApi.md#copyFile) | **PUT** /cad/storage/file/copy/\{srcPath} | Copy file
 *CadApi* | [**copyFolder**](CadApi.md#copyFolder) | **PUT** /cad/storage/folder/copy/\{srcPath} | Copy folder
 *CadApi* | [**createFolder**](CadApi.md#createFolder) | **PUT** /cad/storage/folder/\{path} | Create the folder
@@ -92,7 +92,7 @@ Class | Description
 [**CadResponse**](CadResponse.md) | Represents information about a drawing.
 [**Cf2Properties**](Cf2Properties.md) | Represents information about CF2 drawing.
 [**CgmOptionsDTO**](CgmOptionsDTO.md) | Export options for CGM format
-[**Color**](Color.md) | 
+[**ColorDTO**](ColorDTO.md) | RGB color values
 [**ColorModes**](ColorModes.md) | 
 [**CompressionMethod**](CompressionMethod.md) | 
 [**DgnProperties**](DgnProperties.md) | Represents information about DGN drawing.
@@ -105,8 +105,8 @@ Class | Description
 [**DwgProperties**](DwgProperties.md) | Represents information about DWG drawing.
 [**DxfOptionsDTO**](DxfOptionsDTO.md) | Export options for DXF format
 [**DxfProperties**](DxfProperties.md) | Represents information about DXF drawing.
+[**Error**](Error.md) | Error
 [**ErrorDetails**](ErrorDetails.md) | The error details
-[**ErrorModel**](ErrorModel.md) | Error
 [**FbxOptionsDTO**](FbxOptionsDTO.md) | Export options for FBX format
 [**FbxProperties**](FbxProperties.md) | Represents information about FBX drawing.
 [**FilesList**](FilesList.md) | Files list
@@ -162,5 +162,6 @@ Class | Description
 [**U3dOptionsDTO**](U3dOptionsDTO.md) | Export options for U3D format
 [**UnitType**](UnitType.md) | 
 [**VectorRasterizationOptionsDTO**](VectorRasterizationOptionsDTO.md) | Base raster export options class
+[**WatermarkRGB**](WatermarkRGB.md) | Watermark text with RGB values
 [**WebpOptionsDTO**](WebpOptionsDTO.md) | Export options for WEBP format
 [**WmfOptionsDTO**](WmfOptionsDTO.md) | Export options for WMF format
