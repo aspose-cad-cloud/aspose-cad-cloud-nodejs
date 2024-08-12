@@ -110,7 +110,7 @@ export abstract class ApiTester {
     /**
      * Ovveride reference file.
      */
-    protected readonly OverrideReference: boolean = true;
+    protected readonly OverrideReference: boolean = false;
 
     /**
      * Gets or sets a value indicating whether resulting images should be removed from cloud storage.
