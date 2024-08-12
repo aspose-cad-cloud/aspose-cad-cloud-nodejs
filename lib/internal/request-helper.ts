@@ -127,7 +127,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                                 return reject(new ApiError(bodyContent.Message, response.statusCode));
                             } else {
                                 //modelError = ObjectSerializer.deserialize(bodyContent, "ModelError");
-                                return reject(new ApiError(response.body, response.statusCode/*, bodyContent*/));
+                                return reject(new ApiError(JSON.stringify(response.body), response.statusCode/*, bodyContent*/));
                             }
                         } else {
                             return reject(new ApiError(null, response.statusCode));

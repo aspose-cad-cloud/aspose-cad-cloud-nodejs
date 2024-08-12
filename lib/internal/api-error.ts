@@ -28,6 +28,11 @@
 export class ApiError extends Error {
 
     /**
+     * Error message
+     */
+    public readonly message: string;
+
+    /**
      * Status code
      */
     public readonly statusCode: number;
@@ -41,6 +46,7 @@ export class ApiError extends Error {
     constructor(message: string, status: number) {
         super(message);
 
+        this.message = message;
         this.statusCode = status;
 
         // Set the prototype explicitly.

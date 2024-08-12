@@ -58,8 +58,10 @@ class RotateFlipApiTests extends ApiTester {
 
             for (const outputFormat of formatsToExport) {
                 let outPath: string = null;
+
+                let finalFileName = `${name}_get_rotate_${operation.toLowerCase()}.${outputFormat}`;
                 if (saveResultToStorage) {
-                    outPath = folder + "/" + name + "." + outputFormat;
+                    outPath = folder + "/" + finalFileName;
                 }
 
                 await this.testGetRequest(
@@ -75,6 +77,7 @@ class RotateFlipApiTests extends ApiTester {
                         },
                         folder,
                         outPath,
+                        finalFileName,
                         storage);
             }
         }
@@ -106,8 +109,9 @@ class RotateFlipApiTests extends ApiTester {
             for (const outputFormat of formatsToExport) {
 
                 let outPath: string = null;
+                let finalFileName = `${name}_post_rotate_${operation.toLowerCase()}.${outputFormat}`;
                 if (saveResultToStorage) {
-                    outPath = folder + "/" + name + "." + outputFormat;
+                    outPath = folder + "/" + finalFileName;
                 }
 
                 await this.testPostRequest(
@@ -121,7 +125,8 @@ class RotateFlipApiTests extends ApiTester {
                             return response;
                         },
                         folder,
-                        outPath,
+                        outPath,                        
+                        finalFileName,
                         storage);
             }
         }
@@ -137,11 +142,11 @@ beforeEach(() => {
 
 beforeAll(async () =>  {
     await testClass.beforeAll();
-});
+}, 60000);
 
 afterAll(async () =>  {
     await testClass.afterAll();
-});
+}, 60000);
 
 // rotateFlipType: 'RotateNoneFlipNone' | 'Rotate90FlipNone' | 'Rotate180FlipNone' | 'Rotate270FlipNone' | 'RotateNoneFlipX' | 'Rotate90FlipX' | 'Rotate180FlipX' | 'Rotate270FlipX' | 'RotateNoneFlipY' | 'Rotate90FlipY' | 'Rotate180FlipY' | 'Rotate270FlipY' | 'RotateNoneFlipXY' | 'Rotate90FlipXY' | 'Rotate180FlipXY' | 'Rotate270FlipXY'
 describe.each([[".dwg", 'RotateNoneFlipNone', true], [".dxf", 'Rotate90FlipX', false]])(

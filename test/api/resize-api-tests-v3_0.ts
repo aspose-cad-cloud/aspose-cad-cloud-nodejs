@@ -58,9 +58,12 @@ class ResizeApiTests extends ApiTester {
             }
 
             for (const outputFormat of formatsToExport) {
+
                 let outPath: string = null;
+                let finalFileName = `${name}_get_resize_${newWidth}_${newHeight}.${outputFormat}`;
+
                 if (saveResultToStorage) {
-                    outPath = folder + "/" + name + "." + outputFormat;
+                    outPath = folder + "/" + finalFileName;
                 }
 
                 await this.testGetRequest(
@@ -76,6 +79,7 @@ class ResizeApiTests extends ApiTester {
                         },
                         folder,
                         outPath,
+                        finalFileName,
                         storage);
             }
         }
@@ -108,8 +112,9 @@ class ResizeApiTests extends ApiTester {
             for (const outputFormat of formatsToExport) {
 
                 let outPath: string = null;
+                let finalFileName = `${name}_post_resize_${newWidth}_${newHeight}.${outputFormat}`;
                 if (saveResultToStorage) {
-                    outPath = folder + "/" + name + "." + outputFormat;
+                    outPath = folder + "/" + finalFileName;
                 }
 
                 await this.testPostRequest(
@@ -124,6 +129,7 @@ class ResizeApiTests extends ApiTester {
                         },
                         folder,
                         outPath,
+                        finalFileName,
                         storage);
             }
         }
@@ -139,11 +145,11 @@ beforeEach(() => {
 
 beforeAll(async () =>  {
     await testClass.beforeAll();
-});
+}, 60000);
 
 afterAll(async () =>  {
     await testClass.afterAll();
-});
+}, 60000);
 
 describe.each([[".dwg", 640, 480, true], [".dxf", 1024, 768, false]])(
     "ResizeTestSuite_V3",
