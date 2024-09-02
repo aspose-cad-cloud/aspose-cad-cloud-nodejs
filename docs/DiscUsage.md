@@ -1,4 +1,4 @@
-﻿# DiscUsage
+# DiscUsage
 Class for disc space information.
 
 ## Properties

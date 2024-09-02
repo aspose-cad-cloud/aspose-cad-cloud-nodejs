@@ -1,4 +1,4 @@
-﻿# CompressionMethod
+# CompressionMethod
 
 
 ## Enum

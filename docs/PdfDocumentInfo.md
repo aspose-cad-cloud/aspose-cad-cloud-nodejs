@@ -1,4 +1,4 @@
-﻿# PdfDocumentInfo
+# PdfDocumentInfo
 
 
 ## Properties

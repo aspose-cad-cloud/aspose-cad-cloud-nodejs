@@ -1,4 +1,4 @@
-﻿# JpegOptionsDTO
+# JpegOptionsDTO
 Export options for JPEG format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

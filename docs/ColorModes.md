@@ -1,4 +1,4 @@
-﻿# ColorModes
+# ColorModes
 
 
 ## Enum

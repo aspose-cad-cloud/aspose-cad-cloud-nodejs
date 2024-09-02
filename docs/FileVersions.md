@@ -1,4 +1,4 @@
-﻿# FileVersions
+# FileVersions
 File versions FileVersion.
 
 ## Properties

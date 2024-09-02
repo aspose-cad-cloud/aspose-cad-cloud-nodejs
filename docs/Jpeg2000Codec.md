@@ -1,4 +1,4 @@
-﻿# Jpeg2000Codec
+# Jpeg2000Codec
 
 
 ## Enum

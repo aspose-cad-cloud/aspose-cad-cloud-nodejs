@@ -1,4 +1,4 @@
-﻿# DwfProperties
+# DwfProperties
 Represents information about DWF drawing.
 
 ## Properties

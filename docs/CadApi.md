@@ -1,4 +1,4 @@
-﻿# Aspose.Cad.Cloud.Sdk.Api.CadApi
+# Aspose.Cad.Cloud.Sdk.Api.CadApi
 
 <a name="convert"></a>
 ## **convert**

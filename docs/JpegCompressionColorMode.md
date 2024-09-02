@@ -1,4 +1,4 @@
-﻿# JpegCompressionColorMode
+# JpegCompressionColorMode
 
 
 ## Enum

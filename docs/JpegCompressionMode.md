@@ -1,4 +1,4 @@
-﻿# JpegCompressionMode
+# JpegCompressionMode
 
 
 ## Enum

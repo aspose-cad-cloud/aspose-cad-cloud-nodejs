@@ -1,4 +1,4 @@
-﻿# CgmOptionsDTO
+# CgmOptionsDTO
 Export options for CGM format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

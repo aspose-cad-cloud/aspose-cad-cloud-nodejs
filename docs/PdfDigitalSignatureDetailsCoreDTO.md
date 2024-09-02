@@ -1,4 +1,4 @@
-﻿# PdfDigitalSignatureDetailsCoreDTO
+# PdfDigitalSignatureDetailsCoreDTO
 Contains details for a PDF digital signature.
 
 ## Properties

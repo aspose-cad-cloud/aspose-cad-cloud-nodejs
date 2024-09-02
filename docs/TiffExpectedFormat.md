@@ -1,4 +1,4 @@
-﻿# TiffExpectedFormat
+# TiffExpectedFormat
 
 
 ## Enum

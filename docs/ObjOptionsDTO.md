@@ -1,4 +1,4 @@
-﻿# ObjOptionsDTO
+# ObjOptionsDTO
 Export options for FBX format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

@@ -1,4 +1,4 @@
-﻿# StpOptionsDTO
+# StpOptionsDTO
 Export options for STP format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

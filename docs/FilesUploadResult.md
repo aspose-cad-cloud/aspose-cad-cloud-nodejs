@@ -1,4 +1,4 @@
-﻿# FilesUploadResult
+# FilesUploadResult
 File upload result
 
 ## Properties

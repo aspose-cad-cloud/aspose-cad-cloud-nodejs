@@ -1,4 +1,4 @@
-﻿# InterpolationMode
+# InterpolationMode
 
 
 ## Enum

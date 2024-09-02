@@ -1,4 +1,4 @@
-﻿# SvgColorMode
+# SvgColorMode
 
 
 ## Enum

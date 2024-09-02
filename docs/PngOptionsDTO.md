@@ -1,4 +1,4 @@
-﻿# PngOptionsDTO
+# PngOptionsDTO
 Export options for PNG format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

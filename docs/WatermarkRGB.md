@@ -1,4 +1,4 @@
-﻿# WatermarkRGB
+# WatermarkRGB
 Watermark text with RGB values
 
 ## Properties

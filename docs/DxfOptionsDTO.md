@@ -1,4 +1,4 @@
-﻿# DxfOptionsDTO
+# DxfOptionsDTO
 Export options for DXF format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

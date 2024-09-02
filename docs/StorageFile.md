@@ -1,4 +1,4 @@
-﻿# StorageFile
+# StorageFile
 File or folder information
 
 ## Properties

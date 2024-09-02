@@ -1,4 +1,4 @@
-﻿# LineCap
+# LineCap
 
 
 ## Enum

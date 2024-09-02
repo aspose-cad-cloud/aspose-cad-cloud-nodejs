@@ -1,4 +1,4 @@
-﻿# Cf2Properties
+# Cf2Properties
 Represents information about CF2 drawing.
 
 ## Properties

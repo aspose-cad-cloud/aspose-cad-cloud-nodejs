@@ -1,4 +1,4 @@
-﻿## Documentation for API Endpoints
+## Documentation for API Endpoints
 
 All URIs are relative to *https://api.aspose.cloud/v3.0/*
 

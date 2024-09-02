@@ -1,4 +1,4 @@
-﻿# TiffPhotometrics
+# TiffPhotometrics
 
 
 ## Enum

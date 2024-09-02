@@ -1,4 +1,4 @@
-﻿# PsdOptionsDTO
+# PsdOptionsDTO
 Export options for PSD format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

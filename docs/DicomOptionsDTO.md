@@ -1,4 +1,4 @@
-﻿# DicomOptionsDTO
+# DicomOptionsDTO
 Export options for DICOM format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

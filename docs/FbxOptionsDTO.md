@@ -1,4 +1,4 @@
-﻿# FbxOptionsDTO
+# FbxOptionsDTO
 Export options for FBX format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

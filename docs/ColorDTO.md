@@ -1,4 +1,4 @@
-﻿# ColorDTO
+# ColorDTO
 RGB color values
 
 ## Properties

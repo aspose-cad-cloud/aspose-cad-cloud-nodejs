@@ -1,4 +1,4 @@
-﻿# VectorRasterizationOptionsDTO
+# VectorRasterizationOptionsDTO
 Base raster export options class
 
 ## Properties

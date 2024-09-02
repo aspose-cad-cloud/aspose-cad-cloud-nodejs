@@ -1,4 +1,4 @@
-﻿# StpProperties
+# StpProperties
 Represents information about STP drawing.
 
 ## Properties

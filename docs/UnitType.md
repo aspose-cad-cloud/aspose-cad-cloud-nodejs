@@ -1,4 +1,4 @@
-﻿# UnitType
+# UnitType
 
 
 ## Enum

@@ -1,4 +1,4 @@
-﻿# ResolutionSetting
+# ResolutionSetting
 
 
 ## Properties

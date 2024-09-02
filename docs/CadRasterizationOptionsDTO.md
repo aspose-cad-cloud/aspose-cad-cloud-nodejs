@@ -1,4 +1,4 @@
-﻿# CadRasterizationOptionsDTO
+# CadRasterizationOptionsDTO
 Raster export options
 
 *Inherited from [VectorRasterizationOptionsDTO](VectorRasterizationOptionsDTO.md)*

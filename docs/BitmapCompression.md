@@ -1,4 +1,4 @@
-﻿# BitmapCompression
+# BitmapCompression
 
 
 ## Enum

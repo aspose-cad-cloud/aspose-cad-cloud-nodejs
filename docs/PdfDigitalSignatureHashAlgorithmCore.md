@@ -1,4 +1,4 @@
-﻿# PdfDigitalSignatureHashAlgorithmCore
+# PdfDigitalSignatureHashAlgorithmCore
 
 
 ## Enum

@@ -1,4 +1,4 @@
-﻿# ObjectExist
+# ObjectExist
 Object exists
 
 ## Properties

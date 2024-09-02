@@ -1,4 +1,4 @@
-﻿# Jpeg2000OptionsDTO
+# Jpeg2000OptionsDTO
 Export options for JPEG2000 format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

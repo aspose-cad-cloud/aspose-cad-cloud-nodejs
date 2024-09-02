@@ -1,4 +1,4 @@
-﻿# GlbOptionsDTO
+# GlbOptionsDTO
 Export options for GLB format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

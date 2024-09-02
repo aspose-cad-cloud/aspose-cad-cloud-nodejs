@@ -1,4 +1,4 @@
-﻿# TiffByteOrder
+# TiffByteOrder
 
 
 ## Enum

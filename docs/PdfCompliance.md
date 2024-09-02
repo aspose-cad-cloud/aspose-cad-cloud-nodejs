@@ -1,4 +1,4 @@
-﻿# PdfCompliance
+# PdfCompliance
 
 
 ## Enum
