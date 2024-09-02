@@ -13,3 +13,4 @@ package-lock.json
 .swagger-codegen-ignore
 **/.idea
 /TestData/serverAccess.json
+/*.tgz
