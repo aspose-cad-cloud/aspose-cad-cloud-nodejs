@@ -1,4 +1,4 @@
-﻿# GifOptionsDTO
+# GifOptionsDTO
 Export options for GIF format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

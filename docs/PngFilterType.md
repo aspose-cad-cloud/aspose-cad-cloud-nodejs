@@ -1,4 +1,4 @@
-﻿# PngFilterType
+# PngFilterType
 
 
 ## Enum

@@ -1,4 +1,4 @@
-﻿# WmfOptionsDTO
+# WmfOptionsDTO
 Export options for WMF format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

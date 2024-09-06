@@ -1,4 +1,4 @@
-﻿# TextRenderingHint
+# TextRenderingHint
 
 
 ## Enum

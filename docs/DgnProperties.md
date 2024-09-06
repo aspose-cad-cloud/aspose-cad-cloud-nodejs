@@ -1,4 +1,4 @@
-﻿# DgnProperties
+# DgnProperties
 Represents information about DGN drawing.
 
 ## Properties

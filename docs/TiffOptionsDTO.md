@@ -1,4 +1,4 @@
-﻿# TiffOptionsDTO
+# TiffOptionsDTO
 Export options for TIFF format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

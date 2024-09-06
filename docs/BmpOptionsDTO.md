@@ -1,4 +1,4 @@
-﻿# BmpOptionsDTO
+# BmpOptionsDTO
 Export options for BMP format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

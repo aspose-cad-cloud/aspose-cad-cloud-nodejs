@@ -1,4 +1,4 @@
-﻿# FilesList
+# FilesList
 Files list
 
 ## Properties

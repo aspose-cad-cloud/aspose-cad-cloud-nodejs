@@ -1,4 +1,4 @@
-﻿# RdOptimizerSettings
+# RdOptimizerSettings
 
 
 ## Properties

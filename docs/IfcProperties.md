@@ -1,4 +1,4 @@
-﻿# IfcProperties
+# IfcProperties
 Represents information about IFC drawing.
 
 ## Properties

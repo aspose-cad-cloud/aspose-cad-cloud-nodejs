@@ -1,4 +1,4 @@
-﻿# SvgOptionsDTO
+# SvgOptionsDTO
 Export options for SVG format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

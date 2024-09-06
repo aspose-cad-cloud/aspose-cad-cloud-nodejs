@@ -1,4 +1,4 @@
-﻿# CadDrawTypeMode
+# CadDrawTypeMode
 
 
 ## Enum

@@ -1,4 +1,4 @@
-﻿# SmoothingMode
+# SmoothingMode
 
 
 ## Enum

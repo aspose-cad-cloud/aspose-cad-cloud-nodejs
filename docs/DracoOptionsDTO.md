@@ -1,4 +1,4 @@
-﻿# DracoOptionsDTO
+# DracoOptionsDTO
 Export options for Draco format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

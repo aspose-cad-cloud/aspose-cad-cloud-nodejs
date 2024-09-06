@@ -80,7 +80,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "node.js sdk";
-    requestOptions.headers["x-aspose-client-version"] = "24.5.0";
+    requestOptions.headers["x-aspose-client-version"] = "24.5.2";
 
     requestOptions.timeout = 600000;
 
@@ -127,7 +127,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                                 return reject(new ApiError(bodyContent.Message, response.statusCode));
                             } else {
                                 //modelError = ObjectSerializer.deserialize(bodyContent, "ModelError");
-                                return reject(new ApiError(response.body, response.statusCode/*, bodyContent*/));
+                                return reject(new ApiError(JSON.stringify(response.body), response.statusCode/*, bodyContent*/));
                             }
                         } else {
                             return reject(new ApiError(null, response.statusCode));

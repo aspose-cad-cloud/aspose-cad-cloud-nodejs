@@ -1,4 +1,4 @@
-﻿# StlProperties
+# StlProperties
 Represents information about STL drawing.
 
 ## Properties

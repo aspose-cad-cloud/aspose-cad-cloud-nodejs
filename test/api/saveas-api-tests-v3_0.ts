@@ -53,8 +53,10 @@ class SaveAsApiTests extends ApiTester {
 
             for (const outputFormat of formatsToExport) {
                 let outPath: string = null;
+                let finalFileName = `${name}_get_save_as.${outputFormat}`;
+                
                 if (saveResultToStorage) {
-                    outPath = folder + "/" + name + "." + outputFormat;
+                    outPath = folder + "/" + finalFileName;
                 }
 
                 await this.testGetRequest(
@@ -70,6 +72,7 @@ class SaveAsApiTests extends ApiTester {
                         },
                         folder,
                         outPath,
+                        finalFileName,
                         storage);
             }
         }
@@ -97,8 +100,10 @@ class SaveAsApiTests extends ApiTester {
             for (const outputFormat of formatsToExport) {
 
                 let outPath: string = null;
+                let finalFileName = `${name}_post_save_as.${outputFormat}`;
+
                 if (saveResultToStorage) {
-                    outPath = folder + "/" + name + "." + outputFormat;
+                    outPath = folder + "/" + finalFileName;
                 }
 
                 await this.testPostRequest(
@@ -113,6 +118,7 @@ class SaveAsApiTests extends ApiTester {
                         },
                         folder,
                         outPath,
+                        finalFileName,
                         storage);
             }
         }
@@ -123,12 +129,6 @@ class SaveAsApiTests extends ApiTester {
 const testClass: SaveAsApiTests = new SaveAsApiTests();
 const useExtendedTests: boolean = process.env.ExtendedTests === "true";
 console.log("Extended: " + useExtendedTests);
-// testClass.beforeAll().then(_ => {
-//     testClass.getSaveDrawingAsTest(".dxf", false);
-//     testClass.postSaveDrawingAsTest(".dwg", false).then(_ => {
-//         testClass.postSaveDrawingAsTest(".dwg", true);
-//     });
-// });
 
 beforeEach(() => {
     jest.setTimeout(ApiTester.DefaultTimeout);
@@ -136,11 +136,11 @@ beforeEach(() => {
 
 beforeAll(async () =>  {
     await testClass.beforeAll();
-});
+}, 120000);
 
 afterAll(async () =>  {
     await testClass.afterAll();
-});
+}, 120000);
 
 describe.each([[".dwg", true], [".dxf", false]])(
     "SaveAsTestSuite_V3",

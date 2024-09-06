@@ -1,4 +1,4 @@
-﻿# FbxProperties
+# FbxProperties
 Represents information about FBX drawing.
 
 ## Properties

@@ -1,4 +1,4 @@
-﻿# FileVersion
+# FileVersion
 File Version
 
 *Inherited from [StorageFile](StorageFile.md)*

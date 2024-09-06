@@ -1,4 +1,4 @@
-﻿# WebpOptionsDTO
+# WebpOptionsDTO
 Export options for WEBP format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

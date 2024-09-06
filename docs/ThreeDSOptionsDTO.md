@@ -1,4 +1,4 @@
-﻿# ThreeDSOptionsDTO
+# ThreeDSOptionsDTO
 Export options for 3DS format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

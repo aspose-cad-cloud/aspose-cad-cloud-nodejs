@@ -1,4 +1,4 @@
-﻿# U3dOptionsDTO
+# U3dOptionsDTO
 Export options for U3D format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

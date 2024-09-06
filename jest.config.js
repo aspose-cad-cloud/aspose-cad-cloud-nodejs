@@ -2,5 +2,7 @@ module.exports = {
   preset: 'ts-jest',
   testMatch: ["***/test/**/*-tests-*v*.ts"],
   testEnvironment: 'node',
-  setupTestFrameworkScriptFile: './jest.setup.js'
+  bail: true,
+  verbose: true,
+  setupFilesAfterEnv:  ['./jest.setup.js']
 };

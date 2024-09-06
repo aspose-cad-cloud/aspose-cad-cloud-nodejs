@@ -1,4 +1,4 @@
-﻿# StorageExist
+# StorageExist
 Storage exists
 
 ## Properties

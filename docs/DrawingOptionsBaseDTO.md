@@ -1,4 +1,4 @@
-﻿# DrawingOptionsBaseDTO
+# DrawingOptionsBaseDTO
 Image options base class
 
 ## Properties

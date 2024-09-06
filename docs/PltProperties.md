@@ -1,4 +1,4 @@
-﻿# PltProperties
+# PltProperties
 Represents information about PLT drawing.
 
 ## Properties

@@ -1,4 +1,4 @@
-﻿# ObjProperties
+# ObjProperties
 Represents information about OBJ drawing.
 
 ## Properties

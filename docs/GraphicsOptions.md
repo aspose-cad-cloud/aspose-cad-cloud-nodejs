@@ -1,4 +1,4 @@
-﻿# GraphicsOptions
+# GraphicsOptions
 
 
 ## Properties

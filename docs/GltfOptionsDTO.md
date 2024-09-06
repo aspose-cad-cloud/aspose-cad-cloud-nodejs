@@ -1,4 +1,4 @@
-﻿# GltfOptionsDTO
+# GltfOptionsDTO
 Export options for GLTF format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

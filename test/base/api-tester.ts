@@ -85,6 +85,14 @@ export abstract class ApiTester {
     ];
 
     /**
+     * The basic export formats
+     */
+    protected readonly BasicCadExportFormats: string[] =
+    [
+        "dxf"
+    ];
+
+    /**
      * Cloud test folder prefix.
      */
     protected readonly CloudTestFolderPrefix: string = "CadCloudTestNodeJS";
@@ -92,7 +100,17 @@ export abstract class ApiTester {
     /**
      * Original data folder.
      */
-    protected readonly OriginalDataFolder: string = "CadIntegrationTestData";
+    protected readonly OriginalDataFolder: string = "CadCloudIntegrationTestDataNodeJs";
+
+    /**
+     * Reference data folder.
+     */
+    protected readonly ReferenceDataFolder: string = "ReferenceData";
+
+    /**
+     * Ovveride reference file.
+     */
+    protected readonly OverrideReference: boolean = false;
 
     /**
      * Gets or sets a value indicating whether resulting images should be removed from cloud storage.
@@ -125,21 +143,26 @@ export abstract class ApiTester {
     public async beforeAll() {
         console.log("==== BEFORE ALL");
 
-        let tempPostfix: string = process.env.BUILD_NUMBER;
-        if (!tempPostfix) {
-            tempPostfix = require("os").userInfo().username;
-        }
-        this.TempFolder = `${this.CloudTestFolderPrefix}_${tempPostfix}`;
+        //let tempPostfix: string = process.env.BUILD_NUMBER;
+        //if (!tempPostfix) {
+        //    tempPostfix = require("os").userInfo().username;
+        //}        
+        //this.TempFolder = `${this.CloudTestFolderPrefix}_${tempPostfix}`;
 
+        this.TempFolder = this.CloudTestFolderPrefix;
         this.TestStorage = process.env.StorageName;
 
         if (!this.TestStorage) {
             console.log("Storage name is not set by environment variable. Using the default one.");
             this.TestStorage = this.DefaultStorage;
         }
-        
 
         await this.createApiInstances();
+
+        await this.initializeFolders();
+
+        await this.fetchInputTestFiles();
+
         if (!ApiTester.FailedAnyTest && this.RemoveResult && 
             (await this.getIsExistAsync(this.TempFolder, this.TestStorage))) {
             await this.deleteFolderAsync(this.TempFolder, this.TestStorage);
@@ -165,10 +188,10 @@ export abstract class ApiTester {
     protected async putCreateFolderAsync(folder: string, storage: string) {
         return new Promise((resolve, reject) => {
             try {
-                this.cadApi.createFolder({
+                this.cadApi.createFolder(new cad.CreateFolderRequest({
                     path: folder, 
                     storageName: storage
-                })
+                }))
                 .then((responseMessage) => {
                     resolve(responseMessage);
                 });
@@ -280,6 +303,13 @@ export abstract class ApiTester {
         console.log(`API version: ${apiVersion}`);
 
         this.cadApi = new cad.CadApi(appKey, appSid, baseUrl, true, apiVersion, proxy);
+    }
+
+    /**
+     * Get files from the cloud.
+     */
+    protected async fetchInputTestFiles(){   
+        console.warn("Fetching input test files...");  
 
         this.InputTestFiles = await this.fetchInputTestFilesInfo(false);
 
@@ -288,6 +318,31 @@ export abstract class ApiTester {
         }
 
         console.log("Input test files: " + this.InputTestFiles.length);
+    }
+
+    /**
+     * Creates folders for working in the cloud.
+     */
+    protected async initializeFolders() {
+        console.warn("Deleting cloud storage folders...");
+        
+        
+        if(await this.getIsExistAsync(this.CloudTestFolderPrefix, this.TestStorage)){
+            await this.deleteFolderAsync(this.CloudTestFolderPrefix, this.TestStorage);
+        }
+        if(await this.getIsExistAsync(this.OriginalDataFolder, this.TestStorage)){
+            await this.deleteFolderAsync(this.OriginalDataFolder, this.TestStorage);
+        }
+
+        console.warn("Creating cloud storage folders...");
+
+        if(!await this.getIsExistAsync(this.CloudTestFolderPrefix, this.TestStorage)){
+            await this.putCreateFolderAsync(this.CloudTestFolderPrefix, this.TestStorage)
+        }
+
+        if(!await this.getIsExistAsync(this.OriginalDataFolder, this.TestStorage)){
+            await this.putCreateFolderAsync(this.OriginalDataFolder, this.TestStorage)
+        }
     }
 
     /**
@@ -342,13 +397,14 @@ export abstract class ApiTester {
       * @param propertiesTester The properties tester.
       * @param folder folder with file.
       * @param outPath The out path.
+      * @param resultFileName Result file name.
       * @param storage The storage.
       */
     protected async testGetRequest(testMethodName: string, parametersLine: string, inputFileName: string,
                                    requestInvoker: GetRequestInvokerDelegate, folder: string, outPath: string, 
-                                   storage: string = this.DefaultStorage) {
+                                   resultFileName: string, storage: string = this.DefaultStorage) {
 
-            await this.testRequest(testMethodName, parametersLine, inputFileName, outPath, 
+            await this.testRequest(testMethodName, parametersLine, inputFileName, resultFileName, 
                 () => this.obtainGetResponse(requestInvoker, outPath), folder, outPath, storage);
     }
 
@@ -361,16 +417,39 @@ export abstract class ApiTester {
       * @param propertiesTester The properties tester.
       * @param folder The folder with file.
       * @param outPath The out path.
+      * @param resultFileName Result file name.
       * @param storage The storage.
       */
     protected async testPostRequest(testMethodName: string, parametersLine: string, inputFileName: string, 
                                     requestInvoker: PostRequestInvokerDelegate, folder: string,
-                                    outPath: string, storage: string = this.DefaultStorage) {
+                                    outPath: string, resultFileName: string, storage: string = this.DefaultStorage) {
 
             await this.testRequest(
-                testMethodName, parametersLine, inputFileName, outPath, 
+                testMethodName, parametersLine, inputFileName, resultFileName, 
                 () => this.obtainPostResponse(folder  + "/" + inputFileName, outPath, storage, requestInvoker), 
                 folder, outPath, storage);
+    }
+
+    /**
+      * Tests the typical PUT request.
+      * @param testMethodName Name of the test method.
+      * @param parametersLine The parameters line.
+      * @param inputFileName Name of the input file.
+      * @param requestInvoker The request invoker.
+      * @param propertiesTester The properties tester.
+      * @param folder The folder with file.
+      * @param outPath The out path.
+      * @param resultFileName Result file name.
+      * @param storage The storage.
+      */
+    protected async testPutRequest(testMethodName: string, parametersLine: string, inputFileName: string, 
+        requestInvoker: PostRequestInvokerDelegate, folder: string,
+        outPath: string, resultFileName: string, storage: string = this.DefaultStorage) {
+
+        await this.testRequest(
+        testMethodName, parametersLine, inputFileName, resultFileName, 
+        () => this.obtainPostResponse(folder  + "/" + inputFileName, outPath, storage, requestInvoker), 
+        folder, outPath, storage);
     }
 
     /**
@@ -495,6 +574,8 @@ export abstract class ApiTester {
         const thisLink = this;
 
         if (forcedUpload) {
+            console.log("Uploading files to cloud storage...");
+
             fs.readdir(this.LocalTestFolder, function(_, items) {
                 for (const item of items) {
                     const stats = fs.statSync(thisLink.LocalTestFolder + "/" + item);
@@ -562,20 +643,56 @@ export abstract class ApiTester {
                     await this.deleteFileAsync(outPath, storage);
                 }
             }
-            
-            //let resultProperties: cad.CadResponse = null;
             const response = await invokeRequestAction();
+
+            const existReferenceFile = fs.existsSync(this.ReferenceDataFolder + "/" + resultFileName);
+
+            if(this.OverrideReference) {
+                if (outPath) {
+                    console.warn("Overwriting the reference file...");
+
+                    const referenceFile = await this.getDownloadAsync(this.CloudTestFolderPrefix + "/" + resultFileName, storage);
+
+                    fs.writeFileSync(this.ReferenceDataFolder + "/" + resultFileName, referenceFile);
+
+                } else {
+                    console.warn("Overwriting the reference file...");
+
+                    fs.writeFileSync(this.ReferenceDataFolder + "/" + resultFileName, response);
+                }                
+            }
+
+            if (!existReferenceFile && !this.OverrideReference) {
+                throw new Error(
+                    `Result file ${resultFileName} doesn't exist in the specified local folder: ${this.ReferenceDataFolder}. 
+                    First, add a file to check.`);
+            }
+
             if (outPath) {
-                const resultInfo = await this.getStorageFileInfo(folder, resultFileName, storage);
+                console.log("Checking file existence...");
+
+                let resultInfo = await this.getStorageFileInfo(folder, `${this.CloudTestFolderPrefix}/${resultFileName}`, storage);
+
                 if (resultInfo == null) {
                     throw new Error(
                         `Result file ${resultFileName} doesn't exist in the specified storage folder: ${folder}. 
                         Result isn't present in the storage by an unknown reason.`);
                 }
+
+                let resultFile = await this.getDownloadAsync(this.CloudTestFolderPrefix + "/" + resultFileName, storage);
+                let bufferReferenceFile = fs.readFileSync(this.ReferenceDataFolder + "/" + resultFileName);
+
+                expect(resultFile).toBeTruthy();
+                expect(bufferReferenceFile).toBeTruthy();
+
+                expect(resultFile.length).toBe(bufferReferenceFile.length);
             } else {
-                console.log("Response length: " + response.length);
+                let bufferReferenceFile = fs.readFileSync(this.ReferenceDataFolder + "/" + resultFileName);
+
                 expect(response).toBeTruthy();
-                expect(response.length).toBeGreaterThan(0);
+                expect(bufferReferenceFile).toBeTruthy();
+
+                expect(response.length).toBe(bufferReferenceFile.length);
             }
 
             passed = true;

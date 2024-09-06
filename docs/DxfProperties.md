@@ -1,4 +1,4 @@
-﻿# DxfProperties
+# DxfProperties
 Represents information about DXF drawing.
 
 ## Properties

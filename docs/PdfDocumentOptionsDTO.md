@@ -1,4 +1,4 @@
-﻿# PdfDocumentOptionsDTO
+# PdfDocumentOptionsDTO
 Export document options.
 
 ## Properties

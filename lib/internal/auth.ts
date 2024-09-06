@@ -71,6 +71,11 @@ export class JwtAuth implements IAuthentication {
     }
 
     private async requestToken(configuration: Configuration): Promise<void> {
+        const pattern = /api(-qa)?/;
+        const replacement = 'id$1';
+
+        let baseTokenUrl = configuration.baseUrl.replace(pattern, replacement);
+
         let postData = "grant_type=client_credentials";
         postData += "&client_id=" + configuration.appSID;
         postData += "&client_secret=" + configuration.appKey;
@@ -79,7 +84,7 @@ export class JwtAuth implements IAuthentication {
 
         const requestOptions: request.Options = {
             method: "POST",
-            uri: configuration.baseUrl + "connect/token",
+            uri: baseTokenUrl + "connect/token",
             body: postData,
             headers: { 
                 "Content-Type": "application/x-www-form-urlencoded",

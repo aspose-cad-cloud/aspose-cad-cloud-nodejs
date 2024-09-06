@@ -1,4 +1,4 @@
-﻿# PngColorType
+# PngColorType
 
 
 ## Enum

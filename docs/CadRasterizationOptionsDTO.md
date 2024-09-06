@@ -1,4 +1,4 @@
-﻿# CadRasterizationOptionsDTO
+# CadRasterizationOptionsDTO
 Raster export options
 
 *Inherited from [VectorRasterizationOptionsDTO](VectorRasterizationOptionsDTO.md)*
@@ -16,8 +16,8 @@ Name | Type | Description | Notes
 **borderY** | **number** | Gets or sets the border Y.<br />*Inherited from [VectorRasterizationOptionsDTO](VectorRasterizationOptionsDTO.md)* | 
 **pageHeight** | **number** | Gets or sets the page height.<br />*Inherited from [VectorRasterizationOptionsDTO](VectorRasterizationOptionsDTO.md)* | 
 **pageWidth** | **number** | Gets or sets the page width.<br />*Inherited from [VectorRasterizationOptionsDTO](VectorRasterizationOptionsDTO.md)* | 
-**backgroundColor** | [**Color**](Color.md) | Gets or sets a background color.<br />*Inherited from [VectorRasterizationOptionsDTO](VectorRasterizationOptionsDTO.md)* | 
-**drawColor** | [**Color**](Color.md) | Gets or sets a foreground color.<br />*Inherited from [VectorRasterizationOptionsDTO](VectorRasterizationOptionsDTO.md)* | 
+**backgroundColor** | [**ColorDTO**](ColorDTO.md) | Gets or sets a background color.<br />*Inherited from [VectorRasterizationOptionsDTO](VectorRasterizationOptionsDTO.md)* | [optional]
+**drawColor** | [**ColorDTO**](ColorDTO.md) | Gets or sets a foreground color.<br />*Inherited from [VectorRasterizationOptionsDTO](VectorRasterizationOptionsDTO.md)* | [optional]
 **unitType** |  | <br />*Inherited from [VectorRasterizationOptionsDTO](VectorRasterizationOptionsDTO.md)* | 
 **contentAsBitmap** | **boolean** | Gets or sets a value indicating whether content of a drawing is represented as image inside Pdf. Applicable only for CAD to Pdf export. Default is false.<br />*Inherited from [VectorRasterizationOptionsDTO](VectorRasterizationOptionsDTO.md)* | 
 **graphicsOptions** | [**GraphicsOptions**](GraphicsOptions.md) | Gets or sets options to render bitmap inside pdf (if ContentAsBitmap is set to true).<br />*Inherited from [VectorRasterizationOptionsDTO](VectorRasterizationOptionsDTO.md)* | [optional]

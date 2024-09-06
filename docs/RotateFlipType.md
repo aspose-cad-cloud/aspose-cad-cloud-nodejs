@@ -1,4 +1,4 @@
-﻿# RotateFlipType
+# RotateFlipType
 
 
 ## Enum

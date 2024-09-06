@@ -1,4 +1,4 @@
-﻿# PdfOptionsDTO
+# PdfOptionsDTO
 Export options for PDF format
 
 *Inherited from [DrawingOptionsBaseDTO](DrawingOptionsBaseDTO.md)*

@@ -1,4 +1,4 @@
-﻿# IgsProperties
+# IgsProperties
 Represents information about IGS drawing.
 
 ## Properties

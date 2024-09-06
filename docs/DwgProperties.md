@@ -1,4 +1,4 @@
-﻿# DwgProperties
+# DwgProperties
 Represents information about DWG drawing.
 
 ## Properties

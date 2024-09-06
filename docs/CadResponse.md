@@ -1,4 +1,4 @@
-﻿# CadResponse
+# CadResponse
 Represents information about a drawing.
 
 ## Properties
